@@ -1,5 +1,8 @@
 Learn git push from console: https://www.codecademy.com/articles/push-to-github
+
 this file's push option is: git remote add origin https://github.com/ElijahRW/CS300_TEST
+
+To pull data into a local directory: git pull origin master
 
 
 
