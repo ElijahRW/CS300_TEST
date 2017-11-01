@@ -1,2 +1,2 @@
-# CS300_TEST
-For Testing Purposes for CS 300
+# FRUPAL PROJECT
+Central Depository
