@@ -1,4 +1,7 @@
 Learn git push from console: https://www.codecademy.com/articles/push-to-github
+this file's push option is: git remote add origin https://github.com/ElijahRW/CS300_TEST
+
+
 
 Learning git commands: https://www.codecademy.com/learn/learn-git
 
