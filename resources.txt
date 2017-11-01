@@ -1,0 +1,5 @@
+Learn git push from console: https://www.codecademy.com/articles/push-to-github
+
+Learning git commands: https://www.codecademy.com/learn/learn-git
+
+HTML://www.w3schools.com/html/html_tables.asp
