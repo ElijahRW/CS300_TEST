@@ -11,7 +11,10 @@ void print_table();
 
 int main ()
 {
+	char protocolString[160];
+	strncpy(protocolString, getenv("QUERY_STRING"),159);
 	cout << "Content-Type: text/html;charset=us-ascii\n\n";
+	cout << protocolString << "\n\n\n\n";
 	//cout << "<tr>HELLO!!!!!!</tr>";
 	print_table();
   return 0;
