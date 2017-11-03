@@ -12,6 +12,18 @@ function movePlayer(x)
 	xhttp.send();
 	document.getElementById("loc").innerHTML = xhttp.responseText;
 	
+	
+	var xhttp2 = new XMLHttpRequest();
+	xhttp2.open("GET", 'table.cgi?'+direction, false);
+	xhttp2.send();
+	document.getElementById("map").innerHTML = xhttp2.responseText;
+				
+	var xhttp1 = new XMLHttpRequest();
+	xhttp1.open("GET", 'player_inventory.cgi', false);
+	xhttp1.send();
+	document.getElementById("inventory").innerHTML = xhttp1.responseText;
+	
+	
 }
 </script>
 
@@ -38,5 +50,12 @@ Frupal Project center
 <div id=coordinates>
 	<br>Player Location: <span id=loc></span>
 </div>
+
+
+<table id ="map" style = "width:100%">
+</table>
+<table id = "inventory" style = "width:25%">
+		Player Inventory
+</table>
 
 <html>
