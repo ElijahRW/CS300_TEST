@@ -14,14 +14,14 @@ int main ()
 	char protocolString[160];
 	strncpy(protocolString, getenv("QUERY_STRING"),159);
 	cout << "Content-Type: text/html;charset=us-ascii\n\n";
-	cout << protocolString << "\n\n\n\n";
-	//cout << "<tr>HELLO!!!!!!</tr>";
+	//cout << protocolString << "\n\n\n\n";
 	print_table();
   return 0;
 }
 
 //This function  is a demonstration of how a program would output a map (currently in text format)
 //Theoretically, the actual content of each cell would be handled by an external class.
+//This function should theoretically be callable either dirrectly, or via the game logic
 void print_table()
 {
 	int x_lim = 10;
