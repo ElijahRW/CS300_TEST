@@ -5,9 +5,9 @@
 <script>
 function movePlayer(x)
 {
-	arguments="direction="+x;
+	arguments="query="+x;
 	var xhttp = new XMLHttpRequest();
-	URL = "move_player.cgi?"+arguments;
+	URL = "main.cgi?"+arguments;
 	xhttp.open("GET",URL,false);
 	xhttp.send();
 	document.getElementById("loc").innerHTML = xhttp.responseText;
