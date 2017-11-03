@@ -1,41 +1,42 @@
 <html>
-	<head>
-		<script>
-			function loadMap(direction)
-			{
-				var xhttp = new XMLHttpRequest();
-				xhttp.open("GET", 'table.cgi?'+direction, false);
-				xhttp.send();
-				document.getElementById("map").innerHTML = xhttp.responseText;
-				
-				var xhttp1 = new XMLHttpRequest();
-				xhttp1.open("GET", 'player_inventory.cgi', false);
-				xhttp1.send();
-				document.getElementById("inventory").innerHTML = xhttp1.responseText;
-			}
-		
-		</script>
-		<title> Frupal Project central page </title>
-	</head>
-<body>
-	<h1>
-	Frupal Project Home
-	</h1>
-	<table style = "width:100%">
-		<tr><th></th><th><button type = "button" onClick="loadMap('north')">NORTH</button></th>
-		</tr>
-		<tr><th><button type="button" onClick="loadMap('west')">West</button><th>LOCATION:</th><th><button type = "button" onClick="loadMap('east')">East</button></th>
-		</tr>
-		<tr><th></th><th><button type = "button" onClick="loadMap('south')">SOUTH</button></th>
-		</tr>
-	</table>
+<head>
+<title> Frupal Project central page </title>
+
+<script>
+function movePlayer(x)
+{
+	arguments="query="+x;
+	var xhttp = new XMLHttpRequest();
+	URL = "main.cgi?"+arguments;
+	xhttp.open("GET",URL,false);
+	xhttp.send();
+	document.getElementById("loc").innerHTML = xhttp.responseText;
 	
-	
-	<table id ="map" style = "width:100%">
-	</table>
-	<table id = "inventory" style = "width:25%">
-		Player Inventory
-	</table>
-</body>
+}
+</script>
+
+<style>
+#coordinates {
+	text-align: center;
+}
+</style>
+
+</head>
+
+<h1>
+Frupal Project center
+</h1>
+<table style = "width:100%">
+	<tr><th></th><th><button type = "button" onclick = movePlayer('N')>NORTH</button></th>
+	</tr>
+	<tr><th><button type="button" onclick = movePlayer('W')>West</button><th></th><th><button type = "button" onclick = movePlayer('E')>East</button></th>
+	</tr>
+	<tr><th></th><th><button type = "button" onclick = movePlayer('S')>SOUTH</button></th>
+	</tr>
+</table>
+
+<div id=coordinates>
+	<br>Player Location: <span id=loc></span>
+</div>
 
 <html>
