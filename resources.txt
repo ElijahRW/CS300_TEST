@@ -2,10 +2,11 @@ Learn git push from console: https://www.codecademy.com/articles/push-to-github
 
 this file's push option is: git remote add origin https://github.com/ElijahRW/CS300_TEST
 
-To pull data into a local directory: git pull origin master
+To pull data into a local directory: "git pull origin master"
 
 
 
 Learning git commands: https://www.codecademy.com/learn/learn-git
+Useful git youtube series: https://www.youtube.com/playlist?list=PLRqwX-V7Uu6ZF9C0YMKuns9sLDzK6zoiV
 
-HTML://www.w3schools.com/html/html_tables.asp
+HTML reference site://www.w3schools.com/html/html_tables.asp
