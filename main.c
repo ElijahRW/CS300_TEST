@@ -6,6 +6,7 @@ int main()
 	char buffer[100];
 	s_cgi *cgi;
 	FILE *fp;
+	FILE *fp2;
 	Player player;
 	Map map;
 	int i, j, len;
@@ -32,6 +33,16 @@ int main()
 
 	if(strcmp(query, "N") == 0 || strcmp(query, "S") == 0 || strcmp(query, "E") == 0 || strcmp(query, "W") == 0) {
 		move_player(query, &player, &map);
+	}
+
+	//temp location for diamond at coordinates (10,10). Fill in these values when location of diamond is placed. 
+	int diamondx = 10;
+	int diamondy = 10;
+
+	if(map->tiles[diamondx][diamondy].visibility && strcmp(map->tiles[diamondx][diamondy]->content, "DIAMOND"))
+	{
+		resetstate(fp,fp2);
+		read_file(&player, &map, fp);
 	}
 
 	write_file(&player, &map, fp);
