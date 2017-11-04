@@ -35,9 +35,19 @@ int main()
 		move_player(query, &player, &map);
 	}
 
-	//temp location for diamond at coordinates (10,10). Fill in these values when location of diamond is placed. 
-	int diamondx = 10;
-	int diamondy = 10;
+	//temp location for diamond at coordinates (0,0). Fill in these values when location of diamond is placed. 
+	int diamondx = 0;
+	int diamondy = 0;
+	
+	
+        //If statement to check coordinates that the player has moved into and the coordiantes of the diamonds
+
+        if(map.tiles[diamondx][diamondy].x == player.x && map.tiles[diamondx][diamondy].y == player.y)
+        {
+                map.tiles[diamondx][diamondy].visibility = 1;
+                printf("%s  ", "You have found the diamonds");
+        }
+
 
 	if(map->tiles[diamondx][diamondy].visibility && strcmp(map->tiles[diamondx][diamondy]->content, "DIAMOND"))
 	{
