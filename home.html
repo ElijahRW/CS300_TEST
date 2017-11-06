@@ -1,42 +1,16 @@
 <html>
-<head>
-<title> Frupal Project central page </title>
-
-<script>
-function movePlayer(x)
-{
-	arguments="query="+x;
-	var xhttp = new XMLHttpRequest();
-	URL = "main.cgi?"+arguments;
-	xhttp.open("GET",URL,false);
-	xhttp.send();
-	document.getElementById("loc").innerHTML = xhttp.responseText;
-	
-}
-</script>
-
-<style>
-#coordinates {
-	text-align: center;
-}
-</style>
-
+	<head>
+		<title> Frupal Project central page </title>
 </head>
-
 <h1>
 Frupal Project center
 </h1>
 <table style = "width:100%">
-	<tr><th></th><th><button type = "button" onclick = movePlayer('N')>NORTH</button></th>
+	<tr><th></th><th><button type = "button">NORTH</button></th>
 	</tr>
-	<tr><th><button type="button" onclick = movePlayer('W')>West</button><th></th><th><button type = "button" onclick = movePlayer('E')>East</button></th>
+	<tr><th><button type="button">West</button><th>LOCATION:</th><th><button type = "button">East</button></th>
 	</tr>
-	<tr><th></th><th><button type = "button" onclick = movePlayer('S')>SOUTH</button></th>
+	<tr><th></th><th><button type = "button">SOUTH</button></th>
 	</tr>
 </table>
-
-<div id=coordinates>
-	<br>Player Location: <span id=loc></span>
-</div>
-
 <html>
