@@ -2,6 +2,9 @@
 
 int move_player(char *query, Player *player, Map *map)
 {
+	int max = map->size - 1;
+
+	// Check which coordinate to update.
 	if(strcmp(query, "N") == 0) {
 		++player->y;
 	}
@@ -15,5 +18,22 @@ int move_player(char *query, Player *player, Map *map)
 		--player->x;
 	}
 
+	// Check x bounds
+	if(player->x > max) {
+		player->x = 0;
+	}
+	else if(player->x < 0) {
+		player->x = max;
+	}
+
+	// Check y bounds
+	if(player->y > max) {
+		player->y = 0;
+	}
+	else if(player->y < 0) {
+		player->y = max;
+	}
+
+	// Decrement energy due to movement
 	--player->energy;
 }

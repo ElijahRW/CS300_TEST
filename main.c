@@ -40,16 +40,16 @@ int main()
 	int diamondy = 0;
 	
 	
-        //If statement to check coordinates that the player has moved into and the coordiantes of the diamonds
+	//If statement to check coordinates that the player has moved into and the coordiantes of the diamonds
 
-        if(map.tiles[diamondx][diamondy].x == player.x && map.tiles[diamondx][diamondy].y == player.y)
-        {
-                map.tiles[diamondx][diamondy].visibility = 1;
-                printf("%s  ", "You have found the diamonds");
-        }
+	if(map.tiles[diamondx][diamondy].x == player.x && map.tiles[diamondx][diamondy].y == player.y)
+	{
+			map.tiles[diamondx][diamondy].visibility = 1;
+			printf("%s  ", "You have found the diamonds<br>");
+	}
 
 
-	if(map->tiles[diamondx][diamondy].visibility && strcmp(map->tiles[diamondx][diamondy]->content, "DIAMOND"))
+	if(map.tiles[diamondx][diamondy].visibility && strcmp(map.tiles[diamondx][diamondy].content, "DIAMOND"))
 	{
 		resetstate(fp,fp2);
 		read_file(&player, &map, fp);
@@ -57,7 +57,7 @@ int main()
 
 	write_file(&player, &map, fp);
 
-	printf("%d, %d\n", player.x, player.y);
+	printf("Player Coordinates: %d, %d<br>", player.x, player.y);
 	
 	return 0;
 }

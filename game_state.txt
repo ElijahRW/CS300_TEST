@@ -1,18 +1,18 @@
 25
 #####
--4,15
-103
+0,0
+82
 1000
-Axe
-Axe
-Shears
-Rock
-None
-None
-None
-None
-None
-None
+0	di“
+0	di“
+0	di“
+0	di“
+0	di“
+0	di“
+0	di“
+0	di“
+0	di“
+0	di“
 #####
 0,0,0,0,None
 0,1,0,0,None
@@ -326,7 +326,7 @@ None
 12,9,0,0,None
 12,10,0,0,None
 12,11,0,0,None
-12,12,0,1,None
+12,12,0,0,None
 12,13,0,0,None
 12,14,0,0,None
 12,15,0,0,None
@@ -351,7 +351,7 @@ None
 13,9,0,0,None
 13,10,0,0,None
 13,11,0,0,None
-13,12,0,1,Tree
+13,12,0,0,None
 13,13,0,0,None
 13,14,0,0,None
 13,15,0,0,None
@@ -376,7 +376,7 @@ None
 14,9,0,0,None
 14,10,0,0,None
 14,11,0,0,None
-14,12,0,2,None
+14,12,0,0,None
 14,13,0,0,None
 14,14,0,0,None
 14,15,0,0,None
