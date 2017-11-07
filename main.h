@@ -29,5 +29,6 @@ typedef struct {
 int read_file(Player *player, Map *map, FILE *fp);
 int write_file(Player *player, Map *map, FILE *fp);
 int move_player(char *query, Player *player, Map *map);
+void resetstate(FILE *fp, FILE *fp2);
 
 #endif /* MAIN_H */
