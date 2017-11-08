@@ -40,10 +40,11 @@ int read_file(Player *player, Map *map, FILE *fp)
 		strcpy(player->inventory[i], buffer);
 	}
 
+	//doesn't this loop assume that the file is correctly formatted?
 	for(i = 0; i < map->size; i++) {
 		for(j = 0; i < map->size; i++) {
 			if(fscanf(fp, "%d,%d,%d,%d,%s", &i, &j, &vis, &terrain, buffer) != EOF) {
-				(map->tiles[i][j]).x = i;
+				(map->tiles[i][j]).x = i;//this could ruin the file formate if the x/y order is not correct
 				(map->tiles[i][j]).y = j;
 				(map->tiles[i][j]).visibility = vis;
 				(map->tiles[i][j]).terrain = terrain;

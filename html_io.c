@@ -9,16 +9,18 @@ int write_html(Player *player, Map *map)
 	for(int y = size-1; y >= 0; --y)//awkward initialization (Will consider reworking
 	{
 		printf("<tr>");
-		for(int x = size-1; x >=0; --x)//awkward initialization (Will consider reworking
+		for(int x = 0; x<size; ++x)//awkward initialization (Will consider reworking
 		{
 			if(playerx==x && playery==y)
 			{
 				printf("<th>P</th>");
 			}
-			
-			printf("<th>");
-			write_tile(&((map->tiles)[x][y]));
-			printf("</th>");
+			else
+			{
+				printf("<th>");
+				write_tile(&((map->tiles)[x][y]));
+				printf("</th>");
+			}
 		}
 		printf("</tr>");
 	}
@@ -27,13 +29,29 @@ int write_html(Player *player, Map *map)
 }
 void write_tile(Tile *tile)
 {
-	//if(tile->visibility == 0)
-	//{
+	/*if(tile->visibility == 0)
+	{
 		printf("INVIS");
-	//}
+	}*/
 	//else
 	//{
-		printf("TILE");
+		printf("%i",tile->x);
+		switch(tile->terrain)
+		{
+			case 0:
+				printf("Grass");//implementation of specific content (Such as chests) may be handled here...
+				break;
+			case 1:
+				printf("Rock");
+				break;
+			case 2:
+				printf("Tree");
+				break;
+			//ETC Fill 
+			
+			
+		}
+		//printf("TILE");
 		
 	//}	
 }
