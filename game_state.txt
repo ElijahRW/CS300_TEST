@@ -1,12 +1,12 @@
 25
 #####
--4,15
-103
+12,13
+33
 1000
-Axe
-Axe
-Shears
-Rock
+None
+None
+None
+None
 None
 None
 None
@@ -327,7 +327,7 @@ None
 12,10,0,0,None
 12,11,0,0,None
 12,12,0,0,None
-12,13,0,0,None
+12,13,1,0,None
 12,14,0,0,None
 12,15,0,0,None
 12,16,0,0,None

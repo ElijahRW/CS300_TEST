@@ -30,5 +30,7 @@ int read_file(Player *player, Map *map, FILE *fp);
 int write_file(Player *player, Map *map, FILE *fp);
 int move_player(char *query, Player *player, Map *map);
 void resetstate(FILE *fp, FILE *fp2);
+void free_memory(Player *player, Map *map);
+void initialize_player(Player *player);
 
 #endif /* MAIN_H */

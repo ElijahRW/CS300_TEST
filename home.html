@@ -10,8 +10,27 @@ function movePlayer(x)
 	URL = "main.cgi?"+arguments;
 	xhttp.open("GET",URL,false);
 	xhttp.send();
-	document.getElementById("loc").innerHTML = xhttp.responseText;
-	
+
+	var output = xhttp.responseText.split(":");
+
+	document.getElementById("diamonds_found").innerHTML = output[0];
+	document.getElementById("X").innerHTML = output[1];
+	document.getElementById("Y").innerHTML = output[2];
+	document.getElementById("energy").innerHTML = output[3];
+	document.getElementById("money").innerHTML = output[4];
+	var inventory = output[5].split(",");
+	var map_size = output[6];
+	var tiles = output[7].split(";");
+
+	document.getElementById("inventory").innerHTML = "";
+	for(var i = 0; i < inventory.length; i++) {
+		document.getElementById("inventory").innerHTML = document.getElementById("inventory").innerHTML + "<br>" + inventory[i];
+	}
+
+	document.getElementById("map").innerHTML = "";
+	for(var i = 0; i < tiles.length; i++) {
+		document.getElementById("map").innerHTML = document.getElementById("map").innerHTML + "<br>" + tiles[i];
+	}
 }
 </script>
 
@@ -35,8 +54,11 @@ Frupal Project center
 	</tr>
 </table>
 
-<div id=coordinates>
-	<br>Player Location: <span id=loc></span>
-</div>
+Diamonds found: <span id = "diamonds_found"></span><br><br>
+Player Coordinates: <span id = "X"></span> <span id = "Y"></span><br>
+Player Energy: <span id = "energy"></span><br> 
+Player Money: <span id = "money"></span><br> 
+Inventory: <span id = "inventory"></span><br>
+Map: <span id = "map"></span><br>
 
 <html>
