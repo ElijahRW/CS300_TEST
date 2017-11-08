@@ -1,5 +1,7 @@
 #include "main.h"
 
+
+//THIS FUNCTION can't currently handle invalid input (CONSIDER Changing this) [EPRW]
 int read_file(Player *player, Map *map, FILE *fp)
 {
 	int len = 0;
@@ -29,7 +31,7 @@ int read_file(Player *player, Map *map, FILE *fp)
 
 
 	fscanf(fp, "#####\n");
-	fscanf(fp, "%d,%d\n", &(player->x), &(player->y));
+	fscanf(fp, "%i,%i\n", &(player->x), &(player->y));
 	fscanf(fp, "%d\n", &(player->energy));
 	fscanf(fp, "%d\n", &(player->money));
 
@@ -40,16 +42,16 @@ int read_file(Player *player, Map *map, FILE *fp)
 		strcpy(player->inventory[i], buffer);
 	}
 	
-	//THIS SHOULD HAVE BEEN TESTED FOR FILE IO WAS NOT FULLY FUNCTIONAL UNTIL THIS LINE WAS ADDED
+	//THIS SHOULD HAVE BEEN TESTED FOR FILE IO WAS NOT FULLY FUNCTIONAL UNTIL THIS LINE WAS ADDED [EPRW]
 	fscanf(fp, "#####\n");
 
-	//reads in custom information from the file (ORDER IS NOT necessary for this read!!)
+	//reads in custom information from the file (SEQUENCE IS NOT necessary for this read!! ORDER IS) [EPRW]
 	//Code didn't have range check....
-	while(fscanf(fp, "%d,%d,%d,%d,%s", &i, &j, &vis, &terrain, buffer) != EOF) {
-		if(i < map->size && j < map->size)//bounds check (checking for impropper input
+	while(fscanf(fp, "%i,%i,%i,%i,%s", &i, &j, &vis, &terrain, buffer) != EOF) {
+		if(i < map->size && j < map->size)//bounds check (checking for impropper input [EPRW]
 		{
 				//(map->tiles[i][j]).x = i;//is this necessary?
-				//(map->tiles[i][j]).y = j;//is this necessary? (This was already defined and SHOULDN"T BE CHANGED
+				//(map->tiles[i][j]).y = j;//is this necessary? (This was already defined during the implementation function call and SHOULDN"T BE CHANGED [EPRW]
 				(map->tiles[i][j]).visibility = vis;
 				(map->tiles[i][j]).terrain = terrain;
 				len = strlen(buffer) + 1;
