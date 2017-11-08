@@ -12,13 +12,21 @@ int write_html(Player *player, Map *map)
 		{
 			if(playerx==x && playery==y)
 			{
-				printf("<th>|PLAYER| </th>");
+				printf("<th>P</th>");
 			}
 			
-			printf("<th>|%i| </th>",  x+y/*(map->tiles[x][y]).terrain*/);
+			printf("<th>");
+			write_tile(map->tiles[x][y]);
+			printf("</th>");
 		}
 		printf("</tr>");
 	}
 	printf("</table>");
 	return 1;
+}
+void write_tile(Tile tile_index)
+{
+	
+	if(tile
+	
 }

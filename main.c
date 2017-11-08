@@ -59,5 +59,7 @@ int main()
 
 	printf("Player Coordinates: %d, %d<br>", player.x, player.y);
 	
+	//Writes Formated HTML to game map to display
+	write_html(&player, &map);
 	return 0;
 }
