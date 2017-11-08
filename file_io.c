@@ -1,5 +1,6 @@
 #include "main.h"
 /*
+--FILE WRITTEN BY: Jacob Collins
 
 --Edited by: ELIJAH RICH-WIMMER
 		Purpose: 1. Fix certain logic errors and added location range invalid input exceptions
