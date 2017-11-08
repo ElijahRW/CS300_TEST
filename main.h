@@ -33,4 +33,8 @@ void resetstate(FILE *fp, FILE *fp2);
 void free_memory(Player *player, Map *map);
 void initialize_player(Player *player);
 
+int write_html(Player *player, Map *map);
+void write_tile(Tile * tile_index);
+
+
 #endif /* MAIN_H */

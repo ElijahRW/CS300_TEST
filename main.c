@@ -56,17 +56,17 @@ int main()
 		printf("%s,", player.inventory[i]);
 	}
 	printf(":%d:", map.size);
-	for(int i = 0; i < map.size; i++) {
+	
+	/*for(int i = 0; i < map.size; i++) {
 		for(int j = 0; j < map.size; j++) {
 			if(map.tiles[i][j].visibility == 1) {
 				printf("%d,%d,%d,%d,%s;", i, j, map.tiles[i][j].visibility, map.tiles[i][j].terrain, map.tiles[i][j].content);
 			}
 		}
-	}
+	}*/
 	printf(":");
 
 	// END - PRINT ALL INFO FOR HTML TO PARSE
-
 	write_file(&player, &map, fp); // write all info to the game state
 	
 	free(query); // free memory for the query string
