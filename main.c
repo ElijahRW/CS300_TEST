@@ -72,7 +72,11 @@ int main()
 	free(query); // free memory for the query string
 	free_memory(&player, &map); // free the player and map memory
 
-	return 0;
+
+	//Writes Formated HTML to game map to display
+	write_html(&player, &map);
+
+  return 0;
 }
 
 void initialize_player(Player *player)

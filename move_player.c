@@ -1,5 +1,12 @@
 #include "main.h"
 
+
+/*
+--NOTE FOR CONVENTION:
+----x is left/right (east west)
+----y is up/down (north south)
+*/
+
 int move_player(char *query, Player *player, Map *map)
 {
 	int max = map->size - 1;
