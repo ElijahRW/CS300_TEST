@@ -36,4 +36,6 @@ int move_player(char *query, Player *player, Map *map)
 
 	// Decrement energy due to movement
 	--player->energy;
+	// Make the tile visible
+	map->tiles[player->x][player->y].visibility = 1;
 }
