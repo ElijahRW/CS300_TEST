@@ -36,7 +36,9 @@ void write_tile(Tile *tile)
 	//else
 	//{
 		printf("%i",tile->x);
-		switch(tile->terrain)
+		int terrain = 2;
+		terrain = tile->terrain;
+		switch(terrain)
 		{
 			case 0:
 				printf("Grass");//implementation of specific content (Such as chests) may be handled here...
