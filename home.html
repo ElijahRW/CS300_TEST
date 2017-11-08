@@ -20,13 +20,17 @@ function movePlayer(x)
 	document.getElementById("money").innerHTML = output[4];
 	var inventory = output[5].split(",");
 	var map_size = output[6];
+	var tiles = output[7].split(";");
 
 	document.getElementById("inventory").innerHTML = "";
 	for(var i = 0; i < inventory.length; i++) {
 		document.getElementById("inventory").innerHTML = document.getElementById("inventory").innerHTML + "<br>" + inventory[i];
 	}
 
-	document.getElementById("map").innerHTML = output[7];
+	document.getElementById("map").innerHTML = "";
+	for(var i = 0; i < tiles.length; i++) {
+		document.getElementById("map").innerHTML = document.getElementById("map").innerHTML + "<br>" + tiles[i];
+	}
 }
 </script>
 
