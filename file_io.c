@@ -43,10 +43,11 @@ int read_file(Player *player, Map *map, FILE *fp)
 	//THIS SHOULD HAVE BEEN TESTED FOR FILE IO WAS NOT FULLY FUNCTIONAL UNTIL THIS LINE WAS ADDED
 	fscanf(fp, "#####\n");
 
-	//reads in custom information from the file (ORDER isn't necessary for this read
-	for(i = 0; i < map->size; i++) {//this should just run till the end of the line (we are changing i & j every loop
-		for(j = 0; i < map->size; i++) {
-			if(fscanf(fp, "%d,%d,%d,%d,%s", &i, &j, &vis, &terrain, buffer) != EOF) {
+	//reads in custom information from the file (ORDER IS NOT necessary for this read!!)
+	//Code didn't have range check....
+	while(fscanf(fp, "%d,%d,%d,%d,%s", &i, &j, &vis, &terrain, buffer) != EOF) {
+		if(i < map->size && j < map->size)//bounds check (checking for impropper input
+		{
 				//(map->tiles[i][j]).x = i;//is this necessary?
 				//(map->tiles[i][j]).y = j;//is this necessary? (This was already defined and SHOULDN"T BE CHANGED
 				(map->tiles[i][j]).visibility = vis;
@@ -54,9 +55,9 @@ int read_file(Player *player, Map *map, FILE *fp)
 				len = strlen(buffer) + 1;
 				(map->tiles[i][j]).content = malloc(len * sizeof(char));
 				strcpy((map->tiles[i][j]).content, buffer);
-			}
 		}
 	}
+
 
 	fclose(fp);
 	return 1;
