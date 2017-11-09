@@ -40,7 +40,7 @@ int main()
 			map.tiles[diamondx][diamondy].visibility = 1;
 	}
 
-
+	//We don't win if we see the diamonds, we win if the player is standing on the diamonds
 	if(map.tiles[diamondx][diamondy].visibility && strcmp(map.tiles[diamondx][diamondy].content, "DIAMOND"))
 	{
 		resetstate(fp,fp2);

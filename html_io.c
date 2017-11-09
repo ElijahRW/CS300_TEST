@@ -31,7 +31,9 @@ int write_html(Player *player, Map *map)
 }
 void write_tile(Tile *tile)
 {
-	const char * formatting = "height='25' width='25'";
+	//Immage references:(0=meadow/grass, 1=forest, 2=water, 3=wall, 4=bog, 5=swamp)
+	//Additionally, content such as trees should be taken into account: 
+	const char * formatting = "height='30'";
 	if(tile->visibility == 0)
 	{
 		printf("<img %s src='assets/fog.jpg' align='middle'></img>", formatting);
@@ -42,17 +44,23 @@ void write_tile(Tile *tile)
 		switch(terrain)
 		{
 			case 0:
-				printf("<img height='25' width='25' src='assets/grass.jpg' align='middle'></img>");//implementation of specific content (Such as chests) may be handled here...
+				printf("<img %s src='assets/grass.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
 				break;
 			case 1:
-				printf("R");
+				printf("<img %s src='assets/forest.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
 				break;
 			case 2:
-				printf("T");
+				printf("<img %s src='assets/water.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
 				break;
-			//ETC Fill 
-			
-			
+			case 3:
+				printf("<img %s src='assets/wall.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
+				break;
+			case 4:
+				printf("<img %s src='assets/bog.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
+				break;
+			case 5:
+				printf("<img %s src='assets/swamp.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
+				break;
 		}
 		
 	}	
