@@ -4,7 +4,7 @@ int write_html(Player *player, Map *map)
 {
 	int playerx = player->x;
 	int playery = player->y;
-	printf("<table>");
+	printf("<table cellpadding='0'>");
 	int size = map->size;
 	for(int y = size-1; y >= 0; --y)//awkward initialization (Will consider reworking
 	{
@@ -13,7 +13,7 @@ int write_html(Player *player, Map *map)
 		{
 			if(playerx==x && playery==y)
 			{
-				printf("<th>P</th>");
+				printf("<th><img height='25' width='25' src='assets/hero.jpg' align='middle'></img></th>");
 			}
 			else
 			{
@@ -29,31 +29,28 @@ int write_html(Player *player, Map *map)
 }
 void write_tile(Tile *tile)
 {
-	/*if(tile->visibility == 0)
+	if(tile->visibility == 0)
 	{
-		printf("INVIS");
-	}*/
-	//else
-	//{
-		printf("%i",tile->x);
-		int terrain = 2;
-		terrain = tile->terrain;
+		printf("<img height='25' width='25' src='assets/fog.jpg' align='middle'></img>");
+	}
+	else
+	{
+		int terrain = tile->terrain;
 		switch(terrain)
 		{
 			case 0:
-				printf("Grass");//implementation of specific content (Such as chests) may be handled here...
+				printf("<img height='25' width='25' src='assets/grass.jpg' align='middle'></img>");//implementation of specific content (Such as chests) may be handled here...
 				break;
 			case 1:
-				printf("Rock");
+				printf("R");
 				break;
 			case 2:
-				printf("Tree");
+				printf("T");
 				break;
 			//ETC Fill 
 			
 			
 		}
-		//printf("TILE");
 		
-	//}	
+	}	
 }

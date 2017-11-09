@@ -52,9 +52,9 @@ int main()
 
 	// START - PRINT ALL INFO FOR HTML TO PARSE
 	printf("%d:%d:%d:%d:%d:", diamond_found, player.x, player.y, player.energy, player.money);
-	//for(int i = 0; i < 10; i++) {
-	//	printf("%s,", player.inventory[i]);
-	//}
+	for(int i = 0; i < 10; i++) {
+		printf("%s,", player.inventory[i]);
+	}
 	printf(":%d:", map.size);
 	
 	/*for(int i = 0; i < map.size; i++) {
