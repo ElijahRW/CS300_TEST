@@ -1,10 +1,10 @@
 25
 #####
-10,16
+0,0
 -45
 100
-None
-None
+Ax
+Binocs
 None
 None
 None

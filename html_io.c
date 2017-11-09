@@ -1,5 +1,7 @@
 #include "main.h"
 
+
+
 int write_html(Player *player, Map *map)
 {
 	int playerx = player->x;
@@ -29,9 +31,10 @@ int write_html(Player *player, Map *map)
 }
 void write_tile(Tile *tile)
 {
+	const char * formatting = "height='25' width='25'";
 	if(tile->visibility == 0)
 	{
-		printf("<img height='25' width='25' src='assets/fog.jpg' align='middle'></img>");
+		printf("<img %s src='assets/fog.jpg' align='middle'></img>", formatting);
 	}
 	else
 	{
