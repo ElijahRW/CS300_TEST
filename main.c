@@ -9,9 +9,10 @@ int main()
 	FILE *fp2;
 	Player player;
 	Map map;
-	int i, j, len, diamond_found;
+	int i, j, len, diamond_found, noEnergy;
 
 	diamond_found = 0;
+	noEnergy = 0;
 
 	cgi = cgiInit();
 
@@ -49,13 +50,26 @@ int main()
 		diamond_found = 1; // diamond has been found
 	}
 
+	
+	//Code to check whether the player has used up all of their energy. The code will alert the player that the game is over
+	//when the player is at 0 energy and tries to move again, not when it immediately hits 0.
+	if(player.energy < 0)
+	{
+		resetstate(fp,fp2);
+		free_memory(&player, &map);//free memory
+		read_file(&player, &map, fp);	
+		noEnergy = 1;  //Player has run out of energy
+	}
+
 
 	// START - PRINT ALL INFO FOR HTML TO PARSE
-	printf("%d:%d:%d:%d:%d:", diamond_found, player.x, player.y, player.energy, player.money);
+	printf("%d:%d:%d:%d:%d:%d:", diamond_found, player.x, player.y, player.energy, player.money, noEnergy);
 	for(int i = 0; i < 10; i++) {
 		printf("%s,", player.inventory[i]);
 	}
 	printf(":%d:", map.size);
+
+		
 	
 	/*for(int i = 0; i < map.size; i++) {
 		for(int j = 0; j < map.size; j++) {
