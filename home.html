@@ -13,7 +13,7 @@ function movePlayer(x)
 
 	var output = xhttp.responseText.split(":");
 
-	document.getElementById("diamonds_found").innerHTML = output[0];
+	var diamondsFound = output[0];
 	document.getElementById("X").innerHTML = output[1];
 	document.getElementById("Y").innerHTML = output[2];
 	document.getElementById("energy").innerHTML = output[3];
@@ -29,6 +29,10 @@ function movePlayer(x)
 
 	document.getElementById("map").innerHTML = output[8];
 
+	if(diamondsFound == 1)
+	{
+		alert("YOU HAVE FOUND THE DIAMONDS!");
+	}
 
 	if(noEnergy == 1)
 	{
@@ -60,7 +64,6 @@ Frupal Project center
 	</tr>
 </table>
 
-Diamonds found: <span id = "diamonds_found"></span><br><br>
 Player Coordinates: <span id = "X"></span> <span id = "Y"></span><br>
 Player Energy: <span id = "energy"></span><br> 
 Player Money: <span id = "money"></span><br> 
