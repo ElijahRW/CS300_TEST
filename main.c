@@ -10,6 +10,7 @@ int main()
 	Player player;
 	Map map;
 	int i, j, len, diamond_found, noEnergy;
+	char* json_output = NULL;
 
 	diamond_found = 0;
 	noEnergy = 0;
@@ -61,15 +62,38 @@ int main()
 		noEnergy = 1;  //Player has run out of energy
 	}
 
+	// Append all data to json output
+	json_output = add_name_value_pair(json_output, "diamondFound", &diamond_found, INTEGER);
+	json_output = add_name_value_pair(json_output, "Xcoor", &player.x, INTEGER);
+	json_output = add_name_value_pair(json_output, "Ycoor", &player.y, INTEGER);
+	json_output = add_name_value_pair(json_output, "energy", &player.energy, INTEGER);
+	json_output = add_name_value_pair(json_output, "money", &player.money, INTEGER);
+	json_output = add_name_value_pair(json_output, "noEnergy", &noEnergy, INTEGER);
+	json_output = add_name_value_pair(json_output, "mapSize", &map.size, INTEGER);
 
+	// instead of appending the inventory as an array (which could be done but I was a bit lazy)
+	// just add each item as a new name-value pair. This is probably ok since our inventory is
+	// going to stay fixed at 10 items. 
+	char item_name[] = "Aitem"; 
+	for(int i = 0; i < 10; ++i){
+		json_output = add_name_value_pair(json_output, item_name, player.inventory[i], STRING);
+		++item_name[0];
+	}
+
+	// print out the json and a ';' to separate the json from
+	// the map that will be printed later
+	printf("%s;", json_output);
+	free(json_output);
+	
+/*
 	// START - PRINT ALL INFO FOR HTML TO PARSE
 	printf("%d:%d:%d:%d:%d:%d:", diamond_found, player.x, player.y, player.energy, player.money, noEnergy);
 	for(int i = 0; i < 10; i++) {
 		printf("%s,", player.inventory[i]);
 	}
 	printf(":%d:", map.size);
+*/
 
-		
 	
 	/*for(int i = 0; i < map.size; i++) {
 		for(int j = 0; j < map.size; j++) {
@@ -86,8 +110,6 @@ int main()
 	
 	free(query); // free memory for the query string
 	free_memory(&player, &map); // free the player and map memory
-
-
 
   return 0;
 }

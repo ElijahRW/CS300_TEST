@@ -5,6 +5,10 @@
 #include <string.h>
 #include <cgi.h>
 
+// Data types used in json.c
+#define INTEGER 0
+#define STRING 1
+
 typedef struct {
 	int x;
 	int y;
@@ -37,4 +41,11 @@ int write_html(Player *player, Map *map);
 void write_tile(Tile * tile_index);
 
 
+// From json.c
+// This function adds a name-value pair to the current json string. The data
+// types of value can either be INTEGER or STRING. Remember to pass pointers to integers
+// (i.e &myint). it will return a pointer to the new json string. This caller is repsonsible
+// for freeing this newly allocated string. The curr_json string, that is passed in, is freed in the function since for our purposes
+// we will not be using it anymore, so its just convienient.
+char* add_name_value_pair(char* curr_json, const char* name, const void* value, int data_type);
 #endif /* MAIN_H */
