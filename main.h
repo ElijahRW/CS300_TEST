@@ -13,6 +13,7 @@ typedef struct {
 	int x;
 	int y;
 	int energy;
+	int visibility;
 	int money;
 	char * inventory[10];
 } Player; 
@@ -36,6 +37,10 @@ int move_player(char *query, Player *player, Map *map);
 void resetstate(FILE *fp, FILE *fp2);
 void free_memory(Player *player, Map *map);
 void initialize_player(Player *player);
+
+int viewTiles(); //Reveals everything around the player's view range
+
+
 
 int write_html(Player *player, Map *map);
 void write_tile(Tile * tile_index);

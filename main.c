@@ -122,6 +122,7 @@ void initialize_player(Player *player)
 	player->y = 0;
 	player->energy = 0;
 	player->money = 0;
+	player->visibility = 1;
 	for(i = 0; i < 10; i++) {
 		player->inventory[i] = malloc(5 * sizeof(char));
 		strcpy(player->inventory[i], "None");
