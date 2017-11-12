@@ -43,8 +43,8 @@ int move_player(char *query, Player *player, Map *map)
 
 	// Decrement energy due to movement
 	--player->energy;
-	// Make the tile visible (Needs to be expanded to show player's vision
-
+	
+	// Make the tile visible (Needs to be expanded to show player's vision)
 	map->tiles[player->x ][player->y ].visibility = 1;
 
 	viewTiles(player, map);
@@ -53,14 +53,16 @@ int move_player(char *query, Player *player, Map *map)
 int viewTiles(Player *player, Map *map)
 {
 	int viewRange = player->visibility;
-
+	int map_range = map->size;
 	
 	for (int i = -viewRange; i <= viewRange; i++)
 	{
 		for (int j = -viewRange; j<= viewRange; j++)
 		{
-
-			map->tiles[player->x + i][player->y + j ].visibility = 1;
+			if( (player->x)+i >= 0 && (player->y)+j >= 0 && (player->y)+j < map_range && (player->x)+i < map_range)
+			{
+				map->tiles[player->x + i][player->y + j ].visibility = 1;
+			}
 		}
 	} 
 	return 1;	
