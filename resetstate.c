@@ -17,7 +17,7 @@ void resetstate(FILE *fp, FILE *fp2)
 		}
 		else
 		{
-			putc(ch, fp2);
+			putc(c, fp2);
 		}
 	}
 

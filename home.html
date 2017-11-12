@@ -10,8 +10,36 @@ function movePlayer(x)
 	URL = "main.cgi?"+arguments;
 	xhttp.open("GET",URL,false);
 	xhttp.send();
-	document.getElementById("loc").innerHTML = xhttp.responseText;
-	
+
+	var output = xhttp.responseText.split(";");
+	var playerData = JSON.parse(output[0]);
+	var map = output[1];
+
+	document.getElementById("X").innerHTML = playerData.Xcoor;
+	document.getElementById("Y").innerHTML = playerData.Ycoor;
+	document.getElementById("energy").innerHTML = playerData.energy;
+	document.getElementById("money").innerHTML = playerData.money;
+//	var map_size = output[7];
+
+	document.getElementById("inventory").innerHTML = "";
+	var id = 'A';
+	for(var i = 0; i < 10; i++) {
+		document.getElementById("inventory").innerHTML = document.getElementById("inventory").innerHTML + "<br>" + playerData[id + 'item'];
+		id = String.fromCharCode(id.charCodeAt() + 1)
+	}
+
+	document.getElementById("map").innerHTML = map;
+
+	if(playerData.diamondsFound == 1)
+	{
+		alert("YOU HAVE FOUND THE DIAMONDS!");
+	}
+
+	if(playerData.noEnergy == 1)
+	{
+		alert("GAME OVER! you have run out of energy and the game will now reset");
+	}
+
 }
 </script>
 
@@ -26,6 +54,8 @@ function movePlayer(x)
 <h1>
 Frupal Project center
 </h1>
+
+
 <table style = "width:100%">
 	<tr><th></th><th><button type = "button" onclick = movePlayer('N')>NORTH</button></th>
 	</tr>
@@ -35,8 +65,13 @@ Frupal Project center
 	</tr>
 </table>
 
-<div id=coordinates>
-	<br>Player Location: <span id=loc></span>
-</div>
+Player Coordinates: <span id = "X"></span> <span id = "Y"></span><br>
+Player Energy: <span id = "energy"></span><br> 
+Player Money: <span id = "money"></span><br> 
+Inventory: <span id = "inventory"></span><br>
+Map: <span id = "map"></span><br>
+
+
+
 
 <html>
