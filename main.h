@@ -40,6 +40,8 @@ void initialize_player(Player *player);
 
 int viewTiles(); //Reveals everything around the player's view range
 
+int decrementenergy(Player* player, Map* map);
+
 
 
 int write_html(Player *player, Map *map);
