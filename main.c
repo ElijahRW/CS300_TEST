@@ -11,7 +11,10 @@ int main()
 	Map map;
 	int i, j, len, diamond_found, noEnergy;
 	char* json_output = NULL;
+	char message[200];
+	int obstacle_index;
 
+	sprintf(message, "WALKING...");  
 	diamond_found = 0;
 	noEnergy = 0;
 
@@ -51,6 +54,10 @@ int main()
 		diamond_found = 1; // diamond has been found
 	}
 
+	// Check if the player has encountered an obstacle and decrement the energy appropriatley
+	if((obstacle_index = check_for_obstacle(&player, &map)) != -1){
+		sprintf(message, "You've hit a %s and lost %d energy points removing it", obstacle_name[obstacle_index], obstacle_energy[obstacle_index]);
+	}
 	
 	//Code to check whether the player has used up all of their energy. The code will alert the player that the game is over
 	//when the player is at 0 energy and tries to move again, not when it immediately hits 0.
@@ -70,6 +77,7 @@ int main()
 	json_output = add_name_value_pair(json_output, "money", &player.money, INTEGER);
 	json_output = add_name_value_pair(json_output, "noEnergy", &noEnergy, INTEGER);
 	json_output = add_name_value_pair(json_output, "mapSize", &map.size, INTEGER);
+	json_output = add_name_value_pair(json_output, "message", message, STRING);
 
 	// instead of appending the inventory as an array (which could be done but I was a bit lazy)
 	// just add each item as a new name-value pair. This is probably ok since our inventory is
