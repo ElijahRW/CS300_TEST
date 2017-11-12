@@ -7,7 +7,19 @@
 
 // Data types used in json.c
 #define INTEGER 0
-#define STRING 1
+#define STRING  1
+// Constants used to index into
+// obstacle_name and enery arrays
+// (ex char* tree_name = obstacle_name[TREE]
+//     int tree_energy = obstacle_energy[TREE])
+#define TREE    0
+#define BOULDER 1
+#define BUSH	  2 
+
+// names and energies of obstacles
+extern const char* obstacle_name[];
+extern const int obstacle_energy[];
+
 
 typedef struct {
 	int x;
@@ -53,4 +65,11 @@ void write_tile(Tile * tile_index);
 // for freeing this newly allocated string. The curr_json string, that is passed in, is freed in the function since for our purposes
 // we will not be using it anymore, so its just convienient.
 char* add_name_value_pair(char* curr_json, const char* name, const void* value, int data_type);
+// from obstacle.c. It will check if the player is in 
+// a tile that contains an object, in which it will remove 
+// that object, decrement the players energy and 
+// return the object index into the global
+// arrays for object names and energy value
+// if not object if found it will return -1
+int check_for_obstacle(Player* player, Map* map);
 #endif /* MAIN_H */
