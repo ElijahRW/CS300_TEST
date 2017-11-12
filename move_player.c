@@ -42,8 +42,8 @@ int move_player(char *query, Player *player, Map *map)
 	}
 
 	// Decrement energy due to movement
-	//--player->energy;
-	decrementenergy(player, map);
+	--player->energy;
+	
 	// Make the tile visible (Needs to be expanded to show player's vision
 
 	map->tiles[player->x ][player->y ].visibility = 1;
@@ -66,20 +66,6 @@ int viewTiles(Player *player, Map *map)
 	} 
 	return 1;	
 }
-
-int decrementenergy(Player* player, Map* map)
-{
-	if(strcmp(map->tiles[player->x][player->y].content, "BOG") == 0)
-	{
-		(player->energy) -= 2;
-	}
-	else
-	{
-		--player->energy;
-	}
-	//can include obstacle energy decrements after here. 
-	return 1;
-} 
 
 
 
