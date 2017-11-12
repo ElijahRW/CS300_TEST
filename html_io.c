@@ -4,6 +4,8 @@
 
 int write_html(Player *player, Map *map)
 {
+	
+	viewTiles(player, map);
 	int playerx = player->x;
 	int playery = player->y;
 	printf("<table cellpadding='0'>");
