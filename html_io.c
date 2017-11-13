@@ -46,34 +46,59 @@ void write_tile(Tile *tile)
 		switch(terrain)
 		{
 			case 0:
-				printf("<img %s src='assets/grass.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
+				printf("<img %s src='assets/grass", formatting);//implementation of specific content (Such as chests) may be handled here...
 				break;
 			case 1:
-				printf("<img %s src='assets/forest.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
+				printf("<img %s src='assets/forest", formatting);//implementation of specific content (Such as chests) may be handled here...
 				break;
 			case 2:
-				printf("<img %s src='assets/water.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
+				printf("<img %s src='assets/water", formatting);//implementation of specific content (Such as chests) may be handled here...
 				break;
 			case 3:
-				printf("<img %s src='assets/wall.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
+				printf("<img %s src='assets/wall", formatting);//implementation of specific content (Such as chests) may be handled here...
 				break;
 			case 4:
-				printf("<img %s src='assets/bog.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
+				printf("<img %s src='assets/bog", formatting);//implementation of specific content (Such as chests) may be handled here...
 				break;
 			case 5:
-				printf("<img %s src='assets/swamp.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
-				break;
-			case 6:
-				printf("<img %s src='assets/grass_tree.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
-				break;
-			case 7:
-				printf("<img %s src='assets/blackberry.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
-				break;
-			case 8:
-				printf("<img %s src='assets/boulder.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
+				printf("<img %s src='assets/swamp", formatting);//implementation of specific content (Such as chests) may be handled here...
 				break;
 
 		}
+		write_content(tile);
+		printf(".jpg'></img>");
 		
 	}	
+}
+
+
+
+void write_content(Tile *tile)
+{
+	char * content = tile->content;
+	if(strcmp(content,"None")!=0)
+	{
+		printf("_");
+		if(strcmp(content,"Tree")==0)
+		{
+			printf("tree");
+		}
+		else if(strcmp(content,"DIAMONDS")==0)
+		{
+			printf("diamonds");
+		}
+		else if(strcmp(content,"Bolder")==0)
+		{
+			printf("bolder");
+		}
+		else if(strcmp(content,"Bush")==0)
+		{
+			printf("bush");
+		}
+		else if(strcmp(content,"Energy")==0)
+		{
+			printf("energy");
+		}
+	}
+	
 }
