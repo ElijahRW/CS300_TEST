@@ -69,6 +69,18 @@ function movePlayer(x)
 	}
 
 }
+
+function toggleInventory()
+{
+	var inventory = document.getElementById("inventory");
+	if(inventory.style.display == 'none') {
+		inventory.style.display = 'block';
+	}
+	else {
+		inventory.style.display = 'none';
+	}
+}
+
 </script>
 
 <style>
@@ -97,6 +109,7 @@ body {
     display: table;
     clear: both;
 }
+
 </style>
 
 </head>
@@ -127,6 +140,7 @@ Frupal Project center
 	Player Coordinates: <span id = "X"></span> <span id = "Y"></span><br>
 	Player Energy: <span id = "energy"></span><br> 
 	Player Money: <span id = "money"></span><br> 
+	<button type="button" onclick=toggleInventory()>Toggle Inventory</button>
     <span id = "inventory"></span><br>
 	
 	<center>Message: <span id = "message"></span></center><br>

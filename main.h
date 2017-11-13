@@ -56,9 +56,10 @@ int checkPassable(Map * myMap, Player * myPlayer, char * query); //checks to see
 int decrementenergy(Player* player, Map* map);
 
 
-
+//HTML IO functions
 int write_html(Player *player, Map *map);
 void write_tile(Tile * tile_index);
+void write_content(Tile *tile);
 
 
 // From json.c

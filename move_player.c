@@ -110,18 +110,18 @@ int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true
 	}
 
 	// Check x bounds
-	if(myPlayer->x > max) {
+	if(x > max) {
 		x = 0;
 	}
-	else if(myPlayer->x < 0) {
+	else if(x < 0) {
 		x = max;
 	}
 
 	// Check y bounds
-	if(myPlayer->y > max) {
+	if(y > max) {
 		y = 0;
 	}
-	else if(myPlayer->y < 0) {
+	else if(y < 0) {
 		y = max;
 	}
 
@@ -129,7 +129,6 @@ int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true
 		return 1;
 	else
 		return 0;
-
 }
 
 
