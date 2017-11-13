@@ -19,6 +19,7 @@ function movePlayer(x)
 	document.getElementById("Y").innerHTML = playerData.Ycoor;
 	document.getElementById("energy").innerHTML = playerData.energy;
 	document.getElementById("money").innerHTML = playerData.money;
+	document.getElementById("message").innerHTML = playerData.message;
 //	var map_size = output[7];
 
 	document.getElementById("inventory").innerHTML = "";
@@ -38,6 +39,7 @@ function movePlayer(x)
 	if(playerData.noEnergy == 1)
 	{
 		alert("GAME OVER! you have run out of energy and the game will now reset");
+	  document.getElementById("message").innerHTML = ""; 
 	}
 
 }
@@ -69,6 +71,7 @@ Player Coordinates: <span id = "X"></span> <span id = "Y"></span><br>
 Player Energy: <span id = "energy"></span><br> 
 Player Money: <span id = "money"></span><br> 
 Inventory: <span id = "inventory"></span><br>
+Message: <span id = "message"></span><br>
 Map: <span id = "map"></span><br>
 
 
