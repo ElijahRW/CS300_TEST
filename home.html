@@ -3,6 +3,32 @@
 <title> Frupal Project central page </title>
 
 <script>
+
+//KEYBOARD WASD INPUT IMPLEMENTATION
+document.addEventListener("keypress", function(event)
+{
+	const keyName = event.key;
+	if(keyName == 'w')
+	{
+		movePlayer('N');
+	}
+	if(keyName == 's')
+	{
+		movePlayer('S');
+	}
+	if(keyName == 'a')
+	{
+		movePlayer('W');
+	}
+	if(keyName == 'd')
+	{
+		movePlayer('E');
+	}
+	//alert('keydown event\n\n' + 'key: ' + keyName);
+});
+
+
+
 function movePlayer(x)
 {
 	arguments="query="+x;
@@ -48,31 +74,65 @@ function movePlayer(x)
 <style>
 #coordinates {
 	text-align: center;
+	}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+	align: "center";
+    padding: 10px;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 </style>
 
 </head>
+
 
 <h1>
 Frupal Project center
 </h1>
 
 
-<table style = "width:100%">
+<center><table style = "width:50%; background-color:#b7c2ff;">
 	<tr><th></th><th><button type = "button" onclick = movePlayer('N')>NORTH</button></th>
 	</tr>
 	<tr><th><button type="button" onclick = movePlayer('W')>West</button><th></th><th><button type = "button" onclick = movePlayer('E')>East</button></th>
 	</tr>
 	<tr><th></th><th><button type = "button" onclick = movePlayer('S')>SOUTH</button></th>
 	</tr>
-</table>
+</table></center>
 
-Player Coordinates: <span id = "X"></span> <span id = "Y"></span><br>
-Player Energy: <span id = "energy"></span><br> 
-Player Money: <span id = "money"></span><br> 
-Inventory: <span id = "inventory"></span><br>
-Message: <span id = "message"></span><br>
-Map: <span id = "map"></span><br>
+
+
+<div class="row">
+  <div class="column" align="center" style="background-color:#ffffff; width:75%;">
+    <span id = "map" style = "align:center;"></span>
+  </div>
+  <div class="column" style="background-color:#bbb; width:25%;">
+    <h2><center>Inventory</center></h2>
+	Player Coordinates: <span id = "X"></span> <span id = "Y"></span><br>
+	Player Energy: <span id = "energy"></span><br> 
+	Player Money: <span id = "money"></span><br> 
+    <span id = "inventory"></span><br>
+	
+	<center>Message: <span id = "message"></span></center><br>
+  </div>
+ </div>
+
 
 
 
