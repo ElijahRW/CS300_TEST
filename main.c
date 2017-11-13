@@ -40,18 +40,15 @@ int main()
 	
 	
 	//If statement to check coordinates that the player has moved into and the coordiantes of the diamonds
-	if(map.tiles[diamondx][diamondy].x == player.x && map.tiles[diamondx][diamondy].y == player.y)
-	{
-			map.tiles[diamondx][diamondy].visibility = 1;
-	}
-
-	//We don't win if we see the diamonds, we win if the player is standing on the diamonds
-	if(map.tiles[diamondx][diamondy].visibility && strcmp(map.tiles[diamondx][diamondy].content, "DIAMOND"))
+	//if(map.tiles[diamondx][diamondy].x == player.x && map.tiles[diamondx][diamondy].y == player.y)
+	if(strcmp(map.tiles[player.x][player.y].content, "DIAMOND") == 0)
 	{
 		resetstate(fp,fp2);
 		free_memory(&player, &map); // free memory before reading info into the structs
 		read_file(&player, &map, fp);
 		diamond_found = 1; // diamond has been found
+
+		//map.tiles[diamondx][diamondy].visibility = 1;
 	}
 
 	// Check if the player has encountered an obstacle and decrement the energy appropriatley
