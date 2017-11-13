@@ -13,6 +13,7 @@ int main()
 	char* json_output = NULL;
 	char message[200];
 	int obstacle_index;
+	int energymessage;
 
 	sprintf(message, "WALKING...");  
 	diamond_found = 0;
@@ -31,7 +32,9 @@ int main()
 	read_file(&player, &map, fp);
 
 	if(strcmp(query, "N") == 0 || strcmp(query, "S") == 0 || strcmp(query, "E") == 0 || strcmp(query, "W") == 0) {
-		move_player(query, &player, &map);
+		energymessage = move_player(query, &player, &map);
+		if(energymessage == 2)
+			sprintf(message, "You've just run into a bog, lost extra energy point");
 	}
 
 	//temp location for diamond at coordinates (0,0). Fill in these values when location of diamond is placed. 
