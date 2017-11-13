@@ -51,6 +51,7 @@ void free_memory(Player *player, Map *map);
 void initialize_player(Player *player);
 
 int viewTiles(); //Reveals everything around the player's view range
+int checkPassable(Map * myMap, Player * myPlayer, char * query); //checks to see if inpassable terrain exists.
 
 int decrementenergy(Player* player, Map* map);
 

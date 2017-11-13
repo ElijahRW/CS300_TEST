@@ -13,7 +13,9 @@ int move_player(char *query, Player *player, Map *map)
 	int max = map->size - 1;
 	int energymessage = 0;
 
-	// Check which coordinate to update.
+	// Check which coordinaAte to update.
+	if(checkPassable(map,player, query) == 0)
+{
 	if(strcmp(query, "N") == 0) {
 		++player->y;
 	}
@@ -51,7 +53,7 @@ int move_player(char *query, Player *player, Map *map)
 	// Make the tile visible (Needs to be expanded to show player's vision
 
 	map->tiles[player->x ][player->y ].visibility = 1;
-
+}
 	viewTiles(player, map);
 	return energymessage;
 }
@@ -88,6 +90,47 @@ int decrementenergy(Player* player, Map* map)
 	}
 	
 } 
+
+int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true if the terrain is passable.
+{
+	int x= myPlayer->x;
+	int y = myPlayer->y;
+	int max = myMap->size -1;
+	if(strcmp(query, "N") == 0) {
+		y++;
+	}
+	else if(strcmp(query, "S") == 0) {
+		y--;
+	}
+	else if(strcmp(query, "E") == 0) {
+		x++;
+	}
+	else if(strcmp(query, "W") == 0) {
+		x--;
+	}
+
+	// Check x bounds
+	if(myPlayer->x > max) {
+		x = 0;
+	}
+	else if(myPlayer->x < 0) {
+		x = max;
+	}
+
+	// Check y bounds
+	if(myPlayer->y > max) {
+		y = 0;
+	}
+	else if(myPlayer->y < 0) {
+		y = max;
+	}
+
+	if(myMap->tiles[x][y].terrain == WATER)
+		return 1;
+	else
+		return 0;
+
+}
 
 
 
