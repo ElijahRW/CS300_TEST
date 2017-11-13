@@ -63,16 +63,6 @@ void write_tile(Tile *tile)
 			case 5:
 				printf("<img %s src='assets/swamp.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
 				break;
-			case 6:
-				printf("<img %s src='assets/grass_tree.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
-				break;
-			case 7:
-				printf("<img %s src='assets/blackberry.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
-				break;
-			case 8:
-				printf("<img %s src='assets/boulder.jpg'></img>", formatting);//implementation of specific content (Such as chests) may be handled here...
-				break;
-
 		}
 		
 	}	

@@ -23,7 +23,6 @@ int check_for_obstacle(Player* player, Map* map){
 	
 	// the content of the current tile the player is on
 	char** tile_content = &(map->tiles[player->x][player->y].content);
-	int* terrain = &(map->tiles[player->x][player->y].terrain);
   // the index into the global obstacle arrays in obstacle.h, initialize to obstacle not found
 	int obstacle_index = -1; 
 
@@ -45,7 +44,6 @@ int check_for_obstacle(Player* player, Map* map){
 		free(*tile_content);
 		*tile_content = (char*)malloc(sizeof(char) * strlen("None") + 1);
 		strcpy(*tile_content, "None");
-		*terrain = 0;
 	}
 
   return obstacle_index;	
