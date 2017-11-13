@@ -1,5 +1,6 @@
 #include "main.h"
-
+#define BOG 4
+#define WATER 2
 
 /*
 --NOTE FOR CONVENTION:
@@ -10,6 +11,7 @@
 int move_player(char *query, Player *player, Map *map)
 {
 	int max = map->size - 1;
+	int energymessage = 0;
 
 	// Check which coordinate to update.
 	if(strcmp(query, "N") == 0) {
@@ -44,13 +46,14 @@ int move_player(char *query, Player *player, Map *map)
 	// Decrement energy due to movement
 
 	//--player->energy;
-	decrementenergy(player,map);
+	energymessage = decrementenergy(player,map);
 	
 	// Make the tile visible (Needs to be expanded to show player's vision
 
 	map->tiles[player->x ][player->y ].visibility = 1;
 
 	viewTiles(player, map);
+	return energymessage;
 }
 
 int viewTiles(Player *player, Map *map)
@@ -72,15 +75,18 @@ int viewTiles(Player *player, Map *map)
 }
 int decrementenergy(Player* player, Map* map)
 {
-	if(strcmp(map->tiles[player->x][player->y].content, "BOG") == 0)
+	//going to add checks for water and treasure chests here. 
+	if(map->tiles[player->x][player->y].terrain == BOG)
 	{
 		(player->energy) -= 2;
+		return 2;
 	}
 	else
 	{
 		--player->energy;
+		return 1;
 	}
-	return 1;
+	
 } 
 
 
