@@ -31,6 +31,10 @@ int main()
 	initialize_player(&player);
 	read_file(&player, &map, fp);
 
+	if(strcmp(query, "LOAD") == 0) {
+		sprintf(message, "Welcome back to Frupal");
+	}
+
 	if(strcmp(query, "N") == 0 || strcmp(query, "S") == 0 || strcmp(query, "E") == 0 || strcmp(query, "W") == 0) {
 		energymessage = move_player(query, &player, &map);
 		if(energymessage == 2)

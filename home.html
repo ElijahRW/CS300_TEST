@@ -50,6 +50,9 @@ function movePlayer(x)
 
 	document.getElementById("inventory").innerHTML = "";
 	var id = 'A';
+	if(x == "LOAD") {
+		document.getElementById("inventory").style.display = "none";
+	}
 	for(var i = 0; i < 10; i++) {
 		document.getElementById("inventory").innerHTML = document.getElementById("inventory").innerHTML + "<br>" + playerData[id + 'item'];
 		id = String.fromCharCode(id.charCodeAt() + 1)
@@ -155,7 +158,7 @@ Frupal Project center
   5: Royal Diamonds
  </pre>
 
-
+<script>movePlayer('LOAD');</script>
 
 
 
