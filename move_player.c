@@ -126,7 +126,11 @@ int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true
 	}
 
 	if(myMap->tiles[x][y].terrain == WATER)
+{
+		--myPlayer->energy;
 		return 1;
+		
+}
 	else
 		return 0;
 }
