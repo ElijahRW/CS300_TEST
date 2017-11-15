@@ -65,7 +65,7 @@ int main()
 	
 	//Code to check whether the player has used up all of their energy. The code will alert the player that the game is over
 	//when the player is at 0 energy and tries to move again, not when it immediately hits 0.
-	if(player.energy < 0)
+	if(player.energy < 1)
 	{
 		resetstate(fp,fp2);
 		free_memory(&player, &map);//free memory
