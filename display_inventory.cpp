@@ -14,8 +14,8 @@ void write_player_info(/*we should create  a player class to contain this inform
 int main ()
 {
 	int energy = 0;
-	int 
-	//basic formatting setup for the html output
+	//int 
+	//basic formatting setup for the html output 
 	cout << "Content-Type: text/html;charset=us-ascii\n\n";
 	cout <<"Testing inventory materials" << endl;
 	return 0;

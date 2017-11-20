@@ -62,6 +62,10 @@ void write_tile(Tile * tile_index);
 void write_content(Tile *tile);
 
 
+//Player Inventory Functionality
+int purchaseItem(Player * player, char input);
+
+
 // From json.c
 // This function adds a name-value pair to the current json string. The data
 // types of value can either be INTEGER or STRING. Remember to pass pointers to integers

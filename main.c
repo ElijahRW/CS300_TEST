@@ -2,6 +2,7 @@
 
 int main()
 {
+	//variable declarations
 	char * query;
 	char buffer[100];
 	s_cgi *cgi;
@@ -31,19 +32,32 @@ int main()
 	initialize_player(&player);
 	read_file(&player, &map, fp);
 
+	
+	
 	if(strcmp(query, "LOAD") == 0) {
 		sprintf(message, "Welcome back to Frupal");
 	}
-
-	if(strcmp(query, "N") == 0 || strcmp(query, "S") == 0 || strcmp(query, "E") == 0 || strcmp(query, "W") == 0) {
-		energymessage = move_player(query, &player, &map);
-		if(energymessage == 2)
-			sprintf(message, "You've just run into a bog, lost extra energy point");
+	else
+	{
+		//IF QUERY INPUT is equivalent to Direction (Attempt to move the player)
+		if(strcmp(query, "N") == 0 || strcmp(query, "S") == 0 || strcmp(query, "E") == 0 || strcmp(query, "W") == 0) {
+			energymessage = move_player(query, &player, &map);
+			if(energymessage == 2)//Bog Check__CONSIDER MOVING THIS CHECK INTO THE MOVE PLAYER FUNCTION__
+				sprintf(message, "You've just run into a bog, lost extra energy point");
+		}
+		else
+		{
+			//
+			if(strcmp(query, "C") == 0 || strcmp(query, "E") == 0 || strcmp(query, "B") == 0 || strcmp(query, "W") == 0)
+			{
+				purchaseItem(&player, query[0]);
+			}
+		}
 	}
 
 	//temp location for diamond at coordinates (0,0). Fill in these values when location of diamond is placed. 
-	int diamondx = 0;
-	int diamondy = 0;
+	//int diamondx = 0;
+	//int diamondy = 0;
 	
 	
 	//If statement to check coordinates that the player has moved into and the coordiantes of the diamonds
@@ -63,6 +77,7 @@ int main()
 		sprintf(message, "You've hit a %s and lost %d energy points removing it", obstacle_name[obstacle_index], obstacle_energy[obstacle_index]);
 	}
 	
+	//ENERGY CHECK
 	//Code to check whether the player has used up all of their energy. The code will alert the player that the game is over
 	//when the player is at 0 energy and tries to move again, not when it immediately hits 0.
 	if(player.energy < 1)
@@ -97,25 +112,10 @@ int main()
 	printf("%s;", json_output);
 	free(json_output);
 	
-/*
-	// START - PRINT ALL INFO FOR HTML TO PARSE
-	printf("%d:%d:%d:%d:%d:%d:", diamond_found, player.x, player.y, player.energy, player.money, noEnergy);
-	for(int i = 0; i < 10; i++) {
-		printf("%s,", player.inventory[i]);
-	}
-	printf(":%d:", map.size);
-*/
 
-	
-	/*for(int i = 0; i < map.size; i++) {
-		for(int j = 0; j < map.size; j++) {
-			if(map.tiles[i][j].visibility == 1) {
-				printf("%d,%d,%d,%d,%s;", i, j, map.tiles[i][j].visibility, map.tiles[i][j].terrain, map.tiles[i][j].content);
-			}
-		}
-	}*/
-	
+	//Prints map to Table
 	write_html(&player, &map);
+
 
 	// END - PRINT ALL INFO FOR HTML TO PARSE
 	write_file(&player, &map, fp); // write all info to the game state
