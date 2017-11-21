@@ -1,4 +1,4 @@
-#include "main.h"
+#include "../main.h"
 
 //resets state back to original.
 void resetstate(FILE *fp, FILE *fp2)

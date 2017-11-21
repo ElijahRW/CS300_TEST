@@ -1,4 +1,4 @@
-#include "main.h"
+#include "../main.h"
 /*
 --FILE WRITTEN BY: Jacob Collins
 

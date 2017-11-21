@@ -1,4 +1,4 @@
-#include "main.h"
+#include "../main.h"
 
 
 // Define obstacle names and enery values
