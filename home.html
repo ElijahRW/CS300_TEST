@@ -46,8 +46,9 @@ function movePlayer(x)
 	document.getElementById("energy").innerHTML = playerData.energy;
 	document.getElementById("money").innerHTML = playerData.money;
 	document.getElementById("message").innerHTML = playerData.message;
-//	var map_size = output[7];
+	//	var map_size = output[7];
 
+	//Player Inventory
 	document.getElementById("inventory").innerHTML = "";
 	var id = 'A';
 	if(x == "LOAD") {
@@ -58,13 +59,16 @@ function movePlayer(x)
 		id = String.fromCharCode(id.charCodeAt() + 1)
 	}
 
+	//Map Display
 	document.getElementById("map").innerHTML = map;
 
+	//Game Completion Check
 	if(playerData.diamondFound == 1)
 	{
 		alert("YOU HAVE FOUND THE DIAMONDS!");
 	}
 
+	//At this point, the game has already been reset and player energy will NOT be less than zero (An additional boolean has to be passed)
 	if(playerData.noEnergy == 1)
 	{
 		alert("GAME OVER! you have run out of energy and the game will now reset");
@@ -72,6 +76,12 @@ function movePlayer(x)
 	}
 
 }
+
+function makepurchase(x)
+{
+
+}
+
 
 function toggleInventory()
 {
