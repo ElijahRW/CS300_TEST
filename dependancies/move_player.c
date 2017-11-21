@@ -1,4 +1,4 @@
-#include "main.h"
+#include "../main.h"
 #define BOG 4
 #define WATER 2
 

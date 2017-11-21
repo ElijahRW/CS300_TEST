@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "main.h"
+#include "../main.h"
 
 
 // this function will format the name value pair passed in and append it to the current
