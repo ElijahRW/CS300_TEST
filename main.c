@@ -15,11 +15,17 @@ int main()
 	char message[200];
 	int obstacle_index;
 	int energymessage;
-
-	sprintf(message, "WALKING...");  
 	diamond_found = 0;
 	noEnergy = 0;
+	
+	
+	//EPRW Purchase IO
+	char purchase_request = ' ';
 
+	//Default message
+	sprintf(message, "WALKING...");  
+
+	//Initializing cgi parser
 	cgi = cgiInit();
 
 	strcpy(buffer,cgiGetValue(cgi,"query"));
@@ -42,8 +48,15 @@ int main()
 		//IF QUERY INPUT is equivalent to Direction (Attempt to move the player)
 		if(strcmp(query, "N") == 0 || strcmp(query, "S") == 0 || strcmp(query, "E") == 0 || strcmp(query, "W") == 0) {
 			energymessage = move_player(query, &player, &map);
-			if(energymessage == 2)//Bog Check__CONSIDER MOVING THIS CHECK INTO THE MOVE PLAYER FUNCTION__
+			if(energymessage == 2)//Bog Check   --CONSIDER MOVING THIS CHECK INTO THE MOVE PLAYER FUNCTION--
 				sprintf(message, "You've just run into a bog, lost extra energy point");
+			
+			
+			
+			//-- --
+			//We have to check if the player is standing on a purchase location
+			// Adjust the char purchase_request and the char[] message in order to prompt user input (y/n)
+			//if purchase_request == ' ', then no output is given
 		}
 		else
 		{
@@ -55,9 +68,7 @@ int main()
 		}
 	}
 
-	//temp location for diamond at coordinates (0,0). Fill in these values when location of diamond is placed. 
-	//int diamondx = 0;
-	//int diamondy = 0;
+
 	
 	
 	//If statement to check coordinates that the player has moved into and the coordiantes of the diamonds
@@ -69,7 +80,6 @@ int main()
 		read_file(&player, &map, fp);
 		diamond_found = 1; // diamond has been found
 
-		//map.tiles[diamondx][diamondy].visibility = 1;
 	}
 
 	// Check if the player has encountered an obstacle and decrement the energy appropriatley
