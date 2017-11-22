@@ -1,5 +1,6 @@
 #include "../main.h"
 #define BOG 4
+#define WALL 3 
 #define WATER 2
 
 /*
@@ -131,6 +132,13 @@ int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true
 		return 1;
 		
 }
+	if(myMap->tiles[x][y].terrain == WALL)
+{
+		--myPlayer->energy;
+		return 1;
+		
+}
+	
 	else
 		return 0;
 }
