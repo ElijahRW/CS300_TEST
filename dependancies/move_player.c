@@ -76,20 +76,44 @@ int viewTiles(Player *player, Map *map)
 	} 
 	return 1;	
 }
+//this function decrements energy of player while also checking for terrain such as bogs and instances of chests and clues. 
+//information aboout the player is updated here and a return code is sent back to main.c that will determine what
+//type of message to be displayed in the html. 
 int decrementenergy(Player* player, Map* map)
 {
 	//going to add checks for water and treasure chests here. 
+	int flag = 0;
+	if(strcmp(map->tiles[player->x][player->y].content, "Type1") == 0)
+	{
+		player->money += 100;
+		free(map->tiles[player->x][player->y].content);
+		map->tiles[player->x][player->y].content = (char*)malloc(sizeof(char) * strlen("None") + 1);
+		strcpy(map->tiles[player->x][player->y].content, "None");
+		flag = 3;
+	}	
+	if(strcmp(map->tiles[player->x][player->y].content, "Type2") == 0)
+	{
+		player->money = 0;
+		free(map->tiles[player->x][player->y].content);
+		map->tiles[player->x][player->y].content = (char*)malloc(sizeof(char) * strlen("None") + 1);
+		strcpy(map->tiles[player->x][player->y].content, "None");
+		flag = 4;
+	}
 	if(map->tiles[player->x][player->y].terrain == BOG)
 	{
 		(player->energy) -= 2;
-		return 2;
+		if(!flag)
+			return 2;
+		else
+			return 2+flag;
 	}
 	else
 	{
 		--player->energy;
-		return 1;
+		if(!flag)
+			return 1;
 	}
-	
+	return flag;
 } 
 
 int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true if the terrain is passable.

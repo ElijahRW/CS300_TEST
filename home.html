@@ -74,6 +74,14 @@ function movePlayer(x)
 		alert("GAME OVER! you have run out of energy and the game will now reset");
 	  document.getElementById("message").innerHTML = ""; 
 	}
+	if(playerData.chest == 1)
+	{
+		alert("You just found a Type 1 Treasure Chest! You gained 100 whiffles");
+	}
+	if(playerData.chest == 2)
+	{
+		alert("You just found a Type 2 Treasure Chest! You just lost all whiffles");
+	}
 
 }
 
