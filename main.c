@@ -10,7 +10,7 @@ int main()
 	FILE *fp2;
 	Player player;
 	Map map;
-	int i, j, len, diamond_found, noEnergy;
+	int i, j, len, diamond_found, noEnergy, chest;
 	char* json_output = NULL;
 	char message[200];
 	int obstacle_index;
@@ -48,13 +48,12 @@ int main()
 		//IF QUERY INPUT is equivalent to Direction (Attempt to move the player)
 		if(strcmp(query, "N") == 0 || strcmp(query, "S") == 0 || strcmp(query, "E") == 0 || strcmp(query, "W") == 0) {
 			energymessage = move_player(query, &player, &map);
-			if(energymessage == 2)//Bog Check   --CONSIDER MOVING THIS CHECK INTO THE MOVE PLAYER FUNCTION--
+			if(energymessage == 2 || energymessage == 5 || energymessage ==6)//Bog Check   --CONSIDER MOVING THIS CHECK INTO THE MOVE PLAYER FUNCTION--
 				sprintf(message, "You've just run into a bog, lost extra energy point");
-			if(energymessage == 3)
-				sprintf(message, "You've found a Type 1 Treasure Chest! Gained 100 whiffles");	
-			if(energymessage == 4)
-				sprintf(message, "You've found a Type 2 Teasure Chest! You lost all your whiffles!");	
-			
+			if(energymessage == 3 || energymessage == 5)
+				chest = 1;
+			if(energymessage == 4 || energymessage == 6)
+				chest = 2;	
 			//-- --
 			//We have to check if the player is standing on a purchase location
 			// Adjust the char purchase_request and the char[] message in order to prompt user input (y/n)
@@ -109,6 +108,7 @@ int main()
 	json_output = add_name_value_pair(json_output, "noEnergy", &noEnergy, INTEGER);
 	json_output = add_name_value_pair(json_output, "mapSize", &map.size, INTEGER);
 	json_output = add_name_value_pair(json_output, "message", message, STRING);
+	json_output = add_name_value_pair(json_output, "chest", &chest, INTEGER);
 
 	// instead of appending the inventory as an array (which could be done but I was a bit lazy)
 	// just add each item as a new name-value pair. This is probably ok since our inventory is

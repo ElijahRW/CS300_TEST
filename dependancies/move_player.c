@@ -82,36 +82,38 @@ int viewTiles(Player *player, Map *map)
 int decrementenergy(Player* player, Map* map)
 {
 	//going to add checks for water and treasure chests here. 
-	if(map->tiles[player->x][player->y].terrain == BOG)
-	{
-		(player->energy) -= 2;
-		return 2;
-	}
+	int flag = 0;
 	if(strcmp(map->tiles[player->x][player->y].content, "Type1") == 0)
 	{
-		--player->energy;
 		player->money += 100;
 		free(map->tiles[player->x][player->y].content);
 		map->tiles[player->x][player->y].content = (char*)malloc(sizeof(char) * strlen("None") + 1);
 		strcpy(map->tiles[player->x][player->y].content, "None");
-		return 3;
+		flag = 3;
 	}	
 	if(strcmp(map->tiles[player->x][player->y].content, "Type2") == 0)
 	{
-		--player->energy;
 		player->money = 0;
 		free(map->tiles[player->x][player->y].content);
 		map->tiles[player->x][player->y].content = (char*)malloc(sizeof(char) * strlen("None") + 1);
 		strcpy(map->tiles[player->x][player->y].content, "None");
-		return 4;
+		flag = 4;
 	}
-	
+	if(map->tiles[player->x][player->y].terrain == BOG)
+	{
+		(player->energy) -= 2;
+		if(!flag)
+			return 2;
+		else
+			return 2+flag;
+	}
 	else
 	{
 		--player->energy;
-		return 1;
+		if(!flag)
+			return 1;
 	}
-	
+	return flag;
 } 
 
 int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true if the terrain is passable.
