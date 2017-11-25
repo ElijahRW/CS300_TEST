@@ -9,16 +9,29 @@
 #define INTEGER 0
 #define STRING  1
 // Constants used to index into
-// obstacle_name and enery arrays
+// obstacle_name and energies arrays
 // (ex char* tree_name = obstacle_name[TREE]
 //     int tree_energy = obstacle_energy[TREE])
 #define TREE    0
 #define BOULDER 1
 #define BUSH	  2 
+// Constants used to index into 
+// tool_name and energies arrays
+#define HATCHET    0
+#define AXE        1
+#define CHAINSAW   2
+#define CHISEL     3
+#define SLEDGE     4
+#define JACKHAMMER 5
+#define MACHETE    6
+#define SHEARS     7
 
 // names and energies of obstacles
-extern const char* obstacle_name[];
-extern const int obstacle_energy[];
+extern const char* obstacle_names[];
+extern const int obstacle_energies[];
+// names and energies of tools used to remove obstalces
+extern const char* tool_names[];
+extern const int tool_energies[];
 
 
 typedef struct {
@@ -73,11 +86,17 @@ int purchaseItem(Player * player, char input);
 // for freeing this newly allocated string. The curr_json string, that is passed in, is freed in the function since for our purposes
 // we will not be using it anymore, so its just convienient.
 char* add_name_value_pair(char* curr_json, const char* name, const void* value, int data_type);
-// from obstacle.c. It will check if the player is in 
-// a tile that contains an object, in which it will remove 
-// that object, decrement the players energy and 
-// return the object index into the global
-// arrays for object names and energy value
-// if not object if found it will return -1
-int check_for_obstacle(Player* player, Map* map);
+
+// from obstacle.c. 
+
+// This function will remove an obstacle from the map at the players
+// location with their choice of tool to use
+// It will decrement the players energy, remove the obstacle from the map
+// and remove the tool of choice from the players inventory
+void remove_obstacle(Player*, Map*, int tool_index);
+int get_obstacle_index(Player*, Map*);
+int get_tool_index(char* tool_name);
+void remove_obstacle_from_map(Player*, Map*);
+void remove_tool_from_inventory(Player*, int);
+int check_obstacle_tool_match(int, int);
 #endif /* MAIN_H */

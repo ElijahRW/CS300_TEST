@@ -2,6 +2,7 @@
 <head>
 <title> Frupal Project central page </title>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
 //KEYBOARD WASD INPUT IMPLEMENTATION
@@ -27,7 +28,84 @@ document.addEventListener("keypress", function(event)
 	//alert('keydown event\n\n' + 'key: ' + keyName);
 });
 
+function removeObstacle()
+{
+	// Hide the remove obstacle button
+	$("#remove-obstacle").hide();
 
+	// Find tool that the player choose
+	var tool = 'None';
+	$("#inventory").children().each(function(index, item){
+		if($(item).find("input").is(":checked")){
+			tool = $(item).find("label").text();
+			console.log(tool);
+		}
+	});
+
+	// call cgi to remove tool
+	arguments = "tool=" + tool;
+	var xhttp = new XMLHttpRequest();
+	URL = "remove_obstacle.cgi?" + arguments;
+	xhttp.open("GET",URL,false);
+	xhttp.send();
+	
+	var output = xhttp.responseText.split(";");
+	var playerData = JSON.parse(output[0]);
+	var map = output[1];
+
+	playerData.message = "Obstacle removed!";
+	// build map
+	$("#map").html(map);
+	// build player inventory
+	buildInventory(playerData);
+	writePlayerData(playerData);
+	checkIfDied(playerData);
+
+}
+
+function buildInventory(player){
+
+	// Player Inventory
+	var id = 'A';
+	$("#inventory").children().each(function(index, item){
+	 // only change the first 10 items, the last item will always be None
+	 // if the player chooses to not user any tool in his inventory
+		if(id < 'K') {
+			$(item).find("label").text(player[id + 'item']);
+			id = String.fromCharCode(id.charCodeAt() + 1)
+		}
+	});
+}
+
+function checkIfDied(player){
+	//At this point, the game has already been reset and player energy will NOT be less than zero (An additional boolean has to be passed)
+	if(player.noEnergy  ==  1)
+	{
+		alert("GAME OVER! you have run out of energy and the game will now reset");
+	  document.getElementById("message").innerHTML = ""; 
+		return true;
+	}
+	return false;
+}
+
+function writePlayerData(playerData){
+
+	if(playerData.Xcoor){
+	  document.getElementById("X").innerHTML = playerData.Xcoor;
+	}
+	if(playerData.Ycoor){
+		document.getElementById("Y").innerHTML = playerData.Ycoor;
+	}
+	if(playerData.energy){
+		document.getElementById("energy").innerHTML = playerData.energy;
+	}
+	if(playerData.money){
+		document.getElementById("money").innerHTML = playerData.money;
+	}
+	if(playerData.message){
+		document.getElementById("message").innerHTML = playerData.message;
+	}
+}
 
 function movePlayer(x)
 {
@@ -40,23 +118,13 @@ function movePlayer(x)
 	var output = xhttp.responseText.split(";");
 	var playerData = JSON.parse(output[0]);
 	var map = output[1];
+//	var map_size = output[7];
 
-	document.getElementById("X").innerHTML = playerData.Xcoor;
-	document.getElementById("Y").innerHTML = playerData.Ycoor;
-	document.getElementById("energy").innerHTML = playerData.energy;
-	document.getElementById("money").innerHTML = playerData.money;
-	document.getElementById("message").innerHTML = playerData.message;
-	//	var map_size = output[7];
-
-	//Player Inventory
-	document.getElementById("inventory").innerHTML = "";
-	var id = 'A';
-	if(x == "LOAD") {
-		document.getElementById("inventory").style.display = "none";
-	}
-	for(var i = 0; i < 10; i++) {
-		document.getElementById("inventory").innerHTML = document.getElementById("inventory").innerHTML + "<br>" + playerData[id + 'item'];
-		id = String.fromCharCode(id.charCodeAt() + 1)
+	writePlayerData(playerData);
+	buildInventory(playerData);
+	if(x == 'LOAD'){
+		$("#inventory").hide();
+		$("#remove-obstacle").hide();
 	}
 
 	//Map Display
@@ -69,10 +137,13 @@ function movePlayer(x)
 	}
 
 	//At this point, the game has already been reset and player energy will NOT be less than zero (An additional boolean has to be passed)
-	if(playerData.noEnergy == 1)
-	{
-		alert("GAME OVER! you have run out of energy and the game will now reset");
-	  document.getElementById("message").innerHTML = ""; 
+	if(checkIfDied(playerData) == true){
+	}
+	else if(playerData.obstacle != "None"){
+		var message = "You've encountered a " + playerData.obstacle + "!! Choose a tool from your inventory to remove it...make sure you choose the right tool for the right job";
+		$("#message").text(message);
+		$("#remove-obstacle").show();
+		$("#inventory").show();
 	}
 
 }
@@ -137,13 +208,14 @@ Frupal Project center
 	<tr><th></th><th><button type = "button" onclick = movePlayer('N')>NORTH</button></th>
 	</tr>
 	<tr><th><button type="button" onclick = movePlayer('W')>West</button><th></th><th><button type = "button" onclick = movePlayer('E')>East</button></th>
-	</tr>
+	</th>
 	<tr><th></th><th><button type = "button" onclick = movePlayer('S')>SOUTH</button></th>
 	</tr>
 </table></center>
 
-
-
+<div id="remove-obstacle">
+	<button onclick="removeObstacle()">Remove Obstacle</button>
+</div>
 <div class="row">
   <div class="column" align="center" style="background-color:#ffffff; width:75%;">
     <span id = "map" style = "align:center;"></span>
@@ -154,8 +226,58 @@ Frupal Project center
 	Player Energy: <span id = "energy"></span><br> 
 	Player Money: <span id = "money"></span><br> 
 	<button type="button" onclick=toggleInventory()>Toggle Inventory</button>
-    <span id = "inventory"></span><br>
-	
+		<div id="inventory">
+		  <div>
+		  		<input type="radio" name="item">
+		  		<label></label>
+		  </div>
+		  <div>
+		  		<input type="radio" name="item">
+		  		<label></label>
+		  </div>
+		  <div>
+		  		<input type="radio" name="item">
+		  		<label></label>
+		  </div>
+		  <div>
+		  		<input type="radio" name="item">
+		  		<label></label>
+		  </div>
+		  <div>
+		  		<input type="radio" name="item">
+		  		<label></label>
+		  </div>
+		  <div>
+		  		<input type="radio" name="item">
+		  		<label></label>
+		  </div>
+		  <div>
+		  		<input type="radio" name="item">
+		  		<label></label>
+		  </div>
+		  <div>
+		  		<input type="radio" name="item">
+		  		<label></label>
+		  </div>
+		  <div>
+		  		<input type="radio" name="item">
+		  		<label></label>
+		  </div>
+		  <div>
+		  		<input type="radio" name="item">
+		  		<label></label>
+		  </div>
+		  <div>
+		  		<input type="radio" name="item" checked>
+		  		<label>None</label>
+		  </div>
+
+
+
+
+
+
+		</div>
 	<center>Message: <span id = "message"></span></center><br>
   </div>
  </div>

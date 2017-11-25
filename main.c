@@ -14,6 +14,7 @@ int main()
 	char* json_output = NULL;
 	char message[200];
 	int obstacle_index;
+	char obstacle[100];
 	int energymessage;
 	diamond_found = 0;
 	noEnergy = 0;
@@ -23,7 +24,9 @@ int main()
 	char purchase_request = ' ';
 
 	//Default message
-	sprintf(message, "WALKING...");  
+	strcpy(message, "WALKING...");  
+	// Default obstacle
+	strcpy(obstacle, "None");
 
 	//Initializing cgi parser
 	cgi = cgiInit();
@@ -83,8 +86,8 @@ int main()
 	}
 
 	// Check if the player has encountered an obstacle and decrement the energy appropriatley
-	if((obstacle_index = check_for_obstacle(&player, &map)) != -1){
-		sprintf(message, "You've hit a %s and lost %d energy points removing it", obstacle_name[obstacle_index], obstacle_energy[obstacle_index]);
+	if((obstacle_index = get_obstacle_index(&player, &map)) != -1){
+		strcpy(obstacle, obstacle_names[obstacle_index]);
 	}
 	
 	//ENERGY CHECK
@@ -107,6 +110,7 @@ int main()
 	json_output = add_name_value_pair(json_output, "noEnergy", &noEnergy, INTEGER);
 	json_output = add_name_value_pair(json_output, "mapSize", &map.size, INTEGER);
 	json_output = add_name_value_pair(json_output, "message", message, STRING);
+	json_output = add_name_value_pair(json_output, "obstacle", obstacle, STRING);
 
 	// instead of appending the inventory as an array (which could be done but I was a bit lazy)
 	// just add each item as a new name-value pair. This is probably ok since our inventory is
@@ -136,47 +140,3 @@ int main()
   return 0;
 }
 
-void initialize_player(Player *player)
-{
-	int i;
-
-	player->x = 0;
-	player->y = 0;
-	player->energy = 0;
-	player->money = 0;
-	player->visibility = 1;
-	for(i = 0; i < 10; i++) {
-		player->inventory[i] = malloc(5 * sizeof(char));
-		strcpy(player->inventory[i], "None");
-	}
-}
-
-void free_memory(Player *player, Map *map)
-{
-	int i, j;
-
-	// Free all dynamic memory of the map
-	for(i = 0; i < map->size; i++) {
-		for(j = 0; j < map->size; j++) {
-			if(map->tiles[i][j].content) {
-				free(map->tiles[i][j].content);
-			}
-			map->tiles[i][j].content = NULL;
-		}
-		if(map->tiles[i]) {
-			free(map->tiles[i]);
-		}
-		map->tiles[i] = NULL;
-	}
-	if(map->tiles) {
-		free(map->tiles);
-	}
-	map->tiles = NULL;
-
-	// Free all dynamic memory for the player
-	for(i = 0; i < 10; i++) {
-		if(player->inventory[i]) {
-			free(player->inventory[i]);
-		}
-	}
-}
