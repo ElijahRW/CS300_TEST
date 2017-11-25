@@ -50,8 +50,10 @@ int main()
 			energymessage = move_player(query, &player, &map);
 			if(energymessage == 2)//Bog Check   --CONSIDER MOVING THIS CHECK INTO THE MOVE PLAYER FUNCTION--
 				sprintf(message, "You've just run into a bog, lost extra energy point");
-			
-			
+			if(energymessage == 3)
+				sprintf(message, "You've found a Type 1 Treasure Chest! Gained 100 whiffles");	
+			if(energymessage == 4)
+				sprintf(message, "You've found a Type 2 Teasure Chest! You lost all your whiffles!");	
 			
 			//-- --
 			//We have to check if the player is standing on a purchase location
