@@ -43,7 +43,7 @@ typedef struct {
 	Tile ** tiles;
 } Map;
 
-int read_file(Player *player, Map *map, FILE *fp);
+int read_file(Player *player, Map *map, FILE *fp, int map_selection);
 int write_file(Player *player, Map *map, FILE *fp);
 int move_player(char *query, Player *player, Map *map);
 void resetstate(FILE *fp, FILE *fp2);

@@ -66,13 +66,15 @@ function movePlayer(x)
 	if(playerData.diamondFound == 1)
 	{
 		alert("YOU HAVE FOUND THE DIAMONDS!");
+		load();
 	}
 
 	//At this point, the game has already been reset and player energy will NOT be less than zero (An additional boolean has to be passed)
 	if(playerData.noEnergy == 1)
 	{
 		alert("GAME OVER! you have run out of energy and the game will now reset");
-	  document.getElementById("message").innerHTML = ""; 
+	  document.getElementById("message").innerHTML = "";
+		load();
 	}
 	if(playerData.chest == 1)
 	{
@@ -100,6 +102,53 @@ function toggleInventory()
 	else {
 		inventory.style.display = 'none';
 	}
+}
+
+function load()
+{
+	var maps = [
+		"Default",
+		"Load last game",
+		"Hero Movement",
+		"Discover Royal Diamonds",
+		"Show Game Map",
+		"Encounter a Bog",
+		"Encounter a Power Bar",
+		"Encounter an Obstacle",
+		"Display the Player's Inventory List",
+		"Add Useful Items to the Players Inventory",
+		"Encounter a Type 1 Treasure Chest",
+		"Encounter a Type 2 Treasure Chest",
+		"Encounter Water(River/Lake",
+		"Encounter Binoculars",
+		"Buy Boat",
+		"Clues",
+		"Walls",
+		"Obstacle Removal Tools"
+	]
+
+	var message = "Select a test map...\n";
+	for(var i = 0; i < maps.length; i++) {
+		message = message + i + ". " + maps[i] + "\n";	
+	}
+
+	var selection;
+	var query = "LOAD-";
+	var output = window.prompt(message);
+	if(output >= 0 && output <= 9) {
+		selection = maps[output];
+		query = query + "0" + output;
+	}
+	else if(output >= 10 && output <= 17) {
+		selection = maps[output];
+		query = query + output;
+	}
+	else {
+		selection = maps[0];
+		query = query + '00';
+	}
+
+	movePlayer(query);
 }
 
 </script>
@@ -176,8 +225,9 @@ Frupal Project center
   5: Royal Diamonds
  </pre>
 
-<script>movePlayer('LOAD');</script>
-
+<script>
+load();
+</script>
 
 
 <html>
