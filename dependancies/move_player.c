@@ -54,6 +54,7 @@ int move_player(char *query, Player *player, Map *map)
 	// Make the tile visible (Needs to be expanded to show player's vision
 
 	map->tiles[player->x ][player->y ].visibility = 1;
+
 }
 	viewTiles(player, map);
 	return energymessage;
@@ -166,6 +167,3 @@ int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true
 	else
 		return 0;
 }
-
-
-
