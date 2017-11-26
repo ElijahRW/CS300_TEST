@@ -15,6 +15,7 @@ int main()
 	char message[200];
 	int obstacle_index;
 	int energymessage;
+	char useful_item[100];
 	diamond_found = 0;
 	noEnergy = 0;
 	
@@ -64,14 +65,18 @@ int main()
 			//
 			if(strcmp(query, "C") == 0 || strcmp(query, "E") == 0 || strcmp(query, "B") == 0 || strcmp(query, "W") == 0)
 			{
-				purchaseItem(&player, query[0]);
+				//purchaseItem(&player, query[0]);
 			}
 		}
 	}
 
 
+	//CN
+	//Check if the player has stepped on a useful item. If they have then the name of that item will be passed as a JSON
+	//to the html file, where a function will then be called that will allow the user to purchase the item
+	check_item(&player, &map, useful_item);	
 	
-	
+
 	//If statement to check coordinates that the player has moved into and the coordiantes of the diamonds
 	//if(map.tiles[diamondx][diamondy].x == player.x && map.tiles[diamondx][diamondy].y == player.y)
 	if(strcmp(map.tiles[player.x][player.y].content, "DIAMOND") == 0)
@@ -109,6 +114,7 @@ int main()
 	json_output = add_name_value_pair(json_output, "mapSize", &map.size, INTEGER);
 	json_output = add_name_value_pair(json_output, "message", message, STRING);
 	json_output = add_name_value_pair(json_output, "chest", &chest, INTEGER);
+	json_output = add_name_value_pair(json_output, "useful_item", &useful_item, STRING);
 
 	// instead of appending the inventory as an array (which could be done but I was a bit lazy)
 	// just add each item as a new name-value pair. This is probably ok since our inventory is
