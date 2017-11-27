@@ -17,7 +17,7 @@ int main()
 	int energymessage;
 	diamond_found = 0;
 	noEnergy = 0;
-	map_selection = 1;
+	map_selection = 1; // 1 is to use game_state.txt
 	
 	
 	//EPRW Purchase IO
@@ -34,17 +34,15 @@ int main()
 
 	// [JMC] - 26NOV2017
 	// The following is for loading a specific map 
-	// This if statement isn't the prettiest since it checks char by char
-	// but it was easy to implement. 
+	// If query is for loading, figure out the map selection
+	// else, do the normal allocation...
 	if(buffer[0] == 'L' && buffer[1] == 'O' && buffer[2] == 'A' && buffer[3] =='D') { 
-		// If query is for loading...
 		// buffer[4] is skipped because it is the '-' in the query "LOAD-##"
 		map_selection = (buffer[5]-'0')*10 + (buffer[6]-'0');
 		query = malloc(5 * sizeof(char));
 		strcpy(query, "LOAD");
 	}
 	else { 
-		// else, do the normal allocation...
 		query = malloc(len * sizeof(char));
 		strcpy(query, buffer);
 	}
