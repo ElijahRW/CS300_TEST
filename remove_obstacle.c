@@ -16,10 +16,11 @@ int main()
 	int tool_index; 				   // index of tool that the player has chosen, -1 if not chosen
 	char* json_output = NULL;  // JSON output
 	int noEnergy = 0;
+	
 
 	
 	initialize_player(&player);									  // Init the player 
-	read_file(&player, &map, game_map_fp);        // Read in player and map data
+	read_file(&player, &map, game_map_fp, 1);        // Read in player and map data
 	cgi = cgiInit();															// Init cgi
 	strcpy(tool, cgiGetValue(cgi, "tool"));  			// Get the tool name the player chose
 
@@ -33,7 +34,7 @@ int main()
 	if(noEnergy == 1){
 		resetstate(game_map_fp,fp2); 
 		free_memory(&player, &map); 
-		read_file(&player, &map, game_map_fp);
+		read_file(&player, &map, game_map_fp, 1);
 	}
 
 	// Create JSON blob

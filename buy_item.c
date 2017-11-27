@@ -16,7 +16,7 @@ int main()
 	int noEnergy = 0;
 	
 	initialize_player(&player);		
-	read_file(&player, &map, game_map_fp);        // Read in player and map data
+	read_file(&player, &map, game_map_fp, 1);        // Read in player and map data
 	cgi = cgiInit();			
 	strcpy(item, cgiGetValue(cgi, "item"));       // Obtain the item
 
@@ -67,6 +67,8 @@ int main()
 	return 0;
 }
 
+
+/*
 void initialize_player(Player *player)
 {
 	int i;
@@ -111,3 +113,4 @@ void free_memory(Player *player, Map *map)
 		}
 	}
 }
+*/

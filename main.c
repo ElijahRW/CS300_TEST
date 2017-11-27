@@ -10,7 +10,7 @@ int main()
 	FILE *fp2;
 	Player player;
 	Map map;
-	int i, j, len, diamond_found, noEnergy, chest, map_selection;
+	int i, j, len, diamond_found, noEnergy, chest, map_selection=1;
 	char* json_output = NULL;
 	char message[200];
 	int obstacle_index;
@@ -19,7 +19,7 @@ int main()
 	char useful_item[100];
 	diamond_found = 0;
 	noEnergy = 0;
-	map_selection = 1; // 1 is to use game_state.txt
+	//map_selection = 1; // 1 is to use game_state.txt
 	
 	
 	//EPRW Purchase IO
@@ -129,12 +129,9 @@ int main()
 	json_output = add_name_value_pair(json_output, "noEnergy", &noEnergy, INTEGER);
 	json_output = add_name_value_pair(json_output, "mapSize", &map.size, INTEGER);
 	json_output = add_name_value_pair(json_output, "message", message, STRING);
-<<<<<<< HEAD
 	json_output = add_name_value_pair(json_output, "obstacle", obstacle, STRING);
-=======
 	json_output = add_name_value_pair(json_output, "chest", &chest, INTEGER);
 	json_output = add_name_value_pair(json_output, "useful_item", &useful_item, STRING);
->>>>>>> master
 
 	// instead of appending the inventory as an array (which could be done but I was a bit lazy)
 	// just add each item as a new name-value pair. This is probably ok since our inventory is
@@ -164,11 +161,9 @@ int main()
   return 0;
 }
 
-<<<<<<< HEAD
-=======
 
 
-
+/*
 //!!!!!This should be placed in  file_io!!!!
 void initialize_player(Player *player)
 {
@@ -215,4 +210,4 @@ void free_memory(Player *player, Map *map)
 		}
 	}
 }
->>>>>>> master
+*/
