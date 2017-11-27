@@ -31,16 +31,24 @@ int main()
 
 	strcpy(buffer,cgiGetValue(cgi,"query"));
 	len = strlen(buffer) + 1;
-	// The following is for loading a specific map (JMC)
-	if(buffer[0] == 'L' && buffer[1] == 'O' && buffer[2] == 'A' && buffer[3] =='D') {
+
+	// [JMC] - 26NOV2017
+	// The following is for loading a specific map 
+	// This if statement isn't the prettiest since it checks char by char
+	// but it was easy to implement. 
+	if(buffer[0] == 'L' && buffer[1] == 'O' && buffer[2] == 'A' && buffer[3] =='D') { 
+		// If query is for loading...
+		// buffer[4] is skipped because it is the '-' in the query "LOAD-##"
 		map_selection = (buffer[5]-'0')*10 + (buffer[6]-'0');
 		query = malloc(5 * sizeof(char));
 		strcpy(query, "LOAD");
 	}
-	else {
+	else { 
+		// else, do the normal allocation...
 		query = malloc(len * sizeof(char));
 		strcpy(query, buffer);
 	}
+	// [/JMC]
 
 	printf("Content-Type: text/html;charset=us-ascii\n\n");
 
