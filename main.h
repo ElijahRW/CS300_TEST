@@ -25,8 +25,9 @@ typedef struct {
 	int x;
 	int y;
 	int energy;
-	int visibility;
+	int visibility; //This is the default visibility
 	int money;
+	char hasBinocs; //1 if true, 0 if false
 	char * inventory[10];
 } Player; 
 

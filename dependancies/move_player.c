@@ -67,6 +67,8 @@ int move_player(char *query, Player *player, Map *map)
 int viewTiles(Player *player, Map *map)
 {
 	int viewRange = player->visibility;
+	if (player->hasBinocs == 1)
+		++viewRange;
 	int map_range = map->size;
 	
 	for (int i = -viewRange; i <= viewRange; i++)
