@@ -14,6 +14,7 @@ int main()
 	char* json_output = NULL;
 	char message[200];
 	int obstacle_index;
+	char obstacle[100];
 	int energymessage;
 	char useful_item[100];
 	diamond_found = 0;
@@ -25,7 +26,9 @@ int main()
 	char purchase_request = ' ';
 
 	//Default message
-	sprintf(message, "WALKING...");  
+	strcpy(message, "WALKING...");  
+	// Default obstacle
+	strcpy(obstacle, "None");
 
 	//Initializing cgi parser
 	cgi = cgiInit();
@@ -102,8 +105,8 @@ int main()
 	}
 
 	// Check if the player has encountered an obstacle and decrement the energy appropriatley
-	if((obstacle_index = check_for_obstacle(&player, &map)) != -1){
-		sprintf(message, "You've hit a %s and lost %d energy points removing it", obstacle_name[obstacle_index], obstacle_energy[obstacle_index]);
+	if((obstacle_index = get_obstacle_index(&player, &map)) != -1){
+		strcpy(obstacle, obstacle_names[obstacle_index]);
 	}
 	
 	//ENERGY CHECK
@@ -126,8 +129,12 @@ int main()
 	json_output = add_name_value_pair(json_output, "noEnergy", &noEnergy, INTEGER);
 	json_output = add_name_value_pair(json_output, "mapSize", &map.size, INTEGER);
 	json_output = add_name_value_pair(json_output, "message", message, STRING);
+<<<<<<< HEAD
+	json_output = add_name_value_pair(json_output, "obstacle", obstacle, STRING);
+=======
 	json_output = add_name_value_pair(json_output, "chest", &chest, INTEGER);
 	json_output = add_name_value_pair(json_output, "useful_item", &useful_item, STRING);
+>>>>>>> master
 
 	// instead of appending the inventory as an array (which could be done but I was a bit lazy)
 	// just add each item as a new name-value pair. This is probably ok since our inventory is
@@ -157,6 +164,8 @@ int main()
   return 0;
 }
 
+<<<<<<< HEAD
+=======
 
 
 
@@ -206,3 +215,4 @@ void free_memory(Player *player, Map *map)
 		}
 	}
 }
+>>>>>>> master
