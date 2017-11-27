@@ -7,6 +7,37 @@ This file will be called when we want to add an item to the players inventory
 
 
 
+int purchaseItem(Player * player, const char * item, int price)
+{
+	int result = 0;
+	if(player->money >= price && add_item(player, item)!=0)
+	{
+			(player->money) -= price;
+			result = 1;
+	}
+	return result;
+}
+
+
+
+int add_item(Player * player, const char * item)
+{
+	char ** inventory = player->inventory;
+	int result =0;
+	for (int i = 0; i < 10; ++i)
+		{
+			//If there is an empty spot in the users inventory copy the item over
+			if(strcmp(player->inventory[i], "None") == 0)
+			{
+				strcpy(inventory[i], item);
+				i = 10;
+				result = 1;
+			}
+		}
+	return result;
+}
+
+
 void check_item(Player * player, Map * map, char * useful_item)
 {
 	char tile_item[100];
@@ -21,22 +52,11 @@ void check_item(Player * player, Map * map, char * useful_item)
 	{
 
 		strcpy(useful_item, "Hatchet");
+	}
+	else if(strcmp(tile_item, "Boat") == 0)
+	{
 
-
-		/*	
-		for (int i = 0; i < 10; ++i)
-		{
-			//If there is an empty spot in the users inventory copy the item over and get
-			//rid of the item on the map
-			if(strcmp(player->inventory[i], "None") == 0)
-			{
-				//strcpy(player->inventory[i], "Hatchet");
-				//strcpy(map->tiles[player->x][player->y].content, "None");	
-				strcpy(useful_item, "Hatchet");
-				i = 10;
-			}
-		}
-		*/
+		strcpy(useful_item, "Boat");
 	}
 	else
 	{

@@ -107,10 +107,45 @@ void write_content(Tile *tile)
 		{
 			printf("energy");
 		}
-		else if(strcmp(content, "boat")==0)
+		
+		//Purchasable Items
+		else if(strcmp(content, "Boat")==0)
 		{
 			printf("boat");
 		}
+		else if(strcmp(content, "Hatchet")==0)
+		{
+			printf("hatchet");
+		}
+		else if(strcmp(content, "Axe")==0)
+		{
+			printf("axe");
+		}
+		else if(strcmp(content, "Chainsaw")==0)
+		{
+			printf("chainsaw");
+		}
+		else if(strcmp(content, "Chisel")==0)
+		{
+			printf("chisel");
+		}
+		else if(strcmp(content, "Sledge")==0)
+		{
+			printf("sledge");
+		}
+		else if(strcmp(content, "Jackhammer")==0)
+		{
+			printf("jackhammer");
+		}
+		else if(strcmp(content, "Machete")==0)
+		{
+			printf("machete");
+		}
+		else if(strcmp(content, "Shears")==0)
+		{
+			printf("shears");
+		}
+		
 	}
 	
 }

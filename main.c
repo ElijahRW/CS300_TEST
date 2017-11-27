@@ -60,14 +60,7 @@ int main()
 			// Adjust the char purchase_request and the char[] message in order to prompt user input (y/n)
 			//if purchase_request == ' ', then no output is given
 		}
-		else
-		{
-			//
-			if(strcmp(query, "C") == 0 || strcmp(query, "E") == 0 || strcmp(query, "B") == 0 || strcmp(query, "W") == 0)
-			{
-				//purchaseItem(&player, query[0]);
-			}
-		}
+
 	}
 
 

@@ -52,6 +52,8 @@ void initialize_player(Player *player);
 
 int viewTiles(); //Reveals everything around the player's view range
 int checkPassable(Map * myMap, Player * myPlayer, char * query); //checks to see if inpassable terrain exists.
+
+//checks for content in a given tile 
 void check_item(Player * player, Map * map, char * useful_item); 
 
 int decrementenergy(Player* player, Map* map);
@@ -64,8 +66,8 @@ void write_content(Tile *tile);
 
 
 //Player Inventory Functionality
-int purchaseItem(Player * player, char input);
-
+int add_item(Player * player, const char * item);
+int purchaseItem(Player * player, const char * item, int price);
 
 // From json.c
 // This function adds a name-value pair to the current json string. The data
