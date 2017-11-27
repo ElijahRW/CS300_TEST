@@ -100,14 +100,36 @@ int get_obstacle_index(Player* player, Map* map){
 	char* tile_content = map->tiles[player->x][player->y].content;
 	int obstacle_index = -1; 
 
+<<<<<<< HEAD
 	for(int i = 0; i < NUM_OBS && obstacle_index != 1; ++i){
 		if(strcmp(tile_content, obstacle_names[i]) == 0)
 			obstacle_index = i;
+=======
+  // if the player should already be dead then just return (WHY are we doing this?)
+	if(player->energy < 0)
+		return obstacle_index;
+
+	if(strcmp(*tile_content, obstacle_name[TREE]) == 0)
+		obstacle_index = TREE;	
+	else if(strcmp(*tile_content, obstacle_name[BOULDER]) == 0)
+		obstacle_index = BOULDER;
+	else if(strcmp(*tile_content, obstacle_name[BUSH]) == 0)
+		obstacle_index = BUSH;
+
+	// if obstacle is found, decrement player energy
+	// and remove obstacle from map
+	if(obstacle_index != -1){
+		player->energy -= obstacle_energy[obstacle_index];
+		free(*tile_content);
+		*tile_content = (char*)malloc(sizeof(char) * strlen("None") + 1);
+		strcpy(*tile_content, "None");
+>>>>>>> master
 	}
 
   return obstacle_index;	
 }
 
+<<<<<<< HEAD
 // This function will return the index of the tool
 // that the player has chosen. The index is used to index
 // into the tool_name and tool_energy arrays. It will return
@@ -155,3 +177,6 @@ void remove_tool_from_inventory(Player* player, int tool_index){
 		}
 	}
 }
+=======
+
+>>>>>>> master

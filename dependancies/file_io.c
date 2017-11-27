@@ -6,7 +6,7 @@
 		Purpose: 1. Fix certain logic errors and added location range invalid input exceptions
 */
 //THIS FUNCTION can't currently handle invalid input (CONSIDER Changing this) [EPRW]
-int read_file(Player *player, Map *map, FILE *fp)
+int read_file(Player *player, Map *map, FILE *fp, int map_selection)
 {
 	int len = 0;
 	int i = 0;
@@ -15,7 +15,28 @@ int read_file(Player *player, Map *map, FILE *fp)
 	int terrain = 0;
 	char buffer[100];
 
-	fp = fopen("game_state.txt", "r");
+	char * maps[18] = {
+		[0] "def_state.txt", //"Default",
+		[1] "game_state.txt", //"Load last game",
+		[2] "maps/move_test.txt", //"Hero Movement",
+		[3] "maps/diam_test.txt", //"Discover Royal Diamonds",
+		[4] "maps/energy_test.txt", //"Run out of energy",
+		[5] "maps/bog_test.txt", //"Encounter a Bog",
+		[6] "maps/powerbar_test.txt", //"Encounter a Power Bar",
+		[7] "maps/obstacle_test.txt", //"Encounter an Obstacle",
+		[8] "maps/inventory_test.txt", //Display the Player's Inventory List",
+		[9] "maps/useful_items_test.txt", //"Add Useful Items to the Players Inventory",
+		[10] "maps/type1_test.txt", //"Encounter a Type 1 Treasure Chest",
+		[11] "maps/type2_test.txt", //"Encounter a Type 2 Treasure Chest",
+		[12] "maps/water_test.txt", //"Encounter Water(River/Lake",
+		[13] "maps/binoc_test.txt", //"Encounter Binoculars",
+		[14] "maps/boat_test.txt", //"Buy Boat",
+		[15] "maps/clues_test.txt", //"Clues",
+		[16] "maps/walls_test.txt", //"Walls",
+		[17] "maps/obstacle_rm_test.txt" //Obstacle Removal Tools"
+	};
+
+	fp = fopen(maps[map_selection], "r");
 
 	if(!fp) return 0;
 

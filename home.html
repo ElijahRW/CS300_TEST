@@ -142,9 +142,11 @@ function movePlayer(x)
 	if(playerData.diamondFound == 1)
 	{
 		alert("YOU HAVE FOUND THE DIAMONDS!");
+		load();
 	}
 
 	//At this point, the game has already been reset and player energy will NOT be less than zero (An additional boolean has to be passed)
+<<<<<<< HEAD
 	if(checkIfDied(playerData) == true){
 	}
 	else if(playerData.obstacle != "None"){
@@ -155,10 +157,81 @@ function movePlayer(x)
 		alert("Choose an item from the inventory and then hit the remove obstacle button!");
 		
 		freezeInput();
+=======
+	if(playerData.noEnergy == 1)
+	{
+		alert("GAME OVER! you have run out of energy and the game will now reset");
+	  document.getElementById("message").innerHTML = "";
+		load();
+	}
+	if(playerData.chest == 1)
+	{
+		alert("You just found a Type 1 Treasure Chest! You gained 100 whiffles");
+	}
+	if(playerData.chest == 2)
+	{
+		alert("You just found a Type 2 Treasure Chest! You just lost all whiffles");
+	}
+
+	//check if the player has found a useful item
+	if(playerData.useful_item == "Hatchet")
+	{
+		if(confirm("You have found a hatchet, do you want to buy it?"))
+		{
+			buy_item(playerData.useful_item);
+		}
+	}
+	else
+	{
+	if(playerData.useful_item == "boat")
+	{
+		if(confirm("You have found a boat for, 500 wiffles, do you want to buy it?"))
+		{
+			buy_item(playerData.useful_item);
+		}
+	}
+>>>>>>> master
 	}
 
 }
 
+
+function buy_item(x)
+{			
+
+	var itemArgument = "item=" + x;
+	var xhttp = new XMLHttpRequest();
+	URL = "buy_item.cgi?" + itemArgument;
+	xhttp.open("GET", URL,false);
+	xhttp.send();
+
+	var output = xhttp.responseText.split(";");
+	var playerData = JSON.parse(output[0]);
+	var map = output[1];
+
+	document.getElementById("X").innerHTML = playerData.Xcoor;
+	document.getElementById("Y").innerHTML = playerData.Ycoor;
+	document.getElementById("energy").innerHTML = playerData.energy;
+	document.getElementById("money").innerHTML = playerData.money;
+	document.getElementById("message").innerHTML = playerData.message;
+
+	//Player Inventory
+	document.getElementById("inventory").innerHTML = "";
+	var id = 'A';
+	if(x == "LOAD") {
+		document.getElementById("inventory").style.display = "none";
+	}
+	for(var i = 0; i < 10; i++) {
+		document.getElementById("inventory").innerHTML = document.getElementById("inventory").innerHTML + "<br>" + playerData[id + 'item'];
+		id = String.fromCharCode(id.charCodeAt() + 1)
+	}
+
+	//Map Display
+	document.getElementById("map").innerHTML = map;
+
+
+
+}
 function makepurchase(x)
 {
 
@@ -176,6 +249,7 @@ function toggleInventory()
 	}
 }
 
+<<<<<<< HEAD
 //Keeps player from using keys or buttons untill Obstacle removed
 function freezeInput()
 {
@@ -188,6 +262,55 @@ function unfreezeInput()
 	$("#button_bar").show();
 }
 
+=======
+// Load function to be called for every load, win, or lose
+function load()
+{
+	var maps = [
+		"Default",
+		"Load last game",
+		"Hero Movement",
+		"Discover Royal Diamonds",
+		"Run out of energy",
+		"Encounter a Bog",
+		"Encounter a Power Bar",
+		"Encounter an Obstacle",
+		"Display the Player's Inventory List",
+		"Add Useful Items to the Players Inventory",
+		"Encounter a Type 1 Treasure Chest",
+		"Encounter a Type 2 Treasure Chest",
+		"Encounter Water(River/Lake",
+		"Encounter Binoculars",
+		"Buy Boat",
+		"Clues",
+		"Walls",
+		"Obstacle Removal Tools"
+	]
+
+	var message = "Select a test map...\n";
+	for(var i = 0; i < maps.length; i++) {
+		message = message + i + ". " + maps[i] + "\n";	
+	}
+
+	var selection;
+	var query = "LOAD-";
+	var output = window.prompt(message);
+	if(output >= 0 && output <= 9) {
+		selection = maps[output];
+		query = query + "0" + output;
+	}
+	else if(output >= 10 && output <= 17) {
+		selection = maps[output];
+		query = query + output;
+	}
+	else {
+		selection = maps[0];
+		query = query + '00';
+	}
+
+	movePlayer(query);
+}
+>>>>>>> master
 
 </script>
 
@@ -314,8 +437,9 @@ Frupal Project center
   5: Royal Diamonds
  </pre>
 
-<script>movePlayer('LOAD');</script>
-
+<script>
+load();
+</script>
 
 
 <html>

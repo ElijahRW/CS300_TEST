@@ -38,8 +38,9 @@ typedef struct {
 	int x;
 	int y;
 	int energy;
-	int visibility;
+	int visibility; //This is the default visibility
 	int money;
+	char hasBinocs; //1 if true, 0 if false
 	char * inventory[10];
 } Player; 
 
@@ -56,7 +57,7 @@ typedef struct {
 	Tile ** tiles;
 } Map;
 
-int read_file(Player *player, Map *map, FILE *fp);
+int read_file(Player *player, Map *map, FILE *fp, int map_selection);
 int write_file(Player *player, Map *map, FILE *fp);
 int move_player(char *query, Player *player, Map *map);
 void resetstate(FILE *fp, FILE *fp2);
@@ -65,6 +66,7 @@ void initialize_player(Player *player);
 
 int viewTiles(); //Reveals everything around the player's view range
 int checkPassable(Map * myMap, Player * myPlayer, char * query); //checks to see if inpassable terrain exists.
+void check_item(Player * player, Map * map, char * useful_item); 
 
 int decrementenergy(Player* player, Map* map);
 
