@@ -26,7 +26,7 @@ int check_for_obstacle(Player* player, Map* map){
   // the index into the global obstacle arrays in obstacle.h, initialize to obstacle not found
 	int obstacle_index = -1; 
 
-  // if the player should already be dead then just return
+  // if the player should already be dead then just return (WHY are we doing this?)
 	if(player->energy < 0)
 		return obstacle_index;
 
@@ -37,7 +37,7 @@ int check_for_obstacle(Player* player, Map* map){
 	else if(strcmp(*tile_content, obstacle_name[BUSH]) == 0)
 		obstacle_index = BUSH;
 
-  // if obstacle is found, decrement player energy
+	// if obstacle is found, decrement player energy
 	// and remove obstacle from map
 	if(obstacle_index != -1){
 		player->energy -= obstacle_energy[obstacle_index];
@@ -48,3 +48,5 @@ int check_for_obstacle(Player* player, Map* map){
 
   return obstacle_index;	
 }
+
+

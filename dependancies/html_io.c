@@ -107,6 +107,10 @@ void write_content(Tile *tile)
 		{
 			printf("energy");
 		}
+		else if(strcmp(content, "boat")==0)
+		{
+			printf("boat");
+		}
 	}
 	
 }

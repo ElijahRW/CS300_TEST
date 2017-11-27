@@ -85,8 +85,64 @@ function movePlayer(x)
 		alert("You just found a Type 2 Treasure Chest! You just lost all whiffles");
 	}
 
+	//check if the player has found a useful item
+	if(playerData.useful_item == "Hatchet")
+	{
+		if(confirm("You have found a hatchet, do you want to buy it?"))
+		{
+			buy_item(playerData.useful_item);
+		}
+	}
+	else
+	{
+	if(playerData.useful_item == "boat")
+	{
+		if(confirm("You have found a boat for, 500 wiffles, do you want to buy it?"))
+		{
+			buy_item(playerData.useful_item);
+		}
+	}
+	}
+
 }
 
+
+function buy_item(x)
+{			
+
+	var itemArgument = "item=" + x;
+	var xhttp = new XMLHttpRequest();
+	URL = "buy_item.cgi?" + itemArgument;
+	xhttp.open("GET", URL,false);
+	xhttp.send();
+
+	var output = xhttp.responseText.split(";");
+	var playerData = JSON.parse(output[0]);
+	var map = output[1];
+
+	document.getElementById("X").innerHTML = playerData.Xcoor;
+	document.getElementById("Y").innerHTML = playerData.Ycoor;
+	document.getElementById("energy").innerHTML = playerData.energy;
+	document.getElementById("money").innerHTML = playerData.money;
+	document.getElementById("message").innerHTML = playerData.message;
+
+	//Player Inventory
+	document.getElementById("inventory").innerHTML = "";
+	var id = 'A';
+	if(x == "LOAD") {
+		document.getElementById("inventory").style.display = "none";
+	}
+	for(var i = 0; i < 10; i++) {
+		document.getElementById("inventory").innerHTML = document.getElementById("inventory").innerHTML + "<br>" + playerData[id + 'item'];
+		id = String.fromCharCode(id.charCodeAt() + 1)
+	}
+
+	//Map Display
+	document.getElementById("map").innerHTML = map;
+
+
+
+}
 function makepurchase(x)
 {
 
