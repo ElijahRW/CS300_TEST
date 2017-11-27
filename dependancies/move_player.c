@@ -119,7 +119,7 @@ int decrementenergy(Player* player, Map* map)
 		else
 			return 2+flag;
 	}
-	else
+	else if(map->tiles[player->x][player->y].terrain != WATER)
 	{
 		--player->energy;
 		if(!flag)
@@ -164,8 +164,9 @@ int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true
 		y = max;
 	}
 
-	if(myMap->tiles[x][y].terrain == WATER)
+	if(myMap->tiles[x][y].terrain == WATER && has_boat(myPlayer)==0)
 {
+	
 		--myPlayer->energy;
 		return 1;
 		
@@ -179,4 +180,20 @@ int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true
 	
 	else
 		return 0;
+}
+
+int has_boat(Player * player)
+{
+	char ** inventory = player->inventory;
+	int result =0;
+	for (int i = 0; i < 10; ++i)
+		{
+			//If there is an empty spot in the users inventory copy the item over
+			if(strcmp(player->inventory[i], "Boat") == 0)
+			{
+
+				result = 1;
+			}
+		}
+	return result;
 }

@@ -57,29 +57,36 @@ typedef struct {
 	Tile ** tiles;
 } Map;
 
+//FILE IO Functions
 int read_file(Player *player, Map *map, FILE *fp, int map_selection);
 int write_file(Player *player, Map *map, FILE *fp);
+//PLAYER MOVEMENT FUNCTIONS
 int move_player(char *query, Player *player, Map *map);
+int has_boat(Player * player);
+
+
+//MEMORY FUNCTIONS
 void resetstate(FILE *fp, FILE *fp2);
 void free_memory(Player *player, Map *map);
 void initialize_player(Player *player);
 
-int viewTiles(); //Reveals everything around the player's view range
+int viewTiles(); //Reveals everything around the player in his/her view range
 int checkPassable(Map * myMap, Player * myPlayer, char * query); //checks to see if inpassable terrain exists.
+//checks for content in a given tile 
 void check_item(Player * player, Map * map, char * useful_item); 
 
 int decrementenergy(Player* player, Map* map);
 
 
-//HTML IO functions
+//HTML IO FUNCTIONS
 int write_html(Player *player, Map *map);
 void write_tile(Tile * tile_index);
 void write_content(Tile *tile);
 
 
 //Player Inventory Functionality
-int purchaseItem(Player * player, char input);
-
+int add_item(Player * player, const char * item);
+int purchaseItem(Player * player, const char * item, int price);
 
 // From json.c
 // This function adds a name-value pair to the current json string. The data

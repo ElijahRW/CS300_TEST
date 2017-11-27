@@ -14,6 +14,8 @@ int main()
 	char item[100]; 			 // Name of the item
 	char* json_output = NULL;  		// JSON output
 	int noEnergy = 0;
+	char message[200];
+
 	
 	initialize_player(&player);		
 	read_file(&player, &map, game_map_fp, 1);        // Read in player and map data
@@ -21,22 +23,29 @@ int main()
 	strcpy(item, cgiGetValue(cgi, "item"));       // Obtain the item
 
 
-	//If the item is a hatchet then decrement the right amount of money and add item to user inventory if there is room	
+	//--PURCHASE CHECKS!!!--
+	//If the item is a matches then decrement the right amount of money and add item to user inventory if there is room	
+	int purchase_result = 0;
 	if(strcmp(item, "Hatchet") == 0)
 	{
-		//for loop to check if there is an empty spot in the users inventory
-		//if there is then decrement money, add item to inventory, and replace content of that tile to None
-		//so the player may not purchase it again
-		for(int i = 0; i < 10; ++i)
-		{
-			if(strcmp(player.inventory[i], "None") == 0)
-			{
-				player.money -= 50;
-				strcpy(player.inventory[i], "Hatchet");
-				strcpy(map.tiles[player.x][player.y].content, "None");
-				i = 10;
-			}
-		}
+		if(purchaseItem(&player, item, 50))
+			purchase_result = 1;
+		
+	}
+	else if(strcmp(item, "Boat") == 0)
+	{
+		if(purchaseItem(&player, item, 500))
+			purchase_result = 1;
+	}
+	
+	if(purchase_result)
+	{
+		strcpy((map.tiles[player.x][player.y]).content, "None");
+		sprintf(message, "You have successfully purchased a %s", item);  
+	}
+	else
+	{
+		sprintf(message, "You could not purchase a %s", item);  
 	}
 
 	// JSON output
@@ -46,6 +55,7 @@ int main()
 	json_output = add_name_value_pair(json_output, "Ycoor", &player.y, INTEGER);
 	json_output = add_name_value_pair(json_output, "money", &player.money, INTEGER);
 	json_output = add_name_value_pair(json_output, "mapSize", &map.size, INTEGER);
+	json_output = add_name_value_pair(json_output, "message", message, STRING);
 
 	
 	//what does this do?
