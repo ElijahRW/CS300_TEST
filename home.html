@@ -4,26 +4,31 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+//Global variable: 
+frozen = false;
 
 //KEYBOARD WASD INPUT IMPLEMENTATION
 document.addEventListener("keypress", function(event)
 {
 	const keyName = event.key;
-	if(keyName == 'w')
+	if(!frozen)
 	{
-		movePlayer('N');
-	}
-	if(keyName == 's')
-	{
-		movePlayer('S');
-	}
-	if(keyName == 'a')
-	{
-		movePlayer('W');
-	}
-	if(keyName == 'd')
-	{
-		movePlayer('E');
+		if(keyName == 'w')
+		{
+			movePlayer('N');
+		}
+		if(keyName == 's')
+		{
+			movePlayer('S');
+		}
+		if(keyName == 'a')
+		{
+			movePlayer('W');
+		}
+		if(keyName == 'd')
+		{
+			movePlayer('E');
+		}
 	}
 	//alert('keydown event\n\n' + 'key: ' + keyName);
 });
@@ -60,6 +65,9 @@ function removeObstacle()
 	buildInventory(playerData);
 	writePlayerData(playerData);
 	checkIfDied(playerData);
+	
+	//Allows player to move forward
+	unfreezeInput();
 
 }
 
@@ -144,6 +152,8 @@ function movePlayer(x)
 		$("#message").text(message);
 		$("#remove-obstacle").show();
 		$("#inventory").show();
+		
+		freezeInput();
 	}
 
 }
@@ -164,6 +174,19 @@ function toggleInventory()
 		inventory.style.display = 'none';
 	}
 }
+
+//Keeps player from using keys or buttons untill Obstacle removed
+function freezeInput()
+{
+	$("#button_bar").hide();
+	frozen = true;
+}
+function unfreezeInput()
+{
+	frozen = false;
+	$("#button_bar").show();
+}
+
 
 </script>
 
@@ -204,7 +227,7 @@ Frupal Project center
 </h1>
 
 
-<center><table style = "width:50%; background-color:#b7c2ff;">
+<center><table id="button_bar" style = "width:50%; background-color:#b7c2ff;">
 	<tr><th></th><th><button type = "button" onclick = movePlayer('N')>NORTH</button></th>
 	</tr>
 	<tr><th><button type="button" onclick = movePlayer('W')>West</button><th></th><th><button type = "button" onclick = movePlayer('E')>East</button></th>
@@ -213,9 +236,6 @@ Frupal Project center
 	</tr>
 </table></center>
 
-<div id="remove-obstacle">
-	<button onclick="removeObstacle()">Remove Obstacle</button>
-</div>
 <div class="row">
   <div class="column" align="center" style="background-color:#ffffff; width:75%;">
     <span id = "map" style = "align:center;"></span>
@@ -279,6 +299,9 @@ Frupal Project center
 
 		</div>
 	<center>Message: <span id = "message"></span></center><br>
+	<div id="remove-obstacle">
+	<button onclick="removeObstacle()">Remove Obstacle</button>
+</div>
   </div>
  </div>
  <pre>
