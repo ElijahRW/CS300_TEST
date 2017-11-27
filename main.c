@@ -10,7 +10,7 @@ int main()
 	FILE *fp2;
 	Player player;
 	Map map;
-	int i, j, len, diamond_found, noEnergy, chest;
+	int i, j, len, diamond_found, noEnergy, chest, map_selection;
 	char* json_output = NULL;
 	char message[200];
 	int obstacle_index;
@@ -18,6 +18,7 @@ int main()
 	char useful_item[100];
 	diamond_found = 0;
 	noEnergy = 0;
+	map_selection = 1; // 1 is to use game_state.txt
 	
 	
 	//EPRW Purchase IO
@@ -31,15 +32,27 @@ int main()
 
 	strcpy(buffer,cgiGetValue(cgi,"query"));
 	len = strlen(buffer) + 1;
-	query = malloc(len * sizeof(char));
-	strcpy(query, buffer);
+
+	// [JMC] - 26NOV2017
+	// The following is for loading a specific map 
+	// If query is for loading, figure out the map selection
+	// else, do the normal allocation...
+	if(buffer[0] == 'L' && buffer[1] == 'O' && buffer[2] == 'A' && buffer[3] =='D') { 
+		// buffer[4] is skipped because it is the '-' in the query "LOAD-##"
+		map_selection = (buffer[5]-'0')*10 + (buffer[6]-'0');
+		query = malloc(5 * sizeof(char));
+		strcpy(query, "LOAD");
+	}
+	else { 
+		query = malloc(len * sizeof(char));
+		strcpy(query, buffer);
+	}
+	// [/JMC]
 
 	printf("Content-Type: text/html;charset=us-ascii\n\n");
 
 	initialize_player(&player);
-	read_file(&player, &map, fp);
-
-	
+	read_file(&player, &map, fp, map_selection);
 	
 	if(strcmp(query, "LOAD") == 0) {
 		sprintf(message, "Welcome back to Frupal");
@@ -83,7 +96,7 @@ int main()
 	{
 		resetstate(fp,fp2);
 		free_memory(&player, &map); // free memory before reading info into the structs
-		read_file(&player, &map, fp);
+		read_file(&player, &map, fp, map_selection);
 		diamond_found = 1; // diamond has been found
 
 	}
@@ -100,7 +113,7 @@ int main()
 	{
 		resetstate(fp,fp2);
 		free_memory(&player, &map);//free memory
-		read_file(&player, &map, fp);	
+		read_file(&player, &map, fp, map_selection);	
 		noEnergy = 1;  //Player has run out of energy
 	}
 
