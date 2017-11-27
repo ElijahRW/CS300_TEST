@@ -170,6 +170,7 @@ void initialize_player(Player *player)
 	player->energy = 0;
 	player->money = 0;
 	player->visibility = 1;
+	player->hasBinocs = 1; //Hard coded in for now
 	for(i = 0; i < 10; i++) {
 		player->inventory[i] = malloc(5 * sizeof(char));
 		strcpy(player->inventory[i], "None");
