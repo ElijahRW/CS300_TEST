@@ -40,6 +40,7 @@ int main()
 	
 	if(purchase_result)
 	{
+		strcpy((map.tiles[player.x][player.y]).content, "None");
 		sprintf(message, "You have successfully purchased a %s", item);  
 	}
 	else

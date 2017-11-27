@@ -6,7 +6,9 @@ This file will be called when we want to add an item to the players inventory
 #include "../main.h"
 
 
+/*
 
+*/
 int purchaseItem(Player * player, const char * item, int price)
 {
 	int result = 0;
@@ -19,7 +21,11 @@ int purchaseItem(Player * player, const char * item, int price)
 }
 
 
-
+/*
+--Purpose: Adds an item to the first inventory slot available
+--Input: Player structure and the character array
+--Output: Returns 1 if insertion successful returns 0 otherwise
+*/
 int add_item(Player * player, const char * item)
 {
 	char ** inventory = player->inventory;
@@ -66,4 +72,7 @@ void check_item(Player * player, Map * map, char * useful_item)
 
 
 }
+
+//{"hip","hip"}
+// hip hip array!
 
