@@ -20,7 +20,7 @@ int read_file(Player *player, Map *map, FILE *fp, int map_selection)
 		[1] "game_state.txt", //"Load last game",
 		[2] "maps/move_test.txt", //"Hero Movement",
 		[3] "maps/diam_test.txt", //"Discover Royal Diamonds",
-		[4] "def_state.txt", //"Show Game Map",
+		[4] "maps/energy_test.txt", //"Run out of energy",
 		[5] "maps/bog_test.txt", //"Encounter a Bog",
 		[6] "maps/powerbar_test.txt", //"Encounter a Power Bar",
 		[7] "maps/obstacle_test.txt", //"Encounter an Obstacle",
@@ -32,7 +32,7 @@ int read_file(Player *player, Map *map, FILE *fp, int map_selection)
 		[13] "maps/binoc_test.txt", //"Encounter Binoculars",
 		[14] "maps/boat_test.txt", //"Buy Boat",
 		[15] "maps/clues_test.txt", //"Clues",
-		[16] "maps/walls.txt", //"Walls",
+		[16] "maps/walls_test.txt", //"Walls",
 		[17] "maps/obstacle_rm_test.txt" //Obstacle Removal Tools"
 	};
 

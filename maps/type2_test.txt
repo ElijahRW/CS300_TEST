@@ -3,7 +3,7 @@
 13,15
 49
 1000
-type2
+None
 None
 None
 None
