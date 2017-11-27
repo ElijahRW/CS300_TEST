@@ -144,6 +144,10 @@ int main()
   return 0;
 }
 
+
+
+
+//!!!!!This should be placed in  file_io!!!!
 void initialize_player(Player *player)
 {
 	int i;

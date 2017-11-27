@@ -90,7 +90,16 @@ function movePlayer(x)
 		{
 			buy_item(playerData.useful_item);
 		}
-		
+	}
+	else
+	{
+	if(playerData.useful_item == "boat")
+	{
+		if(confirm("You have found a boat for, 500 wiffles, do you want to buy it?"))
+		{
+			buy_item(playerData.useful_item);
+		}
+	}
 	}
 
 }
@@ -114,7 +123,6 @@ function buy_item(x)
 	document.getElementById("energy").innerHTML = playerData.energy;
 	document.getElementById("money").innerHTML = playerData.money;
 	document.getElementById("message").innerHTML = playerData.message;
-	//	var map_size = output[7];
 
 	//Player Inventory
 	document.getElementById("inventory").innerHTML = "";

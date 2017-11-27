@@ -47,13 +47,15 @@ int main()
 	json_output = add_name_value_pair(json_output, "money", &player.money, INTEGER);
 	json_output = add_name_value_pair(json_output, "mapSize", &map.size, INTEGER);
 
+	
+	//what does this do?
 	char item_name[] = "Aitem"; 
 	for(int i = 0; i < 10; ++i){
 		json_output = add_name_value_pair(json_output, item_name, player.inventory[i], STRING);
 		++item_name[0];
 	}
 
-	// Print data to front end
+	// Print data to front end (necessary since some purchases will update the player's vision.)
 	printf("Content-Type: text/html;charset=us-ascii\n\n");
 	printf("%s;", json_output);
 	write_html(&player, &map);              
