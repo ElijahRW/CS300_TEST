@@ -28,13 +28,48 @@ int main()
 	int purchase_result = 0;
 	if(strcmp(item, "Hatchet") == 0)
 	{
-		if(purchaseItem(&player, item, 50))
+		if(purchaseItem(&player, item, 15))
 			purchase_result = 1;
 		
 	}
 	else if(strcmp(item, "Boat") == 0)
 	{
 		if(purchaseItem(&player, item, 500))
+			purchase_result = 1;
+	}
+	else if(strcmp(item, "Axe") == 0)
+	{
+		if(purchaseItem(&player, item, 30))
+			purchase_result = 1;
+	}
+	else if(strcmp(item, "Chainsaw") == 0)
+	{
+		if(purchaseItem(&player, item, 60))
+			purchase_result = 1;
+	}
+	else if(strcmp(item, "Chisel") == 0)
+	{
+		if(purchaseItem(&player, item, 5))
+			purchase_result = 1;
+	}
+	else if(strcmp(item, "Sledge") == 0)
+	{
+		if(purchaseItem(&player, item, 25))
+			purchase_result = 1;
+	}
+	else if(strcmp(item, "Jackhammer") == 0)
+	{
+		if(purchaseItem(&player, item, 100))
+			purchase_result = 1;
+	}
+	else if(strcmp(item, "Machete") == 0)
+	{
+		if(purchaseItem(&player, item, 25))
+			purchase_result = 1;
+	}
+	else if(strcmp(item, "Shears") == 0)
+	{
+		if(purchaseItem(&player, item, 35))
 			purchase_result = 1;
 	}
 	

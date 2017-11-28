@@ -86,6 +86,7 @@ int main()
 	check_item(&player, &map, useful_item);	
 	
 
+	//CN
 	//If statement to check coordinates that the player has moved into and the coordiantes of the diamonds
 	//if(map.tiles[diamondx][diamondy].x == player.x && map.tiles[diamondx][diamondy].y == player.y)
 	if(strcmp(map.tiles[player.x][player.y].content, "DIAMOND") == 0)
@@ -101,7 +102,8 @@ int main()
 	if((obstacle_index = get_obstacle_index(&player, &map)) != -1){
 		strcpy(obstacle, obstacle_names[obstacle_index]);
 	}
-	
+
+	//CN	
 	//ENERGY CHECK
 	//Code to check whether the player has used up all of their energy. The code will alert the player that the game is over
 	//when the player is at 0 energy and tries to move again, not when it immediately hits 0.
