@@ -84,8 +84,8 @@ int viewTiles(Player *player, Map *map)
 	return 1;	
 }
 
-
-//this function decrements energy of player while also checking for terrain such as bogs and instances of chests and clues. 
+//s.s
+//this function decrements energy of player while also checking for terrain such as bogs and instances of chests. 
 //information about the player is updated here and a return code is sent back to main.c that will determine what
 //type of message to be displayed in the html. 
 int decrementenergy(Player* player, Map* map)

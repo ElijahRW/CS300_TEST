@@ -101,16 +101,20 @@ function checkIfDied(player){
 
 function writePlayerData(playerData){
 
-	if(playerData.Xcoor){
-	  document.getElementById("X").innerHTML = playerData.Xcoor;
+	if(playerData.Xcoor != undefined){
+	
+		document.getElementById("X").innerHTML = playerData.Xcoor;
 	}
-	if(playerData.Ycoor){
+	if(playerData.Ycoor != undefined){
+	
 		document.getElementById("Y").innerHTML = playerData.Ycoor;
 	}
-	if(playerData.energy){
+	if(playerData.energy != undefined){
+	
 		document.getElementById("energy").innerHTML = playerData.energy;
 	}
-	if(playerData.money){
+	if(playerData.money != undefined){
+	
 		document.getElementById("money").innerHTML = playerData.money;
 	}
 	if(playerData.message){

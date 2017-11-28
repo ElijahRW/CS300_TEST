@@ -1,6 +1,8 @@
 #include "../main.h"
 
-
+//s.s
+//check for clue and retrieve appropriate information.
+//calculate the shortest distance with considerations of wrapping around map. 
 int check_for_clue(Player* player, Map* map, int* north, int* east, int* south, int* west){
 	
 	int diax = -1;
