@@ -15,19 +15,19 @@ document.addEventListener("keypress", function(event)
 	{
 		if(keyName == 'w')
 		{
-			movePlayer('N');
+			movePlayer('No');
 		}
 		if(keyName == 's')
 		{
-			movePlayer('S');
+			movePlayer('So');
 		}
 		if(keyName == 'a')
 		{
-			movePlayer('W');
+			movePlayer('We');
 		}
 		if(keyName == 'd')
 		{
-			movePlayer('E');
+			movePlayer('Ea');
 		}
 	}
 	//alert('keydown event\n\n' + 'key: ' + keyName);
@@ -133,6 +133,7 @@ function movePlayer(x)
 
 	writePlayerData(playerData);
 	buildInventory(playerData);
+	//Hides inventory buttons when loading game for first time
 	if(x == 'LOAD'){
 		$("#inventory").hide();
 		$("#remove-obstacle").hide();
@@ -218,16 +219,7 @@ function buy_item(x)
 	document.getElementById("money").innerHTML = playerData.money;
 	document.getElementById("message").innerHTML = playerData.message;
 
-	//Player Inventory
-	document.getElementById("inventory").innerHTML = "";
-	var id = 'A';
-	if(x == "LOAD") {
-		document.getElementById("inventory").style.display = "none";
-	}
-	for(var i = 0; i < 10; i++) {
-		document.getElementById("inventory").innerHTML = document.getElementById("inventory").innerHTML + "<br>" + playerData[id + 'item'];
-		id = String.fromCharCode(id.charCodeAt() + 1)
-	}
+	writePlayerData(playerData);
 
 	//Map Display
 	document.getElementById("map").innerHTML = map;
