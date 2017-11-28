@@ -9,6 +9,9 @@ This file will be called when we want to add an item to the players inventory
 /*
 
 */
+
+//Decrements the amount of whiffles for the specified item but only does so if the player has enough money
+//If they do not have enough money then the function returns a 0, if they have enough it will return a 1
 int purchaseItem(Player * player, const char * item, int price)
 {
 	int result = 0;
@@ -44,6 +47,9 @@ int add_item(Player * player, const char * item)
 }
 
 
+//Checks if the item that the player has stepped on is a useful item that is purchasable. If it is the function
+//will place that items name in usful_item that will start the purchasing process, if not then "None" will be
+//placed in useful_item, which will make sure the purchasing process does not start.
 void check_item(Player * player, Map * map, char * useful_item)
 {
 	char tile_item[100];
@@ -63,6 +69,41 @@ void check_item(Player * player, Map * map, char * useful_item)
 	{
 
 		strcpy(useful_item, "Boat");
+	}
+	else if(strcmp(tile_item, "Axe") == 0)
+	{
+
+		strcpy(useful_item, "Axe");
+	}
+	else if(strcmp(tile_item, "Chainsaw") == 0)
+	{
+
+		strcpy(useful_item, "Chainsaw");
+	}
+	else if(strcmp(tile_item, "Chisel") == 0)
+	{
+
+		strcpy(useful_item, "Chisel");
+	}
+	else if(strcmp(tile_item, "Sledge") == 0)
+	{
+
+		strcpy(useful_item, "Sledge");
+	}
+	else if(strcmp(tile_item, "Jackhammer") == 0)
+	{
+
+		strcpy(useful_item, "Jackhammer");
+	}
+	else if(strcmp(tile_item, "Machete") == 0)
+	{
+
+		strcpy(useful_item, "Machete");
+	}
+	else if(strcmp(tile_item, "Shears") == 0)
+	{
+
+		strcpy(useful_item, "Shears");
 	}
 	else
 	{
