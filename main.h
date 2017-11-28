@@ -108,4 +108,8 @@ int get_tool_index(char* tool_name);
 void remove_obstacle_from_map(Player*, Map*);
 void remove_tool_from_inventory(Player*, int);
 int check_obstacle_tool_match(int, int);
+
+//from clue.h
+
+int check_for_clue(Player*, Map*, int*, int*, int*, int*);
 #endif /* MAIN_H */

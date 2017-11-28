@@ -95,7 +95,7 @@ int decrementenergy(Player* player, Map* map)
 	
 	
 	//what is this doing here?
-	if(strcmp(map->tiles[player->x][player->y].content, "Type1") == 0)
+	if(strcmp(map->tiles[player->x][player->y].content, "TYPE1") == 0)
 	{
 		player->money += 100;
 		free(map->tiles[player->x][player->y].content);
@@ -103,9 +103,10 @@ int decrementenergy(Player* player, Map* map)
 		strcpy(map->tiles[player->x][player->y].content, "None");
 		flag = 3;
 	}	
-	if(strcmp(map->tiles[player->x][player->y].content, "Type2") == 0)
+	if(strcmp(map->tiles[player->x][player->y].content, "TYPE2") == 0)
 	{
-		player->money = 0;
+		player->money = -1;
+		player->money += 1;
 		free(map->tiles[player->x][player->y].content);
 		map->tiles[player->x][player->y].content = (char*)malloc(sizeof(char) * strlen("None") + 1);
 		strcpy(map->tiles[player->x][player->y].content, "None");

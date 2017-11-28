@@ -10,7 +10,7 @@ int main()
 	FILE *fp2;
 	Player player;
 	Map map;
-	int i, j, len, diamond_found, noEnergy, chest, map_selection=1;
+	int i, j, len, diamond_found, noEnergy, chest, map_selection=1, clue;
 	char* json_output = NULL;
 	char message[200];
 	int obstacle_index;
@@ -19,6 +19,7 @@ int main()
 	char useful_item[100];
 	diamond_found = 0;
 	noEnergy = 0;
+	int northaway, eastaway, southaway, westaway;
 	//map_selection = 1; // 1 is to use game_state.txt
 	
 	
@@ -65,12 +66,14 @@ int main()
 		//IF QUERY INPUT is equivalent to Direction (Attempt to move the player)
 		if(strcmp(query, "N") == 0 || strcmp(query, "S") == 0 || strcmp(query, "E") == 0 || strcmp(query, "W") == 0) {
 			energymessage = move_player(query, &player, &map);
-			if(energymessage == 2 || energymessage == 5 || energymessage ==6)//Bog Check   --CONSIDER MOVING THIS CHECK INTO THE MOVE PLAYER FUNCTION--
+			if(energymessage == 2 || energymessage == 5 || energymessage == 6)//Bog Check   --CONSIDER MOVING THIS CHECK INTO THE MOVE PLAYER FUNCTION--
 				sprintf(message, "You've just run into a bog, lost extra energy point");
 			if(energymessage == 3 || energymessage == 5)
 				chest = 1;
 			if(energymessage == 4 || energymessage == 6)
+			{
 				chest = 2;	
+			}
 			//-- --
 			//We have to check if the player is standing on a purchase location
 			// Adjust the char purchase_request and the char[] message in order to prompt user input (y/n)
@@ -84,7 +87,6 @@ int main()
 	//Check if the player has stepped on a useful item. If they have then the name of that item will be passed as a JSON
 	//to the html file, where a function will then be called that will allow the user to purchase the item
 	check_item(&player, &map, useful_item);	
-	
 
 	//CN
 	//If statement to check coordinates that the player has moved into and the coordiantes of the diamonds
@@ -101,6 +103,12 @@ int main()
 	// Check if the player has encountered an obstacle and decrement the energy appropriatley
 	if((obstacle_index = get_obstacle_index(&player, &map)) != -1){
 		strcpy(obstacle, obstacle_names[obstacle_index]);
+	}
+
+	clue = check_for_clue(&player, &map, &northaway, &eastaway, &southaway, &westaway); 
+	if(!clue || player.energy < 1)
+	{
+		clue = 0;
 	}
 
 	//CN	
@@ -126,7 +134,15 @@ int main()
 	json_output = add_name_value_pair(json_output, "message", message, STRING);
 	json_output = add_name_value_pair(json_output, "obstacle", obstacle, STRING);
 	json_output = add_name_value_pair(json_output, "chest", &chest, INTEGER);
-	json_output = add_name_value_pair(json_output, "useful_item", &useful_item, STRING);
+	json_output = add_name_value_pair(json_output, "clue", &clue, INTEGER);
+	json_output = add_name_value_pair(json_output, "northaway", &northaway, INTEGER);
+	json_output = add_name_value_pair(json_output, "eastaway", &eastaway, INTEGER);
+	json_output = add_name_value_pair(json_output, "southaway", &southaway, INTEGER);
+	json_output = add_name_value_pair(json_output, "westaway", &westaway, INTEGER);
+
+
+
+
 
 	// instead of appending the inventory as an array (which could be done but I was a bit lazy)
 	// just add each item as a new name-value pair. This is probably ok since our inventory is
