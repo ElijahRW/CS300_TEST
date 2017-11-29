@@ -100,7 +100,7 @@ int get_obstacle_index(Player* player, Map* map){
 	char* tile_content = map->tiles[player->x][player->y].content;
 	int obstacle_index = -1; 
 
-	for(int i = 0; i < NUM_OBS && obstacle_index != 1; ++i){
+	for(int i = 0; i < NUM_OBS && obstacle_index == -1; ++i){
 		if(strcmp(tile_content, obstacle_names[i]) == 0)
 			obstacle_index = i;
 	}
@@ -116,7 +116,7 @@ int get_tool_index(char* tool_name){
 	
 	int tool_index = -1;
 
-	for(int i = 0; i < NUM_TOOLS && i != -1; ++i){
+	for(int i = 0; i < NUM_TOOLS && tool_index == -1; ++i){
 		if(strcmp(tool_name, tool_names[i]) == 0)
 			tool_index = i;
 	}
