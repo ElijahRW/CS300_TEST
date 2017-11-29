@@ -33,14 +33,24 @@ int add_item(Player * player, const char * item)
 {
 	char ** inventory = player->inventory;
 	int result =0;
+	int check = 0;
 	for (int i = 0; i < 10; ++i)
 		{
 			//If there is an empty spot in the users inventory copy the item over
-			if(strcmp(player->inventory[i], "None") == 0)
+			if(strcmp(player->inventory[i], "None") == 0 && strcmp(item, "Energy") == 0)
 			{
+				if (strcmp(item, "Energy") == 0 && !check)
+				{
+					++check;
+					(player->energy) += 20;
+					result = 1;
+				}
+				else
+				{
 				strcpy(inventory[i], item);
 				i = 10;
 				result = 1;
+				}
 			}
 		}
 	return result;
@@ -60,7 +70,11 @@ void check_item(Player * player, Map * map, char * useful_item)
 	//of the item so that it can be purchased
 	strcpy(tile_item, map->tiles[player->x][player->y].content);
 
-	if(strcmp(tile_item, "Hatchet") == 0)
+	if(strcmp(tile_item, "Energy") == 0)
+	{
+		strcpy(useful_item, "Energy");
+	}
+	else if(strcmp(tile_item, "Hatchet") == 0)
 	{
 
 		strcpy(useful_item, "Hatchet");

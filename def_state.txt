@@ -15,9 +15,9 @@ None
 None
 #####
 0,0,0,0,DIAMOND
-0,1,0,0,None
+0,1,0,0,Energy
 0,2,0,0,None
-0,3,0,0,None
+0,3,0,0,TYPE1
 0,4,0,0,None
 0,5,0,0,None
 0,6,0,0,None
