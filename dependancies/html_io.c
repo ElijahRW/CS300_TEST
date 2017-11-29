@@ -151,7 +151,14 @@ void write_content(Tile *tile)
 		{
 			printf("shears");
 		}
-				printf(".png'></img>");//ends tag
+    
+		else if(strcmp(content, "Binoculars")==0)
+		{
+			printf("binocs");
+		}
+		
+    printf(".png'></img>");//ends tag
+
 	}
 	
 }
