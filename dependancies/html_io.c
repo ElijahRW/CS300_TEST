@@ -1,6 +1,6 @@
 #include "../main.h"
 
-
+void write_terrain(Tile * tile);
 /*(Written By Elijah Rich-Wimmer
 --Name: write_html
 --Input: Player structure to read in player coordinates, Map structure pointer contains all of the relevent information for the map output
@@ -16,19 +16,21 @@ int write_html(Player *player, Map *map)
 	int size = map->size;
 	for(int y = size-1; y >= 0; --y)//awkward initialization (Will consider reworking)
 	{
-		printf("<tr>");
 		for(int x = 0; x<size; ++x)//awkward initialization (Will consider reworking)
 		{
+			printf("<th><div class='parent'>");//row tab
 			if(playerx==x && playery==y)
 			{
-				printf("<th><img height='25' width='25' src='assets/hero.jpg' align='middle'></img></th>");
+				write_terrain(&(map->tiles)[x][y]);
+				printf("<img class='image2' height='30' src='assets/hero.png'></img>");
+				//printf("<th><img height='25' width='25' src='assets/hero.jpg' align='middle'></img></th>");
+				
 			}
 			else
 			{
-				printf("<th>");
 				write_tile(&((map->tiles)[x][y]));
-				printf("</th>");
 			}
+			printf("</div></th>");//row tag
 		}
 		printf("</tr>");
 	}
@@ -43,16 +45,27 @@ int write_html(Player *player, Map *map)
 */
 void write_tile(Tile *tile)
 {
-	printf("<div class='parent'>");
+	const char * formatting = "class='image1' height='30'";
+	//printf("<div class='parent'>");
 	//Immage reference (KEY):(0=meadow/grass, 1=forest, 2=water, 3=wall, 4=bog, 5=swamp)
 	//Additionally, content such as trees should be taken into account: 
-	const char * formatting = "class='image1' height='30'";
 	if(tile->visibility == 0)
 	{
-		printf("<img %s src='assets/fog.jpg' align='middle'></img>", formatting);
+		printf("<img %s src='assets/fog.jpg'></img>", formatting);
 	}
 	else
 	{
+		write_terrain(tile);
+		write_content(tile);//implements specific content (if any are to be found).
+
+	}
+		//printf("</div>");	
+}
+
+
+void write_terrain(Tile * tile)
+{
+		const char * formatting = "class='image1' height='30'";
 		printf("<img %s src='assets/", formatting);
 		switch(tile->terrain)
 		{
@@ -77,10 +90,6 @@ void write_tile(Tile *tile)
 		}
 		//write_content(tile);//implements specific content (if any are to be found).
 		printf(".jpg'></img>");//ends tag
-		write_content(tile);//implements specific content (if any are to be found).
-
-	}
-		printf("</div>");	
 }
 
 
@@ -151,7 +160,22 @@ void write_content(Tile *tile)
 		{
 			printf("shears");
 		}
-    
+		else if(strcmp(content, "TYPE1")==0)
+		{
+			printf("chest");
+		}
+		else if(strcmp(content, "TYPE2")==0)
+		{
+			printf("chest");
+		}
+		else if(strcmp(content, "CLUE1")==0)
+		{
+			printf("clue");
+		}
+		else if(strcmp(content, "CLUE2")==0)
+		{
+			printf("clue");
+		}    
 		else if(strcmp(content, "Binoculars")==0)
 		{
 			printf("binocs");
