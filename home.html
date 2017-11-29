@@ -306,7 +306,15 @@ function movePlayer(x)
 		}
 	}
 
+	else if(playerData.useful_item == "Binoculars")
+	{
+		if(confirm("You have found a pair of binoculars for 50 whiffles, do you want to buy it?"))
+		{
+			buy_item(playerData.useful_item);
+		}
+	}
 }
+
 
 
 function buy_item(x)

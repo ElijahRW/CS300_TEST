@@ -67,7 +67,7 @@ int move_player(char *query, Player *player, Map *map)
 int viewTiles(Player *player, Map *map)
 {
 	int viewRange = player->visibility;
-	if (player->hasBinocs == 1)
+	if (has_binoc(player))
 		++viewRange;
 	int map_range = map->size;
 	
@@ -191,6 +191,23 @@ int has_boat(Player * player)
 		{
 			//If there is an empty spot in the users inventory copy the item over
 			if(strcmp(player->inventory[i], "Boat") == 0)
+			{
+
+				result = 1;
+			}
+		}
+	return result;
+}
+
+
+int has_binoc(Player * player)
+{
+	char ** inventory = player->inventory;
+	int result =0;
+	for (int i = 0; i < 10; ++i)
+		{
+			//If there is an empty spot in the users inventory copy the item over
+			if(strcmp(player->inventory[i], "Binoculars") == 0)
 			{
 
 				result = 1;

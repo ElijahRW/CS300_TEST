@@ -175,8 +175,14 @@ void write_content(Tile *tile)
 		else if(strcmp(content, "CLUE2")==0)
 		{
 			printf("clue");
+		}    
+		else if(strcmp(content, "Binoculars")==0)
+		{
+			printf("binocs");
 		}
-				printf(".png'></img>");//ends tag
+		
+    printf(".png'></img>");//ends tag
+
 	}
 	
 }

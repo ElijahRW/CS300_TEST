@@ -105,6 +105,11 @@ void check_item(Player * player, Map * map, char * useful_item)
 
 		strcpy(useful_item, "Shears");
 	}
+	else if(strcmp(tile_item, "Binoculars") == 0)
+	{
+		strcpy(useful_item, "Binoculars");
+	}
+	
 	else
 	{
 		strcpy(useful_item, "None");
