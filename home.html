@@ -15,19 +15,19 @@ document.addEventListener("keypress", function(event)
 	{
 		if(keyName == 'w')
 		{
-			movePlayer('N');
+			movePlayer('No');
 		}
 		if(keyName == 's')
 		{
-			movePlayer('S');
+			movePlayer('So');
 		}
 		if(keyName == 'a')
 		{
-			movePlayer('W');
+			movePlayer('We');
 		}
 		if(keyName == 'd')
 		{
-			movePlayer('E');
+			movePlayer('Ea');
 		}
 	}
 	//alert('keydown event\n\n' + 'key: ' + keyName);
@@ -137,6 +137,7 @@ function movePlayer(x)
 
 	writePlayerData(playerData);
 	buildInventory(playerData);
+	//Hides inventory buttons when loading game for first time
 	if(x == 'LOAD'){
 		$("#inventory").hide();
 		$("#remove-obstacle").hide();
@@ -297,22 +298,17 @@ function movePlayer(x)
 			buy_item(playerData.useful_item);
 		}
 	}
-	else
-	{
-
-	if(playerData.useful_item == "Boat")
+	else if(playerData.useful_item == "Boat")
 	{
 		if(confirm("You have found a boat for 500 whiffles, do you want to buy it?"))
 		{
 			buy_item(playerData.useful_item);
 		}
 	}
-	}
 
 }
 
 
-//Calls the buy item.cgi passing in the name of the item which the player wants to purchase
 function buy_item(x)
 {			
 
@@ -326,9 +322,14 @@ function buy_item(x)
 	var playerData = JSON.parse(output[0]);
 	var map = output[1];
 
+	document.getElementById("X").innerHTML = playerData.Xcoor;
+	document.getElementById("Y").innerHTML = playerData.Ycoor;
+	document.getElementById("energy").innerHTML = playerData.energy;
+	document.getElementById("money").innerHTML = playerData.money;
+	document.getElementById("message").innerHTML = playerData.message;
+
 	writePlayerData(playerData);
-	buildInventory(playerData);
-	
+
 	//Map Display
 	document.getElementById("map").innerHTML = map;
 }

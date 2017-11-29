@@ -63,6 +63,7 @@ int main()
 	}
 	else
 	{
+		query[1]='\0';
 		//IF QUERY INPUT is equivalent to Direction (Attempt to move the player)
 		if(strcmp(query, "N") == 0 || strcmp(query, "S") == 0 || strcmp(query, "E") == 0 || strcmp(query, "W") == 0) {
 			energymessage = move_player(query, &player, &map);
