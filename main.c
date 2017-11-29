@@ -135,6 +135,7 @@ int main()
 	json_output = add_name_value_pair(json_output, "obstacle", obstacle, STRING);
 	json_output = add_name_value_pair(json_output, "chest", &chest, INTEGER);
 	json_output = add_name_value_pair(json_output, "clue", &clue, INTEGER);
+	json_output = add_name_value_pair(json_output, "useful_item", &useful_item, STRING);
 	json_output = add_name_value_pair(json_output, "northaway", &northaway, INTEGER);
 	json_output = add_name_value_pair(json_output, "eastaway", &eastaway, INTEGER);
 	json_output = add_name_value_pair(json_output, "southaway", &southaway, INTEGER);
