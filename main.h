@@ -63,6 +63,7 @@ int write_file(Player *player, Map *map, FILE *fp);
 //PLAYER MOVEMENT FUNCTIONS
 int move_player(char *query, Player *player, Map *map);
 int has_boat(Player * player);
+int has_binoc(Player * player);
 
 
 //MEMORY FUNCTIONS

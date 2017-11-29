@@ -72,6 +72,12 @@ int main()
 		if(purchaseItem(&player, item, 35))
 			purchase_result = 1;
 	}
+
+	else if(strcmp(item, "Binoculars") == 0)
+	{
+		if(purchaseItem(&player, item, 50))
+			purchase_result = 1;
+	}
 	
 	if(purchase_result)
 	{

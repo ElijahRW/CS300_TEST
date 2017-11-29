@@ -145,6 +145,11 @@ void write_content(Tile *tile)
 		{
 			printf("shears");
 		}
+
+		else if(strcmp(content, "Binoculars")==0)
+		{
+			printf("binocs");
+		}
 		
 	}
 	
