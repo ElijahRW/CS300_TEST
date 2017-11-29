@@ -43,9 +43,10 @@ int write_html(Player *player, Map *map)
 */
 void write_tile(Tile *tile)
 {
+	printf("<div class='parent'>");
 	//Immage reference (KEY):(0=meadow/grass, 1=forest, 2=water, 3=wall, 4=bog, 5=swamp)
 	//Additionally, content such as trees should be taken into account: 
-	const char * formatting = "height='30'";
+	const char * formatting = "class='image1' height='30'";
 	if(tile->visibility == 0)
 	{
 		printf("<img %s src='assets/fog.jpg' align='middle'></img>", formatting);
@@ -74,19 +75,24 @@ void write_tile(Tile *tile)
 				printf("swamp");
 				break;
 		}
-		write_content(tile);//implements specific content (if any are to be found).
+		//write_content(tile);//implements specific content (if any are to be found).
 		printf(".jpg'></img>");//ends tag
-	}	
+		write_content(tile);//implements specific content (if any are to be found).
+
+	}
+		printf("</div>");	
 }
 
 
 
 void write_content(Tile *tile)
 {
+	const char * formatting = "class='image2' height='30'";
 	char * content = tile->content;
 	if(strcmp(content,"None")!=0)
 	{
-		printf("_");
+		printf("<img %s src='assets/", formatting);
+		//printf("_");
 		if(strcmp(content,"Tree")==0)
 		{
 			printf("tree");
@@ -97,7 +103,7 @@ void write_content(Tile *tile)
 		}
 		else if(strcmp(content,"Boulder")==0)
 		{
-			printf("Boulder");
+			printf("boulder");
 		}
 		else if(strcmp(content,"Bush")==0)
 		{
@@ -145,12 +151,14 @@ void write_content(Tile *tile)
 		{
 			printf("shears");
 		}
-
+    
 		else if(strcmp(content, "Binoculars")==0)
 		{
 			printf("binocs");
 		}
 		
+    printf(".png'></img>");//ends tag
+
 	}
 	
 }
