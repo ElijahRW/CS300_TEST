@@ -279,10 +279,10 @@ None
 10,12,0,0,Tree
 10,13,0,0,Bush
 10,14,0,0,Boulder
-10,15,1,0,None
-10,16,0,0,None
-10,17,0,0,None
-10,18,0,0,None
+10,15,1,0,Energy
+10,16,1,0,Energy
+10,17,0,0,Boulder
+10,18,0,0,Boulder
 10,19,0,0,None
 10,20,0,0,None
 10,21,0,0,None
