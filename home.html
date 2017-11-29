@@ -101,16 +101,20 @@ function checkIfDied(player){
 
 function writePlayerData(playerData){
 
-	if(playerData.Xcoor){
-	  document.getElementById("X").innerHTML = playerData.Xcoor;
+	if(playerData.Xcoor != undefined){
+	
+		document.getElementById("X").innerHTML = playerData.Xcoor;
 	}
-	if(playerData.Ycoor){
+	if(playerData.Ycoor != undefined){
+	
 		document.getElementById("Y").innerHTML = playerData.Ycoor;
 	}
-	if(playerData.energy){
+	if(playerData.energy != undefined){
+	
 		document.getElementById("energy").innerHTML = playerData.energy;
 	}
-	if(playerData.money){
+	if(playerData.money != undefined){
+	
 		document.getElementById("money").innerHTML = playerData.money;
 	}
 	if(playerData.message){
@@ -176,7 +180,67 @@ function movePlayer(x)
 	{
 		alert("You just found a Type 2 Treasure Chest! You just lost all whiffles");
 	}
-
+	//check for type of clue (this is true clue), if statements to check different cases.
+	if(playerData.clue == 1)
+	{
+		var money = playerData.money - 100;
+		var northaway = playerData.northaway;
+		var eastaway = playerData.eastaway;
+		var southaway = playerData.southaway;
+		var westaway = playerData.westaway;
+		if(northaway && !eastaway && !southaway && !westaway)
+		{
+			alert("CLUE: You are " + playerData.Xcoor + " grovnicks from the western border, you possess more than " + money + "Whiffles, and the royal diamonds are located " + playerData.northaway + " grovnicks to the north");
+		}
+		else if (!northaway && eastaway && !southaway && !westaway)	
+		{
+			alert("CLUE: You are " + playerData.Xcoor + " grovnicks from the western border, you possess more than " + money + "Whiffles, and the royal diamonds are located " + playerData.eastaway + " grovnicks to the east");
+		
+		}
+		else if (!northaway && !eastaway && southaway && !westaway)	
+		{
+			alert("CLUE: You are " + playerData.Xcoor + " grovnicks from the western border, you possess more than " + money + "Whiffles, and the royal diamonds are located " + playerData.southaway + " grovnicks to the south");
+		}
+		else if (!northaway && !eastaway && !southaway && westaway)	
+		{
+			alert("CLUE: You are " + playerData.Xcoor + " grovnicks from the western border, you possess more than " + money + "Whiffles, and the royal diamonds are located " + playerData.westaway + " grovnicks to the west");
+		
+		}
+		else if (northaway && eastaway)	
+		{
+			alert("CLUE: You are " + playerData.Xcoor + " grovnicks from the western border, you possess more than " + money + "Whiffles, and the royal diamonds are located " + playerData.northaway + " grovnicks to the north and " + playerData.eastaway + " grovnicks to the east.");
+		
+		}
+		else if (northaway && westaway)	
+		{
+			alert("CLUE: You are " + playerData.Xcoor + " grovnicks from the western border, you possess more than " + money + "Whiffles, and the royal diamonds are located " + playerData.northaway + " grovnicks to the north and " + playerData.westaway + " grovnicks to the west.");
+		
+		}
+		else if (southaway && westaway)	
+		{
+			alert("CLUE: You are " + playerData.Xcoor + " grovnicks from the western border, you possess more than " + money + "Whiffles, and the royal diamonds are located " + playerData.southaway + " grovnicks to the south and " + playerData.westaway + " grovnicks to the west.");
+		
+		}
+		else if (southaway && eastaway)	
+		{
+			alert("CLUE: You are " + playerData.Xcoor + " grovnicks from the western border, you possess more than " + money + "Whiffles, and the royal diamonds are located " + playerData.southaway + " grovnicks to the south and " + playerData.eastaway + " grovnicks to the east.");
+		
+		}
+	}
+	//display the false clue if found
+	if(playerData.clue == 2)
+	{
+		var money = playerData.money + 1000;
+		if(playerData.Xcoor)
+		{
+			var fborder = 0;
+		}
+		else
+		{
+			var fborder = 1;
+		}
+		alert("CLUE: You are " + fborder + " grovnicks from the western border, you posses more than " + money + "Whiffles, and the royal diamonds are located 0 grovnicks to the east and 0 grovnicks to the south");
+	}
 	//check if the player has found a useful item
 	if(playerData.useful_item == "Hatchet")
 	{
