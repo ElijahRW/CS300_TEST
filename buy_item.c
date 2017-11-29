@@ -26,7 +26,12 @@ int main()
 	//--PURCHASE CHECKS!!!--
 	//If the item is a matches then decrement the right amount of money and add item to user inventory if there is room	
 	int purchase_result = 0;
-	if(strcmp(item, "Hatchet") == 0)
+	if(strcmp(item, "Energy") == 0)
+	{
+		if(purchaseItem(&player, item, 1))
+			purchase_result = 1;
+	}
+	else if(strcmp(item, "Hatchet") == 0)
 	{
 		if(purchaseItem(&player, item, 15))
 			purchase_result = 1;
