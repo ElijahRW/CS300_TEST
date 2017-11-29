@@ -47,11 +47,6 @@ int main()
 
 	// instead of appending the inventory as an array (which could be done but I was a bit lazy)
 	// just add each item as a new name-value pair. This is probably ok since our inventory is
-
-
-
-	// instead of appending the inventory as an array (which could be done but I was a bit lazy)
-	// just add each item as a new name-value pair. This is probably ok since our inventory is
 	// going to stay fixed at 10 items. 
 	char item_name[] = "Aitem"; 
 	for(int i = 0; i < 10; ++i){

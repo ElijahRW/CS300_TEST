@@ -94,51 +94,29 @@ int check_obstacle_tool_match(int tool_index, int obstacle_index){
 // that the player has encountered. The index is used to 
 // index into the global obstacle_name and obstacle_energy arrays
 // it will return -1 if no obstacle is found
-int get_obstacle_index(Player* player, Map* map)
-{
+int get_obstacle_index(Player* player, Map* map){
 	
 	// the content of the current tile the player is on.
 	char* tile_content = map->tiles[player->x][player->y].content;
 	int obstacle_index = -1; 
 
-	for(int i = 0; i < NUM_OBS && obstacle_index != 1; ++i){
+	for(int i = 0; i < NUM_OBS && obstacle_index == -1; ++i){
 		if(strcmp(tile_content, obstacle_names[i]) == 0)
 			obstacle_index = i;
-	}
-  // if the player should already be dead then just return (WHY are we doing this?)
-	if(player->energy < 0)
-		return obstacle_index;
-
-	if(strcmp(tile_content, obstacle_names[TREE]) == 0)
-		obstacle_index = TREE;	
-	else if(strcmp(tile_content, obstacle_names[BOULDER]) == 0)
-		obstacle_index = BOULDER;
-	else if(strcmp(tile_content, obstacle_names[BUSH]) == 0)
-		obstacle_index = BUSH;
-
-	// if obstacle is found, decrement player energy
-	// and remove obstacle from map
-	if(obstacle_index != -1){
-		player->energy -= obstacle_energies[obstacle_index];
-		free(tile_content);
-		tile_content = (char*)malloc(sizeof(char) * strlen("None") + 1);
-		strcpy(tile_content, "None");
 	}
 
   return obstacle_index;	
 }
 
-
 // This function will return the index of the tool
 // that the player has chosen. The index is used to index
 // into the tool_name and tool_energy arrays. It will return
 // -1 if no tool is found
-int get_tool_index(char* tool_name)
-{
+int get_tool_index(char* tool_name){
 	
 	int tool_index = -1;
 
-	for(int i = 0; i < NUM_TOOLS && i != -1; ++i){
+	for(int i = 0; i < NUM_TOOLS && tool_index == -1; ++i){
 		if(strcmp(tool_name, tool_names[i]) == 0)
 			tool_index = i;
 	}
@@ -148,8 +126,7 @@ int get_tool_index(char* tool_name)
 
 // This function removes the obstacle at the players
 // location from the map
-void remove_obstacle_from_map(Player* player, Map* map)
-{
+void remove_obstacle_from_map(Player* player, Map* map){
 
   // Needs to be char** so that I can remove the obstacle
 	char** tile_content = &(map->tiles[player->x][player->y].content);
@@ -162,23 +139,19 @@ void remove_obstacle_from_map(Player* player, Map* map)
 
 // This function will remove the tool indicated by tool_index
 // From the players inventory
-void remove_tool_from_inventory(Player* player, int tool_index)
-{
+void remove_tool_from_inventory(Player* player, int tool_index){
 
 	// if not tool was used, then just return
 	if(tool_index == -1)
 		return;
 
 	// search for the tool that was used
-	for(int i = 0; i < 10; ++i)
-	{
+	for(int i = 0; i < 10; ++i){
 		// if the tool name was found in the players inventory
-		if(strcmp(tool_names[tool_index], player->inventory[i]) == 0)
-		{
+		if(strcmp(tool_names[tool_index], player->inventory[i]) == 0){
 			free(player->inventory[i]);
 			player->inventory[i] = malloc(sizeof(char) * strlen("None") + 1);
 			strcpy(player->inventory[i], "None");
 		}
 	}
 }
-
