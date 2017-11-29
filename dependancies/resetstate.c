@@ -1,5 +1,5 @@
 #include "../main.h"
-
+//s.s
 //resets state back to original.
 void resetstate(FILE *fp, FILE *fp2)
 {

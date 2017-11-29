@@ -84,8 +84,8 @@ int viewTiles(Player *player, Map *map)
 	return 1;	
 }
 
-
-//this function decrements energy of player while also checking for terrain such as bogs and instances of chests and clues. 
+//s.s
+//this function decrements energy of player while also checking for terrain such as bogs and instances of chests. 
 //information about the player is updated here and a return code is sent back to main.c that will determine what
 //type of message to be displayed in the html. 
 int decrementenergy(Player* player, Map* map)
@@ -95,7 +95,7 @@ int decrementenergy(Player* player, Map* map)
 	
 	
 	//what is this doing here?
-	if(strcmp(map->tiles[player->x][player->y].content, "Type1") == 0)
+	if(strcmp(map->tiles[player->x][player->y].content, "TYPE1") == 0)
 	{
 		player->money += 100;
 		free(map->tiles[player->x][player->y].content);
@@ -103,9 +103,10 @@ int decrementenergy(Player* player, Map* map)
 		strcpy(map->tiles[player->x][player->y].content, "None");
 		flag = 3;
 	}	
-	if(strcmp(map->tiles[player->x][player->y].content, "Type2") == 0)
+	if(strcmp(map->tiles[player->x][player->y].content, "TYPE2") == 0)
 	{
-		player->money = 0;
+		player->money = -1;
+		player->money += 1;
 		free(map->tiles[player->x][player->y].content);
 		map->tiles[player->x][player->y].content = (char*)malloc(sizeof(char) * strlen("None") + 1);
 		strcpy(map->tiles[player->x][player->y].content, "None");
