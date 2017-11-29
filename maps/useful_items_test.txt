@@ -26,8 +26,8 @@ None
 0,9,1,0,Shears
 0,10,0,0,None
 1,0,1,0,Binoculars
-1,1,0,0,None
-1,2,0,0,None
+1,1,1,0,Binoculars
+1,2,1,0,Binoculars
 1,3,0,0,None
 1,4,0,0,None
 1,5,0,0,None
