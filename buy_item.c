@@ -1,4 +1,4 @@
-//CN
+//CN, WW
 //File that will be called when the user steps on a tile with a useful item and attempts to buy it
 
 #include "main.h"

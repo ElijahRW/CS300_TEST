@@ -242,6 +242,8 @@ function movePlayer(x)
 		alert("CLUE: You are " + fborder + " grovnicks from the western border, you posses more than " + money + "Whiffles, and the royal diamonds are located 0 grovnicks to the east and 0 grovnicks to the south");
 	}
 	//check if the player has found a useful item
+	
+	//WW, powerbar is also one of the item that needs to be checked
 	if(playerData.useful_item == "Energy")
 	{
 		if(confirm("You have found a powerbar for 1 whiffle, it will increase your energy by 20, do you want to buy it?"))

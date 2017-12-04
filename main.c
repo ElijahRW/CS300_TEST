@@ -89,7 +89,7 @@ int main()
 	//to the html file, where a function will then be called that will allow the user to purchase the item
 	check_item(&player, &map, useful_item);	
 
-	//CN
+	//CN,WW
 	//If statement to check coordinates that the player has moved into and the coordiantes of the diamonds
 	//if(map.tiles[diamondx][diamondy].x == player.x && map.tiles[diamondx][diamondy].y == player.y)
 	if(strcmp(map.tiles[player.x][player.y].content, "DIAMOND") == 0)

@@ -1,7 +1,7 @@
 
-/*   CN
+/*   CN, WW
 This file will be called when we want to add an item to the players inventory
-*/
+if the item is a powerbar, we don't add it into the player's inventory*/
 
 #include "../main.h"
 
@@ -33,7 +33,7 @@ int add_item(Player * player, const char * item)
 {
 	char ** inventory = player->inventory;
 	int result =0;
-
+//If it is a powerbar, we decrease energy by 20, we don't add it into inventory
 if (strcmp(item, "Energy") == 0)
 				{
 					(player->energy) += 20;
