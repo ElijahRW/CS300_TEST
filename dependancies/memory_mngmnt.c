@@ -1,3 +1,5 @@
+// Contributors: Jacob Collins
+
 #include "../main.h"
 
 void initialize_player(Player *player)

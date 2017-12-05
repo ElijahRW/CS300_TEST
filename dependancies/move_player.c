@@ -4,6 +4,7 @@
 #define WATER 2
 
 /*
+Contributors: Jacob Collins, Brady Testa
 --NOTE FOR CONVENTION:
 ----x is left/right (east west)
 ----y is up/down (north south)
