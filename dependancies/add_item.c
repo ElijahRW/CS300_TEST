@@ -1,8 +1,13 @@
+/*
+--Name: GROUP A
+--Class: CS 300
+--Contributors: Caameron Nakasone, Weiwei
+--Assignment: Frupal Project
+--File: add_item.c
+--Description: --This file will be called when we want to add an item to the players inventory
+				--if the item is a powerbar, we don't add it into the player's inventory
+*/
 
-/*   CN, WW
-This file will be called when we want to add an item to the players inventory
-if the item is a powerbar, we don't add it into the player's inventory*/
-//Contributors: Caameron Nakasone
 
 #include "../main.h"
 
@@ -23,6 +28,7 @@ int purchaseItem(Player * player, const char * item, int price)
 
 
 /*
+--Written by Elijah Rich-Wimmer: edited by Weiwei
 --Purpose: Adds an item to the first inventory slot available
 --Input: Player structure and the character array
 --Output: Returns 1 if insertion successful returns 0 otherwise
@@ -31,31 +37,31 @@ int add_item(Player * player, const char * item)
 {
 	char ** inventory = player->inventory;
 	int result =0;
-//If it is a powerbar, we decrease energy by 20, we don't add it into inventory
-if (strcmp(item, "Energy") == 0)
+	//If it is a powerbar, we decrease energy by 20, we don't add it into inventory (Weiwei)
+	if (strcmp(item, "Energy") == 0)
+					{
+						(player->energy) += 20;
+						result = 1;
+					}
+	else
+	{
+		for (int i = 0; i < 10; ++i)
+			{
+				//If there is an empty spot in the users inventory copy the item over
+				if(strcmp(player->inventory[i], "None") == 0)
 				{
-					(player->energy) += 20;
+					strcpy(inventory[i], item);
+					i = 10;
 					result = 1;
 				}
-else
-{
-	for (int i = 0; i < 10; ++i)
-		{
-			//If there is an empty spot in the users inventory copy the item over
-			if(strcmp(player->inventory[i], "None") == 0)
-			{
-				strcpy(inventory[i], item);
-				i = 10;
-				result = 1;
 			}
-		}
 	}
 	return result;
 }
 
-
+//Written by (Cameron?)
 //Checks if the item that the player has stepped on is a useful item that is purchasable. If it is the function
-//will place that items name in usful_item that will start the purchasing process, if not then "None" will be
+//will place that item's name in usful_item that will start the purchasing process, if not then "None" will be
 //placed in useful_item, which will make sure the purchasing process does not start.
 void check_item(Player * player, Map * map, char * useful_item)
 {

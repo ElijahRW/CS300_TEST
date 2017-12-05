@@ -1,6 +1,12 @@
-// This file defines helper functions as well as data structures used 
-// in the remove_obstacle cgi. 
-// Contributors: Dumitru Mitaru-Berceanu
+/*
+--Name: GROUP A
+--Class: CS 300
+--Contributors: Dumitru Mitaru-Berceanu
+--Assignment: Frupal Project
+--File: obstacle.c
+--Description:  --This file defines helper functions as well as data structures used 
+				--in the remove_obstacle cgi. 
+*/
 
 #include "../main.h"
 

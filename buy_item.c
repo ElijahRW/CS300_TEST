@@ -1,6 +1,14 @@
-// WW
+// WeiWei
 //File that will be called when the user steps on a tile with a useful item and attempts to buy it
 //Contributors: Caameron Nakasone
+
+/*
+--Name: GROUP A
+--Class: CS 300
+--Assignment: Frupal Project
+--File: buy_item.c
+--Description: This function handles IO from the game html page when the player makes a move or displays a map.
+*/
 
 #include "main.h"
 
@@ -25,7 +33,9 @@ int main()
 
 
 	//--PURCHASE CHECKS!!!--
-	//If the item is a matches then decrement the right amount of money and add item to user inventory if there is room	
+	//If the item is a matches then decrement the right amount of money and add item to user inventory if there is room
+	//This is done in the function call: purchaseItem)
+	//purchase result is returned to send the html cga call
 	int purchase_result = 0;
 	if(strcmp(item, "Energy") == 0)
 	{
@@ -78,13 +88,11 @@ int main()
 		if(purchaseItem(&player, item, 35))
 			purchase_result = 1;
 	}
-
 	else if(strcmp(item, "Binoculars") == 0)
 	{
 		if(purchaseItem(&player, item, 50))
 			purchase_result = 1;
 	}
-	
 	if(purchase_result)
 	{
 		strcpy((map.tiles[player.x][player.y]).content, "None");
@@ -95,7 +103,7 @@ int main()
 		sprintf(message, "You could not purchase a %s", item);  
 	}
 
-	// JSON output
+	// JSON output (Writes to cgi return string)
 	json_output = add_name_value_pair(json_output, "energy", &player.energy, INTEGER);
 	json_output = add_name_value_pair(json_output, "noEnergy", &noEnergy, INTEGER);
 	json_output = add_name_value_pair(json_output, "Xcoor", &player.x, INTEGER);

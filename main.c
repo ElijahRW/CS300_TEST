@@ -1,7 +1,16 @@
-// This file contains the frame for the backend of Frupal
-// Contributors: Jacob Collins, Caameron Nakasone, Sunanth Sakthivel
+/* This file contains the frame for the backend of Frupal
+// Contributors: (All group memebers) Jacob Collins, Caameron Nakasone, Sunanth Sakthivel, Elijah Rich-Wimmer, ...
+*/
+/*
+--Name: GROUP A
+--Class: CS 300
+--Assignment: Frupal Project
+--File: main.c
+--Description: This function handles IO from the game html page when the player makes a move or displays a map.
+*/
 
 #include "main.h"
+
 
 int main()
 {
@@ -23,7 +32,6 @@ int main()
 	diamond_found = 0;
 	noEnergy = 0;
 	int northaway, eastaway, southaway, westaway;
-	//map_selection = 1; // 1 is to use game_state.txt
 	
 	
 	//EPRW Purchase IO
@@ -31,7 +39,7 @@ int main()
 
 	//Default message
 	strcpy(message, "WALKING...");  
-	// Default obstacle
+	//Default obstacle
 	strcpy(obstacle, "None");
 
 	//Initializing cgi parser
@@ -56,17 +64,21 @@ int main()
 	}
 	// [/JMC]
 
+	//DEFAULT HTML formating output
 	printf("Content-Type: text/html;charset=us-ascii\n\n");
 
+	//initializes player structure to default values
 	initialize_player(&player);
+	//reads player & map information for designated file
 	read_file(&player, &map, fp, map_selection);
 	
+	//If player has called load function, then 
 	if(strcmp(query, "LOAD") == 0) {
 		sprintf(message, "Welcome back to Frupal");
 	}
 	else
 	{
-		query[1]='\0';
+		query[1]='\0';//this is an input (quickfix) that the querry string creates
 		//IF QUERY INPUT is equivalent to Direction (Attempt to move the player)
 		if(strcmp(query, "N") == 0 || strcmp(query, "S") == 0 || strcmp(query, "E") == 0 || strcmp(query, "W") == 0) {
 			//Sunanth Sakthivel
@@ -178,54 +190,3 @@ int main()
 
   return 0;
 }
-
-
-
-/*
-//!!!!!This should be placed in  file_io!!!!
-void initialize_player(Player *player)
-{
-	int i;
-
-	player->x = 0;
-	player->y = 0;
-	player->energy = 0;
-	player->money = 0;
-	player->visibility = 1;
-	player->hasBinocs = 1; //Hard coded in for now
-	for(i = 0; i < 10; i++) {
-		player->inventory[i] = malloc(5 * sizeof(char));
-		strcpy(player->inventory[i], "None");
-	}
-}
-
-void free_memory(Player *player, Map *map)
-{
-	int i, j;
-
-	// Free all dynamic memory of the map
-	for(i = 0; i < map->size; i++) {
-		for(j = 0; j < map->size; j++) {
-			if(map->tiles[i][j].content) {
-				free(map->tiles[i][j].content);
-			}
-			map->tiles[i][j].content = NULL;
-		}
-		if(map->tiles[i]) {
-			free(map->tiles[i]);
-		}
-		map->tiles[i] = NULL;
-	}
-	if(map->tiles) {
-		free(map->tiles);
-	}
-	map->tiles = NULL;
-
-	// Free all dynamic memory for the player
-	for(i = 0; i < 10; i++) {
-		if(player->inventory[i]) {
-			free(player->inventory[i]);
-		}
-	}
-}
-*/

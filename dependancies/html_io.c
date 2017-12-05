@@ -1,47 +1,51 @@
 #include "../main.h"
 
 void write_terrain(Tile * tile);
-/*(Written By Elijah Rich-Wimmer
+/*(Written By Elijah Rich-Wimmer)
 --Name: write_html
 --Input: Player structure to read in player coordinates, Map structure pointer contains all of the relevent information for the map output
---Output: The correctly formatted, html table with immage tags and content 
+--Output: The correctly formatted, html table with immage tags and content is printed to the console 
 */
 int write_html(Player *player, Map *map)
 {
-	
+	//Visibility function is called. (Unhides tiles the player should see.
 	viewTiles(player, map);
+	//assign local variables for player's location
 	int playerx = player->x;
 	int playery = player->y;
+	//Print table opening tag.
 	printf("<table cellpadding='0'>");
 	int size = map->size;
-	for(int y = size-1; y >= 0; --y)//awkward initialization (Will consider reworking)
+	for(int y = size-1; y >= 0; --y)//steps through every row of map top to bottom.
 	{
-		for(int x = 0; x<size; ++x)//awkward initialization (Will consider reworking)
+		for(int x = 0; x<size; ++x)//steps through every column in the left to right.
 		{
-			printf("<th><div class='parent'>");//row tab
-			if(playerx==x && playery==y)
+			printf("<th><div class='parent'>");//row tab opener.
+			if(playerx==x && playery==y)//if tile of player location is printed, then display hero without content.
 			{
-				write_terrain(&(map->tiles)[x][y]);
+				write_terrain(&(map->tiles)[x][y]);//prints terrain tile behind player.
 				printf("<img class='image2' height='30' src='assets/hero.png'></img>");
 				//printf("<th><img height='25' width='25' src='assets/hero.jpg' align='middle'></img></th>");
 				
 			}
 			else
 			{
+				//calls function to print immage tags
 				write_tile(&((map->tiles)[x][y]));
 			}
-			printf("</div></th>");//row tag
+			printf("</div></th>");//closing collumn (content tag
 		}
-		printf("</tr>");
+		printf("</tr>");//closing row tag
 	}
+	//print table closing tag.
 	printf("</table>");
 	return 1;
 }
 
 /*(Written By Elijah Rich-Wimmer
 --Name: write_tile
---Input: Tile structure pointer will contain all of the information 
---Output: The correctly formatted immage tag will be printed to the console
+--Input: Tile structure pointer will contain all of the information for the tile to be printed
+--Output: if the tile is set to invisible. then a fog tile is printed. otherwise, the write terrain and write_content_functions are called
 */
 void write_tile(Tile *tile)
 {
@@ -62,7 +66,11 @@ void write_tile(Tile *tile)
 		//printf("</div>");	
 }
 
-
+/*(Written By Elijah Rich-Wimmer
+--Name: write_terrain
+--Input: Tile structure pointer will contain all of the information for the printed tile
+--Output: The correctly formatted immage tag for the terrain will be printed to the console
+*/
 void write_terrain(Tile * tile)
 {
 		const char * formatting = "class='image1' height='30'";
@@ -93,12 +101,17 @@ void write_terrain(Tile * tile)
 }
 
 
-
+/*(Written By Elijah Rich-Wimmer)
+--Name: write_content
+--Purpose: This function prints the content immage on top of the terrain map (allowing various combinations of content and terrain)
+--Input: tile is a pointer to the tile structur that is to be printed
+--Output: if tile has content, a properly formated html immage tag is printed to the console/cgi
+*/
 void write_content(Tile *tile)
 {
 	const char * formatting = "class='image2' height='30'";
 	char * content = tile->content;
-	if(strcmp(content,"None")!=0)
+	if(strcmp(content,"None")!=0)//looks at the tile structures content coordinates 
 	{
 		printf("<img %s src='assets/", formatting);
 		//printf("_");

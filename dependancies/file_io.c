@@ -5,7 +5,7 @@
 --Edited by: ELIJAH RICH-WIMMER
 		Purpose: 1. Fix certain logic errors and added location range invalid input exceptions
 */
-//THIS FUNCTION can't currently handle invalid input (CONSIDER Changing this) [EPRW]
+
 int read_file(Player *player, Map *map, FILE *fp, int map_selection)
 {
 	int len = 0;

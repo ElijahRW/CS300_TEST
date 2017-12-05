@@ -1,15 +1,26 @@
+/*
+--Name: GROUP A
+--Class: CS 300
+--Contributors: Jacob Collins, Brady Testa, Sunanth Sakthivel
+--Assignment: Frupal Project
+--File: move_player.c
+--Description: This file handles player movement functions including map visibility and obs
+*/
+
 #include "../main.h"
+
+//definition for programming constants in file.
 #define BOG 4
 #define WALL 3 
 #define WATER 2
 
 /*
-Contributors: Jacob Collins, Brady Testa, Sunanth Sakthivel
---NOTE FOR CONVENTION:
+-- NOTE FOR CONVENTION:
 ----x is left/right (east west)
 ----y is up/down (north south)
+-- Written By: 
+-- Edited By: Elijah Rich-Wimmer.
 */
-
 int move_player(char *query, Player *player, Map *map)
 {
 	int max = map->size - 1;
@@ -50,10 +61,6 @@ int move_player(char *query, Player *player, Map *map)
 		// Decrement energy due to movement
 		energymessage = decrementenergy(player,map);
 		
-		// Make the tile visible (Needs to be expanded to show player's vision
-
-		//map->tiles[player->x ][player->y ].visibility = 1;
-
 }
 	viewTiles(player, map);
 	//return energy message to let main.c what type of message to send to json parse. 
@@ -62,6 +69,7 @@ int move_player(char *query, Player *player, Map *map)
 
 
 /*
+--By Brady. (Edited by Elijah Rich-Wimmer)
 --Purpose: This function will set to visible all tiles that are within the player's vision
 --Input: Player pointer to the main player structure. Map pointer to the map structure.
 --Output: the map structure will be updated
@@ -90,6 +98,7 @@ int viewTiles(Player *player, Map *map)
 //this function decrements energy of player while also checking for terrain such as bogs and instances of chests. 
 //information about the player is updated here and a return code is sent back to main.c that will determine what
 //type of message to be displayed in the html. 
+//Water Functionality added by Elijah Rich-Wimmer
 int decrementenergy(Player* player, Map* map)
 {
 	int flag = 0;
@@ -132,7 +141,14 @@ int decrementenergy(Player* player, Map* map)
 } 
 
 
-int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true if the terrain is passable.
+/*
+--Purpose: This function checks to see if the player may step on the indicated tile.
+--Input: myMap is the map structure that contains the map array of arrays, myPlayer is the pointer to the player structure, query is the character pointer that contains the direction indicated
+--Output: if the player may make the move, then 1 is returned
+--Edited for boat transportation by Elijah Rich-Wimmer
+--Written by: (Sunanth?)
+*/
+int checkPassable(Map * myMap,Player *myPlayer, char* query)
 {
 	int x= myPlayer->x;
 	int y = myPlayer->y;
@@ -167,28 +183,34 @@ int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true
 		y = max;
 	}
 
-	if(myMap->tiles[x][y].terrain == WATER && has_boat(myPlayer)==0)
-{
-	
+	if(myMap->tiles[x][y].terrain == WATER && has_boat(myPlayer)==0)//if statment added Elijah Rich-Wimmer
+	{
 		--myPlayer->energy;
 		return 1;
-		
-}
+	}
 	if(myMap->tiles[x][y].terrain == WALL)
-{
+	{
 		--myPlayer->energy;
 		return 1;
 		
-}
+	}
 	
 	else
 		return 0;
 }
 
+/*
+--Function: has_boat
+--Purpose: checks to see if player has a boat. in thier inventory.
+--input: player is the pointer to the player structure.
+--output if the player has a boat in their inventory, then 
+--Written By: Elijah Rich-Wimmer
+*/
 int has_boat(Player * player)
 {
 	char ** inventory = player->inventory;
-	int result =0;
+	int result =0;//result output (for return)
+	//iterates through player's inventory
 	for (int i = 0; i < 10; ++i)
 		{
 			//If there is an empty spot in the users inventory copy the item over
@@ -201,7 +223,11 @@ int has_boat(Player * player)
 	return result;
 }
 
-
+/*
+--Function: has_binoc
+--Purpose: checks to see if
+--Written by: (Brady?)
+*/
 int has_binoc(Player * player)
 {
 	char ** inventory = player->inventory;
