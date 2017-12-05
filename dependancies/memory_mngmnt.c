@@ -1,3 +1,5 @@
+// Contributors: Jacob Collins, Brady Testa
+
 #include "../main.h"
 
 void initialize_player(Player *player)

@@ -1,3 +1,6 @@
+// This file contains the frame for the backend of Frupal
+// Contributors: Jacob Collins
+
 #include "main.h"
 
 int main()
