@@ -1,5 +1,6 @@
-//CN, WW
+// WW
 //File that will be called when the user steps on a tile with a useful item and attempts to buy it
+//Contributors: Caameron Nakasone
 
 #include "main.h"
 
@@ -104,7 +105,7 @@ int main()
 	json_output = add_name_value_pair(json_output, "message", message, STRING);
 
 	
-	//what does this do?
+	//Output the inventory of the player
 	char item_name[] = "Aitem"; 
 	for(int i = 0; i < 10; ++i){
 		json_output = add_name_value_pair(json_output, item_name, player.inventory[i], STRING);

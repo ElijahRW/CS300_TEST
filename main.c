@@ -1,5 +1,5 @@
 // This file contains the frame for the backend of Frupal
-// Contributors: Jacob Collins
+// Contributors: Jacob Collins, Caameron Nakasone
 
 #include "main.h"
 

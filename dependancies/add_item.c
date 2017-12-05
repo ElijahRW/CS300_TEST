@@ -2,13 +2,11 @@
 /*   CN, WW
 This file will be called when we want to add an item to the players inventory
 if the item is a powerbar, we don't add it into the player's inventory*/
+//Contributors: Caameron Nakasone
 
 #include "../main.h"
 
 
-/*
-
-*/
 
 //Decrements the amount of whiffles for the specified item but only does so if the player has enough money
 //If they do not have enough money then the function returns a 0, if they have enough it will return a 1
