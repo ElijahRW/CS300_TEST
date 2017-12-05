@@ -1,4 +1,4 @@
-// Contributors: Jacob Collins, Brady Testa
+// Contributors: Jacob Collins
 
 #include "../main.h"
 
