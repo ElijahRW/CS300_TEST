@@ -1,5 +1,5 @@
 // This file contains the frame for the backend of Frupal
-// Contributors: Jacob Collins, Caameron Nakasone
+// Contributors: Jacob Collins, Caameron Nakasone, Sunanth Sakthivel
 
 #include "main.h"
 
@@ -69,19 +69,18 @@ int main()
 		query[1]='\0';
 		//IF QUERY INPUT is equivalent to Direction (Attempt to move the player)
 		if(strcmp(query, "N") == 0 || strcmp(query, "S") == 0 || strcmp(query, "E") == 0 || strcmp(query, "W") == 0) {
+			//Sunanth Sakthivel
+			//logic to check for bog interactions as well as chest interactions (also includes instance of chest and bog interactions). 
 			energymessage = move_player(query, &player, &map);
-			if(energymessage == 2 || energymessage == 5 || energymessage == 6)//Bog Check   --CONSIDER MOVING THIS CHECK INTO THE MOVE PLAYER FUNCTION--
+			if(energymessage == 2 || energymessage == 5 || energymessage == 6)//Bog Check   
 				sprintf(message, "You've just run into a bog, lost extra energy point");
 			if(energymessage == 3 || energymessage == 5)
-				chest = 1;
+				chest = 1;	//run into type 1 chest.
 			if(energymessage == 4 || energymessage == 6)
 			{
-				chest = 2;	
+				chest = 2;	//run into type 2 chest. 
 			}
 			//-- --
-			//We have to check if the player is standing on a purchase location
-			// Adjust the char purchase_request and the char[] message in order to prompt user input (y/n)
-			//if purchase_request == ' ', then no output is given
 		}
 
 	}
@@ -92,7 +91,7 @@ int main()
 	//to the html file, where a function will then be called that will allow the user to purchase the item
 	check_item(&player, &map, useful_item);	
 
-	//CN,WW
+	//CN,WW,SS
 	//If statement to check coordinates that the player has moved into and the coordiantes of the diamonds
 	//if(map.tiles[diamondx][diamondy].x == player.x && map.tiles[diamondx][diamondy].y == player.y)
 	if(strcmp(map.tiles[player.x][player.y].content, "DIAMOND") == 0)
@@ -109,10 +108,13 @@ int main()
 		strcpy(obstacle, obstacle_names[obstacle_index]);
 	}
 
+	//SS
+	//Check for the appropriate clue and set clue variable to appropriate type of clue. 
+	//Retrieve information about diamond location from the check for clue function. 
 	clue = check_for_clue(&player, &map, &northaway, &eastaway, &southaway, &westaway); 
 	if(!clue || player.energy < 1)
 	{
-		clue = 0;
+		clue = 0;	//set clue to 0 if no clue found. 
 	}
 
 	//CN	

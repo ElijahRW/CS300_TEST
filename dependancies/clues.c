@@ -1,6 +1,6 @@
 #include "../main.h"
 
-//s.s
+//Sunanth Sakthivel
 //check for clue and retrieve appropriate information.
 //calculate the shortest distance with considerations of wrapping around map. 
 int check_for_clue(Player* player, Map* map, int* north, int* east, int* south, int* west){
@@ -15,7 +15,7 @@ int check_for_clue(Player* player, Map* map, int* north, int* east, int* south, 
 	int max = map->size;
 
 
-//check to find clue.
+//check to find clue (clue 1 represents true clue, and clue 2 is false clue). 
 	if (strcmp(map->tiles[player->x][player->y].content, "CLUE1") != 0 && strcmp(map->tiles[player->x][player->y].content, "CLUE2") != 0)
 	{
 		return 0;

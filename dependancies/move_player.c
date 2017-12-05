@@ -4,7 +4,7 @@
 #define WATER 2
 
 /*
-Contributors: Jacob Collins, Brady Testa
+Contributors: Jacob Collins, Brady Testa, Sunanth Sakthivel
 --NOTE FOR CONVENTION:
 ----x is left/right (east west)
 ----y is up/down (north south)
@@ -56,6 +56,7 @@ int move_player(char *query, Player *player, Map *map)
 
 }
 	viewTiles(player, map);
+	//return energy message to let main.c what type of message to send to json parse. 
 	return energymessage;
 }
 
@@ -85,17 +86,16 @@ int viewTiles(Player *player, Map *map)
 	return 1;	
 }
 
-//s.s
+//Sunanth Sakthivel
 //this function decrements energy of player while also checking for terrain such as bogs and instances of chests. 
 //information about the player is updated here and a return code is sent back to main.c that will determine what
 //type of message to be displayed in the html. 
 int decrementenergy(Player* player, Map* map)
 {
-	//going to add checks for water and treasure chests here. 
 	int flag = 0;
 	
 	
-	//what is this doing here?
+	//get information regarding chest encounters
 	if(strcmp(map->tiles[player->x][player->y].content, "TYPE1") == 0)
 	{
 		player->money += 100;
@@ -113,13 +113,14 @@ int decrementenergy(Player* player, Map* map)
 		strcpy(map->tiles[player->x][player->y].content, "None");
 		flag = 4;
 	}
+	//check encounter for bog
 	if(map->tiles[player->x][player->y].terrain == BOG)
 	{
 		(player->energy) -= 2;
 		if(!flag)
 			return 2;
 		else
-			return 2+flag;
+			return 2+flag; //check if chest is within bog.
 	}
 	else if(map->tiles[player->x][player->y].terrain != WATER)
 	{
