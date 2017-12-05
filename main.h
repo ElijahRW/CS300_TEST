@@ -1,3 +1,7 @@
+// This file declares global data structures and functions
+// used in the cgi files
+// Contributors: Dumitru Mitaru-Berceanu
+
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdio.h>
@@ -104,10 +108,16 @@ char* add_name_value_pair(char* curr_json, const char* name, const void* value, 
 // It will decrement the players energy, remove the obstacle from the map
 // and remove the tool of choice from the players inventory
 void remove_obstacle(Player*, Map*, int tool_index);
+// Return the obstacle index, -1 if not found 
 int get_obstacle_index(Player*, Map*);
+// Return the tool index, -1 if not found
 int get_tool_index(char* tool_name);
+// Remove the obstacle from the map
 void remove_obstacle_from_map(Player*, Map*);
+// Remove the tool from the player inventory
 void remove_tool_from_inventory(Player*, int);
+// Check if the obstacle to remove and the tool
+// chosen to remove it matches. 1 for match, 0 otherwise 
 int check_obstacle_tool_match(int, int);
 
 //from clue.h

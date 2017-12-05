@@ -1,3 +1,7 @@
+// This file defines helper functions as well as data structures used 
+// in the remove_obstacle cgi. 
+// Contributors: Dumitru Mitaru-Berceanu
+
 #include "../main.h"
 
 
@@ -27,6 +31,8 @@ const char* tool_names[] = {
 [MACHETE]    "Machete",
 [SHEARS]     "Shears"
 };
+// Energies used to remove an obstacle for 
+// each tool
 const int tool_energies[] = {
 [HATCHET]    8,
 [AXE]        6,

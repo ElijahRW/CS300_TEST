@@ -1,5 +1,6 @@
 // This file is meant to be called when a player hits an obstacle
 // and chooses to remove it using one of thier inventory items
+// Contributors: Dumitru Mitaru-Berceanu, 
 
 #include "main.h"
 

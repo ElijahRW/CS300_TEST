@@ -1,3 +1,7 @@
+// This file defines the helper function to print out JSON
+// Data to the console. 
+// Contributors: Dumitru Mitaru-Berceanu
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
