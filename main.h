@@ -79,7 +79,7 @@ int viewTiles(); //Reveals everything around the player in his/her view range
 int checkPassable(Map * myMap, Player * myPlayer, char * query); //checks to see if inpassable terrain exists.
 //checks for content in a given tile 
 void check_item(Player * player, Map * map, char * useful_item); 
-
+//checks logic for chests as well as interaction with bog. 
 int decrementenergy(Player* player, Map* map);
 
 
@@ -121,6 +121,6 @@ void remove_tool_from_inventory(Player*, int);
 int check_obstacle_tool_match(int, int);
 
 //from clue.h
-
+//this function will check for appropriate clue and recieve information regarding distance from diamonds.
 int check_for_clue(Player*, Map*, int*, int*, int*, int*);
 #endif /* MAIN_H */
