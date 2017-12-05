@@ -65,6 +65,7 @@ int move_player(char *query, Player *player, Map *map)
 --Purpose: This function will set to visible all tiles that are within the player's vision
 --Input: Player pointer to the main player structure. Map pointer to the map structure.
 --Output: the map structure will be updated
+--Brady Testa
 */
 int viewTiles(Player *player, Map *map)
 {
@@ -131,7 +132,7 @@ int decrementenergy(Player* player, Map* map)
 	return flag;
 } 
 
-
+//Brady Testa
 int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true if the terrain is passable.
 {
 	int x= myPlayer->x;
@@ -185,6 +186,8 @@ int checkPassable(Map * myMap,Player *myPlayer, char* query) //Only returns true
 		return 0;
 }
 
+
+//Returns true if player has a boat
 int has_boat(Player * player)
 {
 	char ** inventory = player->inventory;
@@ -201,7 +204,8 @@ int has_boat(Player * player)
 	return result;
 }
 
-
+//Returns true if player has a pair of binoculars
+//Brady Testa
 int has_binoc(Player * player)
 {
 	char ** inventory = player->inventory;

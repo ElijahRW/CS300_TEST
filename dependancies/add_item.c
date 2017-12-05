@@ -2,7 +2,7 @@
 /*   CN, WW
 This file will be called when we want to add an item to the players inventory
 if the item is a powerbar, we don't add it into the player's inventory*/
-//Contributors: Caameron Nakasone
+//Contributors: Caameron Nakasone, Brady Testa (Added Binoculars)
 
 #include "../main.h"
 
