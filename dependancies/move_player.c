@@ -73,6 +73,7 @@ int move_player(char *query, Player *player, Map *map)
 --Purpose: This function will set to visible all tiles that are within the player's vision
 --Input: Player pointer to the main player structure. Map pointer to the map structure.
 --Output: the map structure will be updated
+--Brady Testa
 */
 int viewTiles(Player *player, Map *map)
 {
@@ -144,9 +145,9 @@ int decrementenergy(Player* player, Map* map)
 /*
 --Purpose: This function checks to see if the player may step on the indicated tile.
 --Input: myMap is the map structure that contains the map array of arrays, myPlayer is the pointer to the player structure, query is the character pointer that contains the direction indicated
---Output: if the player may make the move, then 1 is returned
+--Output: if the player may make the move, then 0 is returned else, 1 is returned
 --Edited for boat transportation by Elijah Rich-Wimmer
---Written by: (Sunanth?)
+--Written by: Brady Testa
 */
 int checkPassable(Map * myMap,Player *myPlayer, char* query)
 {
@@ -154,6 +155,7 @@ int checkPassable(Map * myMap,Player *myPlayer, char* query)
 	int y = myPlayer->y;
 	int max = myMap->size -1;
 	
+	//checking for direction and incrementing temp x and y accordingly
 	if(strcmp(query, "N") == 0) {
 		y++;
 	}
@@ -183,7 +185,7 @@ int checkPassable(Map * myMap,Player *myPlayer, char* query)
 		y = max;
 	}
 
-	if(myMap->tiles[x][y].terrain == WATER && has_boat(myPlayer)==0)//if statment added Elijah Rich-Wimmer
+	if(myMap->tiles[x][y].terrain == WATER && has_boat(myPlayer)==0)//if statment added Elijah Rich-Wimmer for boat movement
 	{
 		--myPlayer->energy;
 		return 1;
@@ -223,11 +225,13 @@ int has_boat(Player * player)
 	return result;
 }
 
+
 /*
 --Function: has_binoc
---Purpose: checks to see if
---Written by: (Brady?)
+--Purpose: Returns true if player has a pair of binoculars
+--Written by: Brady Testa
 */
+
 int has_binoc(Player * player)
 {
 	char ** inventory = player->inventory;

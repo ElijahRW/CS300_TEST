@@ -1,7 +1,7 @@
 /*
 --Name: GROUP A
 --Class: CS 300
---Contributors: Caameron Nakasone, Weiwei
+--Contributors: Caameron Nakasone, Weiwei, Caameron Nakasone, Brady Testa (Added Binoculars)
 --Assignment: Frupal Project
 --File: add_item.c
 --Description: --This file will be called when we want to add an item to the players inventory
