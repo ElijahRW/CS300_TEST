@@ -4,8 +4,8 @@
 --Contributors: Dumitru Mitaru-Berceanu
 --Assignment: Frupal Project
 --File: obstacle.c
---Description:  --This file defines helper functions as well as data structures used 
-				--in the remove_obstacle cgi. 
+--Description:  This file defines helper functions as well as data structures used 
+								in the remove_obstacle cgi. 
 */
 
 #include "../main.h"

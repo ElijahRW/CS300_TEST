@@ -1,6 +1,15 @@
 // This file declares global data structures and functions
 // used in the cgi files
-// Contributors: Dumitru Mitaru-Berceanu
+/*
+Contributors: 
+Dumitru Mitaru-Berceanu
+Elija Rich-Wimmer
+Jacob Collins
+Brady Testa
+Caameron Nakasone
+Sunanth Sakthivel
+WeiWei Chen
+*/
 
 #ifndef MAIN_H
 #define MAIN_H

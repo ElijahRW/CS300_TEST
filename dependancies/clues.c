@@ -1,3 +1,6 @@
+// This file defines helper functions related to the clues user story
+// Contributors: Sunanth Sakthivel
+
 #include "../main.h"
 
 //Sunanth Sakthivel

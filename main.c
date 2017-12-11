@@ -1,5 +1,5 @@
 /* This file contains the frame for the backend of Frupal
-// Contributors: (All group memebers) Jacob Collins, Caameron Nakasone, Sunanth Sakthivel, Elijah Rich-Wimmer, ...
+// Contributors: (All group memebers) Jacob Collins, Caameron Nakasone, Sunanth Sakthivel, Elijah Rich-Wimmer, Dumitru Mitaru-Berceanu, Brady Testa, Weiwei Chen
 */
 /*
 --Name: GROUP A

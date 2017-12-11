@@ -1,3 +1,5 @@
+// This file defines helper functions used for
+// initializing a player and freeing the player and map memory
 // Contributors: Jacob Collins
 
 #include "../main.h"
