@@ -1,3 +1,7 @@
+//Contributer: Sunanth Sakthivel
+//This file is responsible for providing the map reset functionality. When this function is called
+//the map will reset to the default state by overwriting the current map with def_state map. 
+
 #include "../main.h"
 //Sunanth Sakthivel
 //resets state back to original for restoring file back to default map values. 
