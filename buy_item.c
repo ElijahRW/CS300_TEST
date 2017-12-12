@@ -1,6 +1,5 @@
-// WeiWei
 //File that will be called when the user steps on a tile with a useful item and attempts to buy it
-//Contributors: Caameron Nakasone
+//Contributors: Caameron Nakasone, Weiwei
 
 /*
 --Name: GROUP A
